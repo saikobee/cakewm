@@ -7,6 +7,11 @@ show()
 
 class Window(object):
     def __init__(self, **kwargs):
+        self.size = kwargs.get("size", (0, 0))
+        self.pos  = kwargs.get("pos",  (0, 0))
+
+        self.rect = kwargs.get("rect", ((0, 0), (0, 0)))
+
         self.x = kwargs.get("x", 0)
         self.y = kwargs.get("y", 0)
 
@@ -16,19 +21,23 @@ class Window(object):
         self.row = kwargs.get("row", 0)
         self.col = kwargs.get("col", 0)
 
-        self.size = kwargs.get("size", (0, 0))
-        self.pos  = kwargs.get("pos",  (0, 0))
-
-        self.rect = kwargs.get("rect", ((0, 0), (0, 0)))
-
-        self.focus = False
+        self.focused = False
 
         hsl = (random(360), 100, 50)
         self.color = hsl2rgb(hsl)
 
     def draw(self):
-        if self.focus:  rectangle(WHITE,      self.rect)
-        else:           rectangle(self.color, self.rect)
+        if self.focused: rectangle(WHITE,      self.rect)
+        else:            rectangle(self.color, self.rect)
+
+    def focus(self):
+        self.focused = True
+
+    def unfocus(self):
+        self.focused = False
+
+    def focus_toggle(self):
+        self.focused = not self.focused
 
     @property
     def size(self):
@@ -60,11 +69,27 @@ def select_up():
     col = cur.col
     row = max(row, 0)
 
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def inc_x(self, dx=1): self.x += dx
+    def inc_y(self, dy=1): self.y += dy
+
+    @property
+    def pos(self): return (self.x, self.y)
+
+cursor = Point(0, 0)
+
+add_row = lambda dr: cursor.inc_x(dr)
+add_col = lambda dc: cursor.inc_y(dc)
+
 binds = {
-#   "h": Window.select_left,
-#   "j": Window.select_down,
-#   "k": Window.select_up,
-#   "l": Window.select_right,
+    "h": lambda: add_row(-1),
+    "j": lambda: add_col(-1),
+    "k": lambda: add_col(+1),
+    "l": lambda: add_row(+1),
 
 #   "y": move_left,
 #   "u": move_down,
@@ -97,8 +122,14 @@ windows.append(Window(
     row=1,  col=0
 ))
 
-for window in windows:
-    window.draw()
-    update()
+while True:
+    for window in windows:
+        window.unfocus()
+        if window.pos == cursor.pos:
+            window.focus()
+
+        window.draw()
+        print "(COL, ROW) = (", cursor.x, ",", cursor.y, ")"
+        update()
 
 pause()
