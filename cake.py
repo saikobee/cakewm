@@ -5,8 +5,8 @@ from pypixel import *
 title("cakewm test program")
 show()
 
-MAX_COL = 4
-MAX_ROW = 4
+MAX_COL = 3
+MAX_ROW = 3
 
 def clamp(x, a, b):
     if   x < a: return a
