@@ -39,10 +39,14 @@ class Window(object):
     def draw(self):
         #if self.focused: rectangle(WHITE,      self.rect)
         if self.focused:
-            q = 18
-            rect = ((self.x + q, self.y + q), (self.w - 2*q, self.h - 2*q))
-            rectangle(Window.FOCUS_COLOR, self.rect)
-            rectangle(self.color,              rect)
+            q = 18; rec1 = ((self.x + q, self.y + q), (self.w - 2*q, self.h - 2*q))
+            q =  9; rec2 = ((self.x + q, self.y + q), (self.w - 2*q, self.h - 2*q))
+            q =  3; rec3 = ((self.x + q, self.y + q), (self.w - 2*q, self.h - 2*q))
+
+            rectangle(BLACK,      self.rect)
+            rectangle(WHITE,           rec3)
+            rectangle(BLACK,           rec2)
+            rectangle(self.color,      rec1)
         else:
             q = 3
             rect = ((self.x + q, self.y + q), (self.w - 2*q, self.h - 2*q))
