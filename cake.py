@@ -5,7 +5,17 @@ from pypixel import *
 title("cakewm test program")
 show()
 
+MAX_COL = 4
+MAX_ROW = 4
+
+def clamp(x, a, b):
+    if   x < a: return a
+    elif x > b: return b
+    else:       return x
+
 class Window(object):
+    FOCUS_COLOR = WHITE
+
     def __init__(self, **kwargs):
         self.size = kwargs.get("size", (0, 0))
         self.pos  = kwargs.get("pos",  (0, 0))
@@ -27,17 +37,21 @@ class Window(object):
         self.color = hsl2rgb(hsl)
 
     def draw(self):
-        if self.focused: rectangle(WHITE,      self.rect)
-        else:            rectangle(self.color, self.rect)
+        #if self.focused: rectangle(WHITE,      self.rect)
+        if self.focused:
+            q = 18
+            rect = ((self.x + q, self.y + q), (self.w - 2*q, self.h - 2*q))
+            rectangle(Window.FOCUS_COLOR, self.rect)
+            rectangle(self.color,              rect)
+        else:
+            q = 3
+            rect = ((self.x + q, self.y + q), (self.w - 2*q, self.h - 2*q))
+            rectangle(self.color, rect)
+            #rectangle(self.color, self.rect)
 
-    def focus(self):
-        self.focused = True
-
-    def unfocus(self):
-        self.focused = False
-
-    def focus_toggle(self):
-        self.focused = not self.focused
+    def focus(self):        self.focused = True
+    def unfocus(self):      self.focused = False
+    def focus_toggle(self): self.focused = not self.focused
 
     @property
     def size(self):
@@ -54,6 +68,14 @@ class Window(object):
     @pos.setter
     def pos(self, pos):
         self.x, self.y = pos
+
+    @property
+    def grid_pos(self):
+        return (self.row, self.col)
+
+    @grid_pos.setter
+    def grid_pos(self, grid_pos):
+        self.row, self.col = grid_pos
 
     @property
     def rect(self):
@@ -74,11 +96,19 @@ class Point:
         self.x = x
         self.y = y
 
-    def inc_x(self, dx=1): self.x += dx
-    def inc_y(self, dy=1): self.y += dy
+    def inc_x(self, dx=1):
+        self.x += dx
+        self.x = clamp(self.x, 0, MAX_COL - 1)
+
+    def inc_y(self, dy=1):
+        self.y += dy
+        self.y = clamp(self.y, 0, MAX_ROW - 1)
 
     @property
     def pos(self): return (self.x, self.y)
+
+    def __repr__(self):
+        return "(%s, %s)" % self.pos
 
 cursor = Point(0, 0)
 
@@ -86,10 +116,10 @@ add_row = lambda dr: cursor.inc_x(dr)
 add_col = lambda dc: cursor.inc_y(dc)
 
 binds = {
-    "h": lambda: add_row(-1),
-    "j": lambda: add_col(-1),
-    "k": lambda: add_col(+1),
-    "l": lambda: add_row(+1),
+    "h": lambda: add_col(-1),
+    "j": lambda: add_row(+1),
+    "k": lambda: add_row(-1),
+    "l": lambda: add_col(+1),
 
 #   "y": move_left,
 #   "u": move_down,
@@ -105,31 +135,40 @@ binds = {
 for key, fun in binds.iteritems():
     bind(key, fun)
 
+windows = [
+    Window(x=10,  y=20,  w=30, h=40, row=0, col=0),
+    Window(x=140, y=20,  w=20, h=30, row=0, col=1),
+    Window(x=10,  y=150, w=80, h=80, row=1, col=0),
+
+    Window(x=140, y=100, w=80, h=80, row=1, col=1),
+    Window(x=250, y=50,  w=80, h=80, row=1, col=2),
+    Window(x=300, y=200, w=80, h=80, row=2, col=2),
+]
+
 windows = []
-windows.append(Window(
-    x=10,   y=20,
-    w=30,   h=40,
-    row=0,  col=0
-))
-windows.append(Window(
-    x=90,   y=20,
-    w=20,   h=30,
-    row=0,  col=1
-))
-windows.append(Window(
-    x=10,   y=150,
-    w=80,   h=80,
-    row=1,  col=0
-))
+dw = WIDTH  / MAX_COL
+dh = HEIGHT / MAX_ROW
+for row in xrange(MAX_ROW):
+    for col in xrange(MAX_COL):
+        dx = dw * col
+        dy = dh * row
+        windows.append(Window(
+            x=dx,
+            y=dy,
+            w=dw,
+            h=dh,
+            row=row,
+            col=col
+        ))
 
 while True:
     for window in windows:
         window.unfocus()
-        if window.pos == cursor.pos:
+        if window.grid_pos == cursor.pos:
             window.focus()
 
         window.draw()
-        print "(COL, ROW) = (", cursor.x, ",", cursor.y, ")"
-        update()
+    update()
+    clear()
 
 pause()
