@@ -1,0 +1,2 @@
+MAX_COL = 6
+MAX_ROW = 6
