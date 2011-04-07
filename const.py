@@ -1,2 +1,2 @@
-MAX_COL = 6
-MAX_ROW = 6
+MAX_COL = 10
+MAX_ROW = 10

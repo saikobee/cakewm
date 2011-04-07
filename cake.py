@@ -56,7 +56,11 @@ for row in xrange(MAX_ROW):
             h=dh,
             row=row,
             col=col,
-            color=hsl2rgb((10 * row + 60 * col, 100, 50))
+            # For 6x6 grid
+            #color=hsl2rgb((10 * row + 60 * col, 100, 50))
+
+            # For 10x10 grid
+            color=hsl2rgb((5 * row + 30 * col, 100, 50))
         ))
 
 class Cursor(object):
@@ -86,6 +90,8 @@ def mod_cr(dc, dr):
     cur.col = clamp(cur.col, 0, MAX_COL - cur.width)
     cur.row = clamp(cur.row, 0, MAX_ROW - cur.height)
 
+def echo(*xs): print xs
+
 # Screw Python for only have in-place merge
 binds = dict(binds, **{
     "q": lambda: mod_wh(-1, -1),
@@ -93,6 +99,7 @@ binds = dict(binds, **{
     "e": lambda: mod_wh(+1, -1),
 
     "a": lambda: mod_wh(-1,  0),
+    "s": lambda: mod_wh( 0, +1),
     "d": lambda: mod_wh(+1,  0),
 
     "z": lambda: mod_wh(-1, +1),
