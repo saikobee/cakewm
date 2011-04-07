@@ -95,8 +95,7 @@ def mod_cr(dc, dr):
 
 def echo(*xs): print xs
 
-# Screw Python for only have in-place merge
-binds = dict(binds, **{
+binds.update({
     "q": lambda: mod_wh(-1, -1),
     "w": lambda: mod_wh( 0, -1),
     "e": lambda: mod_wh(+1, -1),
