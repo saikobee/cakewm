@@ -42,28 +42,6 @@ binds = {
 #   ",": resize_right,
 }
 
-cmd_q = []
-keys = "q w e r t y".split()
-for n in xrange(6):
-    print "BINDING", keys[n], "TO", n
-    def appender(n):
-        def inner():
-            print "Pressed key '%s'" % keys[n]
-            cmd_q.append(n)
-        return inner
-    binds[keys[n]] = appender(n)
-print "OMG THIS IS n:", n
-
-windows = [
-    Window(x=10,  y=20,  w=30, h=40, row=0, col=0),
-    Window(x=140, y=20,  w=20, h=30, row=0, col=1),
-    Window(x=10,  y=150, w=80, h=80, row=1, col=0),
-
-    Window(x=140, y=100, w=80, h=80, row=1, col=1),
-    Window(x=250, y=50,  w=80, h=80, row=1, col=2),
-    Window(x=300, y=200, w=80, h=80, row=2, col=2),
-]
-
 windows = []
 dw = WIDTH  / MAX_COL
 dh = HEIGHT / MAX_ROW
@@ -140,7 +118,6 @@ while True:
         window.unfocus()
         if (cur.col <= window.col < (cur.col + cur.width) and
             cur.row <= window.row < (cur.row + cur.height)):
-            print "Selecting window at", window.grid_pos
             window.focus()
         window.draw()
 
