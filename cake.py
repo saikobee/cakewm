@@ -81,34 +81,32 @@ for row in xrange(MAX_ROW):
             color=hsl2rgb((10 * row + 60 * col, 100, 50))
         ))
 
-col    = 0
-row    = 0
-width  = 1
-height = 1
+class Cursor(object):
+    def __init__(self):
+        self.col    = 0
+        self.row    = 0
+        self.width  = 1
+        self.height = 1
+
+cur = Cursor()
 
 def mod_wh(dw, dh):
-    global row
-    global col
-    global width
-    global height
+    global cur
 
-    width  += dw
-    height += dh
+    cur.width  += dw
+    cur.height += dh
 
-    width  = clamp(width,  1, MAX_COL - col)
-    height = clamp(height, 1, MAX_ROW - row)
+    cur.width  = clamp(cur.width,  1, MAX_COL - cur.col)
+    cur.height = clamp(cur.height, 1, MAX_ROW - cur.row)
 
 def mod_cr(dc, dr):
-    global row
-    global col
-    global width
-    global height
+    global cur
 
-    col += dc
-    row += dr
+    cur.col += dc
+    cur.row += dr
 
-    col = clamp(col, 0, MAX_COL - width)
-    row = clamp(row, 0, MAX_ROW - height)
+    cur.col = clamp(cur.col, 0, MAX_COL - cur.width)
+    cur.row = clamp(cur.row, 0, MAX_ROW - cur.height)
 
 # Screw Python for only have in-place merge
 binds = dict(binds, **{
@@ -140,8 +138,8 @@ for key, fun in binds.iteritems():
 while True:
     for window in windows:
         window.unfocus()
-        if (col <= window.col < (col + width) and
-            row <= window.row < (row + height)):
+        if (cur.col <= window.col < (cur.col + cur.width) and
+            cur.row <= window.row < (cur.row + cur.height)):
             print "Selecting window at", window.grid_pos
             window.focus()
         window.draw()
