@@ -81,9 +81,9 @@ for row in xrange(MAX_ROW):
             color=hsl2rgb((10 * row + 60 * col, 100, 50))
         ))
 
-col = 0
-row = 0
-width = 1
+col    = 0
+row    = 0
+width  = 1
 height = 1
 
 def mod_wh(dw, dh):
