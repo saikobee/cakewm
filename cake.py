@@ -9,17 +9,6 @@ from util       import *
 title("cakewm test program")
 show()
 
-class Container(object): pass
-box = Container()
-box.A = object()
-box.B = object()
-
-def select_up():
-    cur = Window.current
-    row = cur.row - 1
-    col = cur.col
-    row = max(row, 0)
-
 cursor = Point(0, 0)
 
 binds = {}
