@@ -38,14 +38,8 @@ for row in xrange(MAX_ROW):
             h=dh,
             row=row,
             col=col,
-            # For 6x6 grid
-            #color=hsl2rgb((10 * row + 60 * col, 100, 50))
-
-            # For 10x10 grid
-            #color=hsl2rgb((5 * row + 30 * col, 100, 50))
-
             # For MxN grid
-            color=hsl2rgb(((10 * row + 60 * col) % 360, 100, 50))
+            color=hsl2rgb(((10 * row + 30 * col) % 360, 100, 50))
         ))
 
 class Cursor(object):
