@@ -22,25 +22,7 @@ def select_up():
 
 cursor = Point(0, 0)
 
-add_row = lambda dr: cursor.inc_x(dr)
-add_col = lambda dc: cursor.inc_y(dc)
-
-binds = {
-#   "h": lambda: add_col(-1),
-#   "j": lambda: add_row(+1),
-#   "k": lambda: add_row(-1),
-#   "l": lambda: add_col(+1),
-
-#   "y": move_left,
-#   "u": move_down,
-#   "i": move_up,
-#   "o": move_right,
-
-#   "b": resize_left,
-#   "n": resize_down,
-#   "m": resize_up,
-#   ",": resize_right,
-}
+binds = {}
 
 windows = []
 dw = WIDTH  / MAX_COL
