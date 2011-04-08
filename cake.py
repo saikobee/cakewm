@@ -1,10 +1,12 @@
 #!/usr/bin/python2
 
 from pypixel    import *
-from window     import Window
-from point      import Point
+
 from const      import *
 from util       import *
+
+from window     import Window
+from point      import Point
 
 title("cakewm test program")
 show()
