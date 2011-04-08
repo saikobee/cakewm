@@ -45,20 +45,14 @@ cur = Cursor()
 def mod_wh(dw, dh):
     global cur
 
-    cur.width  += dw
-    cur.height += dh
-
-    cur.width  = clamp(cur.width,  1, MAX_COL - cur.col)
-    cur.height = clamp(cur.height, 1, MAX_ROW - cur.row)
+    cur.width  = clamp(dw + cur.width,  1, MAX_COL - cur.col)
+    cur.height = clamp(dh + cur.height, 1, MAX_ROW - cur.row)
 
 def mod_cr(dc, dr):
     global cur
 
-    cur.col += dc
-    cur.row += dr
-
-    cur.col = clamp(cur.col, 0, MAX_COL - cur.width)
-    cur.row = clamp(cur.row, 0, MAX_ROW - cur.height)
+    cur.col = clamp(dc + cur.col, 0, MAX_COL - cur.width)
+    cur.row = clamp(dr + cur.row, 0, MAX_ROW - cur.height)
 
 def echo(*xs): print xs
 
