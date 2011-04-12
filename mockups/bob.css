@@ -1,0 +1,119 @@
+html {
+    background: gray;
+    color:      white;
+}
+
+h5,
+h4,
+h3,
+h2,
+h1 {
+    text-transform: capitalize;
+    font-variant:   small-caps;
+
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+h1 {
+    text-shadow:
+         1px  1px 4px red,
+        -1px -1px 4px blue;
+}
+
+h2 {
+    text-shadow:
+         1px  1px 1px black,
+        -1px -1px 1px black,
+         2px  2px 1px white,
+        -2px -2px 1px white,
+         3px  3px 1px black,
+        -3px -3px 1px black;
+}
+
+h3 {
+    text-shadow:
+         1px  1px 1px red,
+        -1px -1px 1px green,
+         2px  2px 1px blue,
+        -2px -2px 1px orange,
+         3px  3px 1px yellow,
+        -3px -3px 1px magenta;
+}
+
+h4 {
+    color: black;
+    text-shadow: 0px 1px 1px white;
+}
+
+h5 {
+    font-size: 30pt;
+
+    padding: 25px;
+
+    background: black;
+    color:      white;
+
+    text-shadow: 0px  1px 20px white;
+    text-shadow: 0px -1px 20px white;
+}
+
+td {
+    border-width: 6px;
+    border-style: solid;
+
+    border-bottom-color: crimson;
+    border-right-color:  magenta;
+    border-left-color:   chartreuse;
+    border-top-color:    cornflowerblue;
+
+    padding: 25px;
+
+    text-shadow:
+         1px  1px 1px black,
+        -1px -1px 1px black,
+         2px  2px 1px white,
+        -2px -2px 1px white,
+         3px  3px 1px black,
+        -3px -3px 1px black;
+
+    background: purple;
+    color:      white;
+
+    text-transform: capitalize;
+    font-variant:   small-caps;
+    font-weight:    bold;
+    font-family:    sans-serif;
+}
+
+td.selected {
+    background: orange;
+    color:      black;
+
+    border-color: black;
+
+    border-bottom-color: blue;
+    border-right-color:  green;
+    border-left-color:   white;
+    border-top-color:    yellow;
+
+    text-shadow: 1px 1px white;
+}
+
+td.right,
+td.bottom {
+   background:  black;
+   color:       white;
+
+   text-shadow: 1px 1px magenta;
+}
+
+table {
+    margin:  0px;
+    padding: 0px;
+
+    /*
+    border-collapse: collapse;
+    */
+    border-collapse: separate;
+}
