@@ -109,11 +109,7 @@ td.bottom {
 }
 
 table {
-    margin:  0px;
-    padding: 0px;
-
-    /*
-    border-collapse: collapse;
-    */
-    border-collapse: separate;
+    margin:         0px;
+    padding:        0px;
+    border-spacing: 0px;
 }
