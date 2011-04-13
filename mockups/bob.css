@@ -82,6 +82,8 @@ td.bar {
     width: 50%;
 
     text-align: right;
+
+    font-size: medium;
 }
 
 td.bar.top {
