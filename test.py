@@ -26,29 +26,63 @@ class Cursor(object):
 
 cur = Window()
 
+cnt = 0
+
+def cur_info_helper(cur):
+    global cnt
+
+    cnt += 1
+
+    echo(">>>", cnt)
+    echo(">>> POS   =", cur.pos)
+    echo(">>> GRID  =", cur.grid_pos)
+    echo(">>> SIZE  =", cur.size)
+    echo(">>> GSIZE =", (cur.gw, cur.gh))
+    echo()
+
 def mod_wh(dw, dh):
     global cur
 
-    cur.w = clamp(dw + cur.w, 1, MAX_COL - cur.col)
-    cur.h = clamp(dh + cur.h, 1, MAX_ROW - cur.row)
+    if cur is None:
+        return
+
+    cur.gw = clamp(dw + cur.gw, 1, MAX_COL - cur.col)
+    cur.gh = clamp(dh + cur.gh, 1, MAX_ROW - cur.row)
+
+    cur.w = cur.gw * GRID_WIDTH
+    cur.h = cur.gh * GRID_HEIGHT
+
+    cur_info_helper(cur)
 
 def mod_cr(dc, dr):
     global cur
 
-    echo("dc, dr =", (dc, dr))
-    echo("cur(.col, .row) =", (cur.col, cur.row))
+    if cur is None:
+        return
 
-    echo("GRID POS :", cur.grid_pos)
-    cur.col = clamp(dc + cur.col, 0, MAX_COL - cur.w)
-    cur.row = clamp(dr + cur.row, 0, MAX_ROW - cur.h)
-    echo("GRID POS':", cur.grid_pos)
+    cur.col = clamp(dc + cur.col, 0, MAX_COL - cur.gw)
+    cur.row = clamp(dr + cur.row, 0, MAX_ROW - cur.gh)
 
-    echo("POS :", cur.pos)
     cur.x = cur.col * GRID_WIDTH
     cur.y = cur.row * GRID_HEIGHT
-    echo("POS':", cur.pos)
+
+    cur_info_helper(cur)
 
 def echo(*xs): print ' '.join(map(str, xs))
+
+def new_window():
+    global windows
+    global cur
+
+    if cur is not None:
+        windows.append(cur)
+
+    cur = Window()
+
+def close_window():
+    global cur
+
+    cur = None
 
 binds.update({
     "q": lambda: mod_wh(-1, -1),
@@ -72,28 +106,22 @@ binds.update({
     "u": lambda: mod_cr(+1, -1),
     "b": lambda: mod_cr(-1, +1),
     "n": lambda: mod_cr(+1, +1),
+
+    "o": new_window,
+    "t": close_window,
 })
-
-def new_window():
-    global windows
-    global cur
-
-    windows.append(cur)
-    cur = Window()
-
-binds["o"] = new_window
 
 for key, fun in binds.iteritems():
     bind(key, fun)
 
-new_window()
-
 while True:
     for window in windows:
         window.unfocus()
-        if window is cur:
-            window.focus()
         window.draw()
+
+    if cur is not None:
+        cur.focus()
+        cur.draw()
 
     update()
     clear()

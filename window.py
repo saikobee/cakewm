@@ -16,6 +16,9 @@ class Window(object):
         self.w = kwargs.get("w", WIDTH  / MAX_COL)
         self.h = kwargs.get("h", HEIGHT / MAX_ROW)
 
+        self.gw = kwargs.get("gw", 1)
+        self.gh = kwargs.get("gh", 1)
+
         self.row = kwargs.get("row", 0)
         self.col = kwargs.get("col", 0)
 
@@ -36,6 +39,7 @@ class Window(object):
             rectangle(WHITE,           rec3)
             rectangle(BLACK,           rec2)
             rectangle(self.color,      rec1)
+            #rectangle(self.color, self.rect)
         else:
             q = 3
             rect = ((self.x + q, self.y + q), (self.w - 2*q, self.h - 2*q))
