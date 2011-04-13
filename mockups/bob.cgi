@@ -31,25 +31,23 @@ def mn_table m, n, cgi=$cgi
             cgi.tr {
                 (0 ... n).map {|y|
                     classes = []
-                    classes << "right"      if y == (n - 1)
-                    classes << "bottom"     if x == (m - 1)
-                    classes << "selected"   if [x, y] == selection
+                    classes << "right"  if y == (n - 1)
+                    classes << "bottom" if x == (m - 1)
                     classes = classes.join " "
 
-                    cgi.td(:class => classes) { yield }
+                    cgi.td(:class => classes) { yield x, y }
                 }.join
             }
         }.join
     }
 end
 
-table = mn_table(4, 4){"foobar"}
+table = mn_table(4, 4) {|x, y|
+    cgi.div(:class => "inner") {
+        "Win(#{x}, #{y})"
+    }
+}
 
 za_warudo do
-    table +
-    cgi.h1 { "cakewm for life" } +
-    cgi.h2 { "best wm ever" } +
-    cgi.h3 { "love it so much" } +
-    cgi.h4 { "saiko cake factory" } +
-    cgi.h5 { "bad ugly text" }
+    table
 end
