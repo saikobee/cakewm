@@ -27,6 +27,7 @@ end
 def mn_table m, n, cgi=$cgi
     selection = [1, 0]
     cgi.table {
+        make_bar("top", m) +
         (0 ... m).map {|x|
             cgi.tr {
                 (0 ... n).map {|y|
@@ -38,13 +39,36 @@ def mn_table m, n, cgi=$cgi
                     cgi.td(:class => classes) { yield x, y }
                 }.join
             }
-        }.join
+        }.join +
+        make_bar("bottom", m)
+    }
+end
+
+def make_bar edge, width, cgi=$cgi
+    bot_text =
+        cgi.div(:class => "left" ) { "(Window Title)" } +
+        cgi.div(:class => "right") { "(1, 3) 3x4 (2/9)" }
+    top_text =
+        cgi.div(:class => "left" ) { "(Desktop List)" } +
+        cgi.div(:class => "right") { "(Infobar Text)" }
+
+    cgi.tr {
+        cgi.td(
+            :class   => "bar #{edge}",
+            :colspan => width
+        ) {
+            case edge
+            when "top";     top_text
+            when "bottom";  bot_text
+            else            "ERROR TEXT"
+            end
+        }
     }
 end
 
 table = mn_table(4, 4) {|x, y|
     cgi.div(:class => "inner") {
-        "Win(#{x}, #{y})"
+        "(#{x}, #{y})"
     }
 }
 
