@@ -47,7 +47,7 @@ end
 def make_bar edge, width, cgi=$cgi
     bot_text =
         cgi.div(:class => "left" ) { "(Window Title)" } +
-        cgi.div(:class => "right") { "(1, 3) 3x4 (2/9)" }
+        cgi.div(:class => "right") { "(P, Q) MxN (A/B)" }
     top_text =
         cgi.div(:class => "left" ) { "(Desktop List)" } +
         cgi.div(:class => "right") { "(Infobar Text)" }
@@ -72,6 +72,28 @@ table = mn_table(3, 4) {|x, y|
     }
 }
 
+def make_table title, table, cgi=$cgi
+    cgi.table {
+        cgi.th { title } +
+        table.map {|row|
+            cgi.tr {
+                row.map {|item|
+                    cgi.td {
+                        item
+                    }
+                }.join
+            }
+        }.join
+    }
+end
+
+definitions = make_table "Definitions", [
+    ["(P, Q)",  "Window's top-left is at grid-square (P, Q)"],
+    ["MxN",     "Window is MxN grid squares in area"],
+    ["(A/B)",   "Window is #A out of B items in stack"],
+]
+
 za_warudo do
-    table
+    table +
+    definitions
 end
