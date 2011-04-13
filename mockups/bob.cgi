@@ -28,9 +28,9 @@ def mn_table m, n, cgi=$cgi
     selection = [1, 0]
     cgi.table {
         make_bar("top", m) +
-        (0 ... m).map {|x|
+        (0 ... n).map {|x|
             cgi.tr {
-                (0 ... n).map {|y|
+                (0 ... m).map {|y|
                     classes = []
                     classes << "right"  if y == (n - 1)
                     classes << "bottom" if x == (m - 1)
@@ -66,7 +66,7 @@ def make_bar edge, width, cgi=$cgi
     }
 end
 
-table = mn_table(4, 4) {|x, y|
+table = mn_table(3, 4) {|x, y|
     cgi.div(:class => "inner") {
         "(#{x}, #{y})"
     }
