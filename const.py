@@ -1,2 +1,7 @@
+from pypixel import *
+
 MAX_COL = 10
 MAX_ROW = 10
+
+GRID_WIDTH  = WIDTH  / MAX_COL
+GRID_HEIGHT = HEIGHT / MAX_ROW

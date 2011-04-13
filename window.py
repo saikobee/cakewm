@@ -1,4 +1,5 @@
-from pypixel import *
+from pypixel    import *
+from const      import *
 
 class Window(object):
     FOCUS_COLOR = WHITE
@@ -12,8 +13,8 @@ class Window(object):
         self.x = kwargs.get("x", 0)
         self.y = kwargs.get("y", 0)
 
-        self.w = kwargs.get("w", 10)
-        self.h = kwargs.get("h", 10)
+        self.w = kwargs.get("w", WIDTH  / MAX_COL)
+        self.h = kwargs.get("h", HEIGHT / MAX_ROW)
 
         self.row = kwargs.get("row", 0)
         self.col = kwargs.get("col", 0)
