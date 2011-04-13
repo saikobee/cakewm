@@ -34,6 +34,8 @@ def mn_table m, n, cgi=$cgi
                     classes = []
                     classes << "right"  if y == (n - 1)
                     classes << "bottom" if x == (m - 1)
+                    classes << "left"   if y == 0
+                    classes << "top"    if x == 0
                     classes = classes.join " "
 
                     cgi.td(:class => classes) { yield x, y }

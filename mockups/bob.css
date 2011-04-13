@@ -66,8 +66,13 @@ td div.inner {
     padding: 30px;
 }
 
+td.top,
 td.right,
 td.bottom {
+}
+
+td.left {
+    border-left-color: transparent;
 }
 
 td.bar {
