@@ -32,8 +32,8 @@ def mn_table m, n, cgi=$cgi
             cgi.tr {
                 (0 ... m).map {|y|
                     classes = []
-                    classes << "right"  if y == (n - 1)
-                    classes << "bottom" if x == (m - 1)
+                    classes << "right"  if y == (m - 1)
+                    classes << "bottom" if x == (n - 1)
                     classes << "left"   if y == 0
                     classes << "top"    if x == 0
                     classes = classes.join " "
