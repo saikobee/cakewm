@@ -113,7 +113,38 @@ def dispatch_by_mode(key):
     else:
        normal_binds.get(key, fallback)()
 
+def go_next_win():
+    global cur
+    global windows
+
+    echo("=== GO NEXT WIN\n")
+
+    if windows == []:
+        return
+
+    if cur is not None:
+        windows = windows + [cur]
+    cur = windows[0]
+    del   windows[0]
+
+def go_prev_win():
+    global cur
+    global windows
+
+    echo("=== GO PREV WIN\n")
+
+    if windows == []:
+        return
+
+    if cur is not None:
+        windows = [cur] + windows
+
+    cur = windows[-1]
+    del   windows[-1]
+
 normal_binds = {
+    "j": go_next_win,
+    "k": go_prev_win,
 }
 
 arrange_binds = {
