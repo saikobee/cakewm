@@ -142,32 +142,21 @@ arrange_binds = {
 
 
 binds.update({
-    "q": lambda: dispatch_by_mode("q"),
-    "w": lambda: dispatch_by_mode("w"),
-    "e": lambda: dispatch_by_mode("e"),
-
-    "a": lambda: dispatch_by_mode("a"),
-    "s": lambda: dispatch_by_mode("s"),
-    "d": lambda: dispatch_by_mode("d"),
-
-    "z": lambda: dispatch_by_mode("z"),
-    "x": lambda: dispatch_by_mode("x"),
-    "c": lambda: dispatch_by_mode("c"),
-
-    "h": lambda: dispatch_by_mode("h"),
-    "j": lambda: dispatch_by_mode("j"),
-    "k": lambda: dispatch_by_mode("k"),
-    "l": lambda: dispatch_by_mode("l"),
-
-    "y": lambda: dispatch_by_mode("y"),
-    "u": lambda: dispatch_by_mode("u"),
-    "b": lambda: dispatch_by_mode("b"),
-    "n": lambda: dispatch_by_mode("n"),
-
     "o": new_window,
     "t": close_window,
     "i": change_mode,
 })
+
+key_list = '''\
+    q w e
+    a s d
+    z x c
+    h j k l
+    y u b n
+'''.split()
+
+for key in key_list:
+    binds[key] = lambda key=key: dispatch_by_mode(key)
 
 for key, fun in binds.iteritems():
     bind(key, fun)
