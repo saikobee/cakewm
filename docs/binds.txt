@@ -13,8 +13,8 @@
 - Swap stack below
 - Swap stack above
 
-- Swap column below
-- Swap column above
+- Swap column left
+- Swap column right
 
 - Expand column
 - Shrink column
