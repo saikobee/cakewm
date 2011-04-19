@@ -1,0 +1,32 @@
+- Create new stack below
+- Create new stack above
+
+- Create new column left
+- Create new column right
+
+- Move window to stack below
+- Move window to stack above
+
+- Move window to column left
+- Move window to column right
+
+- Swap stack below
+- Swap stack above
+
+- Swap column below
+- Swap column above
+
+- Expand column
+- Shrink column
+
+- Expand stack
+- Shrink stack
+
+- Focus stack below
+- Focus stack above
+
+- Focus column left
+- Focus column right
+
+- Go next window in stack
+- Go prev window in stack
