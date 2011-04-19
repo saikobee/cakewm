@@ -1,2 +1,0 @@
-ARRANGE     = object()
-NORMAL      = object()
