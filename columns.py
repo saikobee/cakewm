@@ -11,21 +11,11 @@ class Columns(object):
     def go_next(self): _go(self, +1)
     def go_prev(self): _go(self, -1)
 
-    doc({
-        go_next: "Focuses the next column",
-        go_prev: "Focuses the previous column",
-    })
-
     def _make_new(self, a):
         self.cols.insert(self.cur_col + a, Column())
 
     def make_new_right(self): _make_new(self, 1)
     def make_new_left (self): _make_new(self, 0)
-
-    doc({
-        make_new_right: "Make new column to the right",
-        make_new_left:  "Make new column to the right",
-    })
 
     def _swap(self, a):
         x = self.cur_col
@@ -39,6 +29,12 @@ class Columns(object):
     def swap_left (self): _swap(self, -1)
 
     doc({
+        go_next: "Focuses the next column",
+        go_prev: "Focuses the previous column",
+
+        make_new_right: "Make new column to the right",
+        make_new_left:  "Make new column to the right",
+
         swap_right: "Swap column with the right one",
         swap_left:  "Swap column with the right one",
     })
