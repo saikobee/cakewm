@@ -1,32 +1,40 @@
 from util import *
 
+def _guard(function):
+    def inner(self, *args, **kwargs):
+        if self.cur_stack is not None:
+            return function(*args, **kwargs)
+
 class Columns(object):
     def __init__(self):
         self.cols       = []
         self.cur_col    = None
 
+    @_guard
     def _go(self, a):
-        self.cols += a
+        self.cur_col += a
 
-    def go_next(self): _go(self, +1)
-    def go_prev(self): _go(self, -1)
+    def go_next(self): self._go(+1)
+    def go_prev(self): self._go(-1)
 
-    def _make_new(self, a):
-        self.cols.insert(self.cur_col + a, Column())
+    @_guard
+    def _make_new(self, a, stack):
+        self.cols.insert(self.cur_col + a, stack)
 
-    def make_new_right(self): _make_new(self, 1)
-    def make_new_left (self): _make_new(self, 0)
+    def make_new_right(self, stack): self._make_new(1, Stacks(stack))
+    def make_new_left (self, stack): self._make_new(0, Stacks(stack))
 
+    @_guard
     def _swap(self, a):
         x = self.cur_col
-        y = self.cur_col + a
-        n = len(self.cur_col)
+        y = x + a
+        n = len(self.cols)
 
         if 0 <= y <= n:
             swap(self.cols, x, y)
 
-    def swap_right(self): _swap(self, +1)
-    def swap_left (self): _swap(self, -1)
+    def swap_right(self): self._swap(+1)
+    def swap_left (self): self._swap(-1)
 
     doc({
         go_next: "Focuses the next column",

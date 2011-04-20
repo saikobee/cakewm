@@ -1,32 +1,37 @@
 - W-s Create new stack below
 - W-w Create new stack above
 
-- W-d Create new column right
-- W-a Create new column left
++ W-d Create new column right
++ W-a Create new column left
 
-- WA-j Move window to stack below
-- WA-k Move window to stack above
++ WA-j Move window to stack below
++ WA-k Move window to stack above
 
 - WA-l Move window to column right
 - WA-h Move window to column left
 
-- WS-j Swap stack below
-- WS-k Swap stack above
++ WS-j Swap stack below
++ WS-k Swap stack above
 
-- WS-l Swap column right
-- WS-h Swap column left
++ WS-l Swap column right
++ WS-h Swap column left
 
 - WC-l Expand column
 - WC-h Shrink column
 
-- WC-j Expand stack
-- WC-k Shrink stack
+~ WC-j Expand stack
+~ WC-k Shrink stack
 
 - W-j focus-stack-below
 - W-k focus-stack-above
 
-- W-l focus-column-right
-- W-h focus-column-left
++ W-l focus-column-right
++ W-h focus-column-left
 
 - W-u Go next window in stack
 - W-y Go prev window in stack
+
+LEGEND
++ Done
+- Not done
+~ On hold
