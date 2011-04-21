@@ -22,8 +22,8 @@
 ~ WC-j Expand stack
 ~ WC-k Shrink stack
 
-- W-j focus-stack-below
-- W-k focus-stack-above
++ W-j focus-stack-below
++ W-k focus-stack-above
 
 + W-l focus-column-right
 + W-h focus-column-left
