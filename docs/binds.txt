@@ -28,8 +28,8 @@
 + W-l focus-column-right
 + W-h focus-column-left
 
-- W-u Go next window in stack
-- W-y Go prev window in stack
++ W-u Go next window in stack
++ W-y Go prev window in stack
 
 LEGEND
 + Done
