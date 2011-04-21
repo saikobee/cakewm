@@ -11,6 +11,13 @@ class Stacks(object):
         self.cur_stack = None
 
     @_guard
+    def _go(self, a):
+        self.cur_stack += a
+
+    def go_next(self): self._go(+1)
+    def go_prev(self): self._go(-1)
+
+    @_guard
     def _swap(self, a):
         x = self.cur_stack
         y = x + a
@@ -41,4 +48,7 @@ class Stacks(object):
 
         move_window_below: "Move window to stack below",
         move_window_above: "Move window to stack above",
+
+        go_next: "Move to the next stack",
+        go_prev: "Move to the previous stack",
     })
