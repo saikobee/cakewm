@@ -1,3 +1,2 @@
-- Find a better way to switch window stacks
-  - Unique keybind for every stack?
-  - How to show the keybind?
+- Generalize a guard against None for functions
+- Make columns, stacks, stack inherit a base class
