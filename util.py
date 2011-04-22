@@ -1,3 +1,5 @@
+from pypixel import *
+
 def clamp(x, a, b):
     '''Clamp x between a and b'''
 
@@ -20,3 +22,17 @@ def doc(d):
 
     for function, docstring in d.iteritems():
         function.__doc__ = docstring
+
+def rainbow(step=30):
+    '''Generates an infinite list of rainbow colors'''
+
+    h, s, l = 0, 100, 50
+
+    while True:
+        yield hsl2rgb((h, s, l))
+
+        h += step
+        h %= 360
+
+
+THE_RAINBOW = rainbow()

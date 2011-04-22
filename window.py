@@ -1,4 +1,5 @@
 from pypixel    import *
+from util       import *
 
 class Window(object):
     FOCUS_COLOR = WHITE
@@ -17,9 +18,7 @@ class Window(object):
 
         self.focused = False
 
-        hsl = (random(360), 100, 50)
-        rgb = hsl2rgb(hsl)
-        self.color = kwargs.get("color", rgb)
+        self.color = kwargs.get("color", THE_RAINBOW.next())
 
     def draw(self):
         #if self.focused: rectangle(WHITE,      self.rect)
