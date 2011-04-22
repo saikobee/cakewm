@@ -52,6 +52,32 @@ cols = Columns(
                 ),
             ]
         ),
+        Stacks(
+            cur=0,
+            items=[
+                Stack(
+                    cur=0,
+                    items=[
+                        Window(),
+                        Window(),
+                    ]
+                ),
+                Stack(
+                    cur=0,
+                    items=[
+                        Window(),
+                        Window(),
+                    ]
+                ),
+                Stack(
+                    cur=0,
+                    items=[
+                        Window(),
+                        Window(),
+                    ]
+                ),
+            ]
+        ),
     ]
 )
 
