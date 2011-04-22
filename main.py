@@ -12,8 +12,6 @@ from window     import Window
 title("cakewm test program")
 show()
 
-binds = {}
-
 cols = Columns(
     cur=0,
     items=[
