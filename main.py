@@ -58,8 +58,8 @@ cols = Columns(
 cols.organize()
 
 binds = {
-    "j": cols.go_next,
-    "k": cols.go_prev,
+    "l": cols.go_next,
+    "h": cols.go_prev,
 }
 
 for key, func in binds.iteritems():
