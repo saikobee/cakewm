@@ -17,3 +17,9 @@ class Columns(container.Container):
 
                     window.w = col_w
                     window.h = stack_h
+
+    def go_stack_next(self): self.items[self.cur].go_next()
+    def go_stack_prev(self): self.items[self.cur].go_prev()
+
+    def go_win_next(self): self.items[self.cur].go_win_next()
+    def go_win_prev(self): self.items[self.cur].go_win_prev()
