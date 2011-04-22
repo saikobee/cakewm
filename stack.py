@@ -1,4 +1,5 @@
 from container import Container
 
 class Stack(Container):
-  pass
+    def draw(self):
+        self.items[self.cur].draw()

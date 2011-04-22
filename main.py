@@ -24,11 +24,17 @@ cols = Columns(
                     cur=0,
                     items=[
                         Window(),
+                        Window(),
+                        Window(),
                     ]
                 ),
                 Stack(
                     cur=0,
                     items=[
+                        Window(),
+                        Window(),
+                        Window(),
+                        Window(),
                         Window(),
                     ]
                 ),
@@ -40,6 +46,7 @@ cols = Columns(
                 Stack(
                     cur=0,
                     items=[
+                        Window(),
                         Window(),
                     ]
                 ),
@@ -59,13 +66,17 @@ for key, func in binds.iteritems():
     bind(key, func)
 
 while True:
+    a = cols.cur
     for i, stacks in cols.each():
+        b = stacks.cur
         for j, stack in stacks.each():
+            c = stack.cur
             for k, window in stack.each():
                 window.unfocus()
-                if (cols.cur, stacks.cur, stack.cur) == (i, j, k):
+                if (a, b, c) == (i, j, k):
                     window.focus()
-                window.draw()
+            stack.draw()
+
     update()
     clear()
 
