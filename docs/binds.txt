@@ -1,5 +1,5 @@
-- W-s Create new stack below
-- W-w Create new stack above
++ W-s Create new stack below
++ W-w Create new stack above
 
 + W-d Create new column right
 + W-a Create new column left

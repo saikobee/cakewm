@@ -1,26 +1,19 @@
 from pypixel    import *
-from const      import *
 
 class Window(object):
     FOCUS_COLOR = WHITE
 
     def __init__(self, **kwargs):
+        self.rect = kwargs.get("rect", ((0, 0), (0, 0)))
+
         self.size = kwargs.get("size", (0, 0))
         self.pos  = kwargs.get("pos",  (0, 0))
-
-        self.rect = kwargs.get("rect", ((0, 0), (0, 0)))
 
         self.x = kwargs.get("x", 0)
         self.y = kwargs.get("y", 0)
 
-        self.w = kwargs.get("w", WIDTH  / MAX_COL)
-        self.h = kwargs.get("h", HEIGHT / MAX_ROW)
-
-        self.gw = kwargs.get("gw", 1)
-        self.gh = kwargs.get("gh", 1)
-
-        self.row = kwargs.get("row", 0)
-        self.col = kwargs.get("col", 0)
+        self.w = kwargs.get("w", 20)
+        self.h = kwargs.get("h", 20)
 
         self.focused = False
 
