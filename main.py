@@ -12,8 +12,6 @@ from window     import Window
 title("cakewm test program")
 show()
 
-cur = None
-
 binds = {}
 
 cols = Columns(
@@ -52,10 +50,19 @@ cols = Columns(
 
 cols.organize()
 
+binds = {
+    "j": cols.go_next,
+    "k": cols.go_prev,
+}
+
+for key, func in binds.iteritems():
+    bind(key, func)
+
 while True:
     for i, stacks in cols.each():
         for j, stack in stacks.each():
             for k, window in stack.each():
+                window.unfocus()
                 if (cols.cur, stacks.cur, stack.cur) == (i, j, k):
                     window.focus()
                 window.draw()

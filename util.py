@@ -3,6 +3,11 @@ def clamp(x, a, b):
 
     return min(max(x, a), b)
 
+def clamp2(x, q):
+    '''Clamp x between 0 and q - 1'''
+
+    return clamp(x, 0, q - 1)
+
 def swap(ary, i, j):
     '''Swaps the values at locations i and j in the list ary'''
 
@@ -15,13 +20,3 @@ def doc(d):
 
     for function, docstring in d.iteritems():
         function.__doc__ = docstring
-
-def guard(func1):
-    '''Guard function generator'''
-
-    def guard2(func2):
-        def inner(self, *args, **kwargs):
-            if func1(self) is not None:
-                return func2(*args, **kwargs)
-
-    return guard2

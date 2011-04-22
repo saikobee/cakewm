@@ -1,12 +1,5 @@
 from util import *
 
-def guard_cur_isnt_none(func):
-    @guard(lambda self: self.cur)
-    def inner(self, *args, **kwargs):
-        return func(*args, **kwargs)
-
-    return inner
-
 class Container(object):
     '''Base class representing containers'''
 
@@ -14,14 +7,15 @@ class Container(object):
         self.items = kwargs.get("items", [])
         self.cur   = kwargs.get("cur",   None)
 
-    @guard_cur_isnt_none
+    def __len__(self):
+        return len(self.items)
+
     def _go(self, a):
-        self.cur += a
+        self.cur = clamp2(self.cur + a, len(self))
 
     def go_next(self): self._go(+1)
     def go_prev(self): self._go(-1)
 
-    @guard_cur_isnt_none
     def _swap(self, a):
         x = self.cur_col
         y = x + a
@@ -33,7 +27,6 @@ class Container(object):
     def swap_next(self): self._swap(+1)
     def swap_prev(self): self._swap(-1)
 
-    @guard_cur_isnt_none
     def _move_item(self, item, a):
         x = self.cur
         y = x + a
@@ -45,7 +38,6 @@ class Container(object):
     def move_item_next(self, item): self._move_item(item, +1)
     def move_item_prev(self, item): self._move_item(item, -1)
 
-    @guard_cur_isnt_none
     def _make_new(self, a, item):
         self.items.insert(self.cur + a, item)
 

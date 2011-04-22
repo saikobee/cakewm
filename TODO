@@ -1,2 +1,0 @@
-- Generalize a guard against None for functions
-- Make columns, stacks, stack inherit a base class
