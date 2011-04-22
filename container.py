@@ -52,6 +52,10 @@ class Container(object):
     def make_new_next(self, item): self._make_new(1, item)
     def make_new_prev(self, item): self._make_new(0, item)
 
+    def each(self):
+        for i, x in enumerate(self.items):
+            yield i, x
+
     doc({
         swap_next: "Swap item with the next one",
         swap_prev: "Swap item with the previous one",

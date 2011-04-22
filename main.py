@@ -50,10 +50,14 @@ cols = Columns(
     ]
 )
 
+cols.organize()
+
 while True:
-    for col in cols.items:
-        for stack in col.items:
-            for window in stack.items:
+    for i, stacks in cols.each():
+        for j, stack in stacks.each():
+            for k, window in stack.each():
+                if (cols.cur, stacks.cur, stack.cur) == (i, j, k):
+                    window.focus()
                 window.draw()
     update()
     clear()
