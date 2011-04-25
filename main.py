@@ -8,104 +8,53 @@ from columns    import Columns
 from stacks     import Stacks
 from stack      import Stack
 from window     import Window
+from tags       import Tags
 
 title("cakewm test program")
 show()
 
-cols = Columns(
+tags = Tags(
     cur=0,
     items=[
-        Stacks(
+        Columns(
             cur=0,
             items=[
-                Stack(
+                Stacks(
                     cur=0,
                     items=[
-                        Window(),
-                        Window(),
-                        Window(),
+                        Stack(
+                            cur=0,
+                            items=[
+                                Window()
+                            ]
+                        )
                     ]
-                ),
-                Stack(
-                    cur=0,
-                    items=[
-                        Window(),
-                        Window(),
-                        Window(),
-                        Window(),
-                        Window(),
-                    ]
-                ),
-            ],
-        ),
-        Stacks(
-            cur=0,
-            items=[
-                Stack(
-                    cur=0,
-                    items=[
-                        Window(),
-                        Window(),
-                    ]
-                ),
+                )
             ]
-        ),
-        Stacks(
-            cur=0,
-            items=[
-                Stack(
-                    cur=0,
-                    items=[
-                        Window(),
-                        Window(),
-                    ]
-                ),
-                Stack(
-                    cur=0,
-                    items=[
-                        Window(),
-                        Window(),
-                    ]
-                ),
-                Stack(
-                    cur=0,
-                    items=[
-                        Window(),
-                        Window(),
-                    ]
-                ),
-            ]
-        ),
+        )
     ]
 )
 
-cols.organize()
+tags.organize()
 
 binds = {
-    "l": cols.go_next,
-    "h": cols.go_prev,
+    "l": tags.go_next,
+    "h": tags.go_prev,
 
-    "j": cols.go_stack_next,
-    "k": cols.go_stack_prev,
+    "j": tags.go_stack_next,
+    "k": tags.go_stack_prev,
 
-    "u": cols.go_win_next,
-    "y": cols.go_win_prev,
+    "u": tags.go_win_next,
+    "y": tags.go_win_prev,
+
+    "n": tags.make_new_window,
 }
 
 for key, func in binds.iteritems():
     bind(key, func)
 
 while True:
-    a = cols.cur
-    for i, stacks in cols.each():
-        b = stacks.cur
-        for j, stack in stacks.each():
-            c = stack.cur
-            for k, window in stack.each():
-                window.unfocus()
-                if (a, b, c) == (i, j, k):
-                    window.focus()
-            stack.draw()
+    tags.big_looper()
 
     update()
     clear()

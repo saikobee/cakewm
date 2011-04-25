@@ -48,6 +48,9 @@ class Container(object):
         for i, x in enumerate(self.items):
             yield i, x
 
+    def make_new_window(self):
+        self.items[self.cur].make_new_window()
+
     doc({
         swap_next: "Swap item with the next one",
         swap_prev: "Swap item with the previous one",
