@@ -33,7 +33,7 @@ class Container(object):
         n = len(self.items)
 
         if 0 <= y <= n:
-            self.stacks[x].add_item(item)
+            self.items[x].add_item(item)
 
     def move_item_next(self, item): self._move_item(item, +1)
     def move_item_prev(self, item): self._move_item(item, -1)
@@ -51,6 +51,42 @@ class Container(object):
     def make_new_window(self):
         self.items[self.cur].make_new_window()
 
+    def _get_item(self, a):
+        if (self.cur is not None and
+            self.items and
+            0 <= self.cur + a <= len(self.items) + 1):
+            return self.items[self.cur + a]
+        else:
+            return None
+
+    def get_cur_item(self):
+        if self.cur is not None and self.items:
+            return self.items[self.cur]
+        else:
+            return None
+
+    def get_next_item(self):
+        if (self.cur is not None and
+            self.cur + 1 <= len(self.items) - 1):
+            return self.items[self.cur + 1]
+        else:
+            return None
+
+    def get_prev_item(self):
+        if (self.cur is not None and
+            0 <= self.cur - 1):
+            return self.items[self.cur - 1]
+        else:
+            return None
+
+    def remove_cur_item(self):
+        ret = self.get_cur_item()
+
+        if ret is not None:
+            del self.items[self.cur]
+
+        return ret
+
     doc({
         swap_next: "Swap item with the next one",
         swap_prev: "Swap item with the previous one",
@@ -63,4 +99,9 @@ class Container(object):
 
         go_next: "Move cur to the next item",
         go_prev: "Move cur to the previous item",
+
+        get_cur_item:    "Get the current item, or None if that doesn't make sense",
+        remove_cur_item: "Remove the current item and return it, or None if that doesn't make sense",
+
+        get_next_item: "Get the next item, or None if that doesn't make sense",
     })

@@ -25,11 +25,23 @@ tags = Tags(
                         Stack(
                             cur=0,
                             items=[
-                                Window()
+                                Window(),
+                                Window(),
                             ]
                         )
                     ]
-                )
+                ),
+                Stacks(
+                    cur=0,
+                    items=[
+                        Stack(
+                            cur=0,
+                            items=[
+                                Window(),
+                            ]
+                        ),
+                    ]
+                ),
             ]
         )
     ]
@@ -38,8 +50,8 @@ tags = Tags(
 tags.organize()
 
 binds = {
-    "l": tags.go_next,
-    "h": tags.go_prev,
+    "l": tags.go_col_next,
+    "h": tags.go_col_prev,
 
     "j": tags.go_stack_next,
     "k": tags.go_stack_prev,
@@ -47,7 +59,10 @@ binds = {
     "u": tags.go_win_next,
     "y": tags.go_win_prev,
 
-    "n": tags.make_new_window,
+    "o": tags.make_new_window,
+
+    "d": tags.move_window_col_next,
+    "a": tags.move_window_col_prev,
 }
 
 for key, func in binds.iteritems():

@@ -34,5 +34,11 @@ def rainbow(step=30):
         h += step
         h %= 360
 
+_use_debug = True
+
+def debug(*args):
+    import sys
+    if _use_debug:
+        sys.stdout.write(" ".join(args) + "\n")
 
 THE_RAINBOW = rainbow()

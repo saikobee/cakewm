@@ -5,11 +5,17 @@ class Tags(Container):
         for item in self.items:
             item.organize()
 
+    def move_window_col_next(self): self.items[self.cur].move_window_col_next()
+    def move_window_col_prev(self): self.items[self.cur].move_window_col_prev()
+
     def go_stack_next(self): self.items[self.cur].go_stack_next()
     def go_stack_prev(self): self.items[self.cur].go_stack_prev()
 
     def go_win_next(self): self.items[self.cur].go_win_next()
     def go_win_prev(self): self.items[self.cur].go_win_prev()
+
+    def go_col_next(self): self.get_cur_item().go_next()
+    def go_col_prev(self): self.get_cur_item().go_prev()
 
     def big_looper(self):
         if self.cur is None:
