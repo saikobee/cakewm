@@ -40,6 +40,7 @@ class Container(object):
 
     def _make_new(self, a, item):
         self.items.insert(self.cur + a, item)
+        self._go(a)
 
     def make_new_next(self, item): self._make_new(1, item)
     def make_new_prev(self, item): self._make_new(0, item)
@@ -54,30 +55,14 @@ class Container(object):
     def _get_item(self, a):
         if (self.cur is not None and
             self.items and
-            0 <= self.cur + a <= len(self.items) + 1):
+            0 <= self.cur + a <= len(self.items) - 1):
             return self.items[self.cur + a]
         else:
             return None
 
-    def get_cur_item(self):
-        if self.cur is not None and self.items:
-            return self.items[self.cur]
-        else:
-            return None
-
-    def get_next_item(self):
-        if (self.cur is not None and
-            self.cur + 1 <= len(self.items) - 1):
-            return self.items[self.cur + 1]
-        else:
-            return None
-
-    def get_prev_item(self):
-        if (self.cur is not None and
-            0 <= self.cur - 1):
-            return self.items[self.cur - 1]
-        else:
-            return None
+    def get_cur_item(self):  return self._get_item( 0)
+    def get_next_item(self): return self._get_item(+1)
+    def get_prev_item(self): return self._get_item(-1)
 
     def remove_cur_item(self):
         ret = self.get_cur_item()
@@ -100,8 +85,9 @@ class Container(object):
         go_next: "Move cur to the next item",
         go_prev: "Move cur to the previous item",
 
-        get_cur_item:    "Get the current item, or None if that doesn't make sense",
-        remove_cur_item: "Remove the current item and return it, or None if that doesn't make sense",
-
+        get_cur_item:  "Get the current item, or None if that doesn't make sense",
         get_next_item: "Get the next item, or None if that doesn't make sense",
+        get_prev_item: "Get the previous item, or None if that doesn't make sense",
+
+        remove_cur_item: "Remove the current item and return it, or None if that doesn't make sense",
     })

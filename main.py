@@ -28,12 +28,41 @@ tags = Tags(
                                 Window(),
                                 Window(),
                             ]
-                        )
+                        ),
+                        Stack(
+                            cur=0,
+                            items=[
+                                Window(),
+                            ]
+                        ),
                     ]
                 ),
                 Stacks(
                     cur=0,
                     items=[
+                        Stack(
+                            cur=0,
+                            items=[
+                                Window(),
+                            ]
+                        ),
+                    ]
+                ),
+                Stacks(
+                    cur=0,
+                    items=[
+                        Stack(
+                            cur=0,
+                            items=[
+                                Window(),
+                            ]
+                        ),
+                        Stack(
+                            cur=0,
+                            items=[
+                                Window(),
+                            ]
+                        ),
                         Stack(
                             cur=0,
                             items=[
