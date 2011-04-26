@@ -35,5 +35,5 @@ class Columns(container.Container):
         nstack._make_new(-1, win)
         stack._go(a)
 
-    def move_window_col_next(self): self._move_window_col(+1)
-    def move_window_col_prev(self): self._move_window_col(-1)
+    def move_window_col_next(self): self._move_window_col(+1); self._go(+1)
+    def move_window_col_prev(self): self._move_window_col(-1); self._go(-1)
