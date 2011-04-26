@@ -38,19 +38,23 @@ class Container(object):
     def move_item_next(self, item): self._move_item(item, +1)
     def move_item_prev(self, item): self._move_item(item, -1)
 
-    def _make_new(self, a, item):
-        self.items.insert(self.cur + a, item)
+    def _make_new(self, item, a):
+        b = a
+        if b == -1:
+            b = 0
+
+        self.items.insert(self.cur + b, item)
         self._go(a)
 
-    def make_new_next(self, item): self._make_new(1, item)
-    def make_new_prev(self, item): self._make_new(0, item)
+    def make_new_next(self, item): self._make_new(item, +1)
+    def make_new_prev(self, item): self._make_new(item, -1)
 
     def each(self):
         for i, x in enumerate(self.items):
             yield i, x
 
-    def make_new_window(self):
-        self.items[self.cur].make_new_window()
+    def make_new_win(self):
+        self.items[self.cur].make_new_win()
 
     def _get_item(self, a):
         if (self.cur is not None and
@@ -71,6 +75,9 @@ class Container(object):
             del self.items[self.cur]
 
         return ret
+
+    def move_win_stack_next(self): self.get_cur_item().move_win_stack_next()
+    def move_win_stack_prev(self): self.get_cur_item().move_win_stack_prev()
 
     doc({
         swap_next: "Swap item with the next one",

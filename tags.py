@@ -5,8 +5,8 @@ class Tags(Container):
         for item in self.items:
             item.organize()
 
-    def move_window_col_next(self): self.items[self.cur].move_window_col_next()
-    def move_window_col_prev(self): self.items[self.cur].move_window_col_prev()
+    def move_win_col_next(self): self.items[self.cur].move_win_col_next()
+    def move_win_col_prev(self): self.items[self.cur].move_win_col_prev()
 
     def go_stack_next(self): self.items[self.cur].go_stack_next()
     def go_stack_prev(self): self.items[self.cur].go_stack_prev()

@@ -9,6 +9,6 @@ class Stack(Container):
     def go_win_next(self): self.go_next()
     def go_win_prev(self): self.go_prev()
 
-    def make_new_window(self):
+    def make_new_win(self):
         '''Add a new window to the stack'''
         self.make_new_next(Window())

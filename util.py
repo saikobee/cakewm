@@ -39,6 +39,6 @@ _use_debug = True
 def debug(*args):
     import sys
     if _use_debug:
-        sys.stdout.write(" ".join(args) + "\n")
+        sys.stdout.write(" ".join(map(str, args)) + "\n")
 
 THE_RAINBOW = rainbow()

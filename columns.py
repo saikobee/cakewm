@@ -26,14 +26,14 @@ class Columns(container.Container):
     def go_win_next(self): self.items[self.cur].go_win_next()
     def go_win_prev(self): self.items[self.cur].go_win_prev()
 
-    def _move_window_col(self, a):
+    def _move_win_col(self, a):
         stacks  = self      .get_cur_item()
         stack   = stacks    .get_cur_item()
         nstacks = self      ._get_item(a)
         nstack  = nstacks   .get_cur_item()
         win     = stack     .remove_cur_item()
-        nstack._make_new(-1, win)
+        nstack._make_new(win, -1)
         stack._go(a)
 
-    def move_window_col_next(self): self._move_window_col(+1); self._go(+1)
-    def move_window_col_prev(self): self._move_window_col(-1); self._go(-1)
+    def move_win_col_next(self): self._move_win_col(+1); self._go(+1)
+    def move_win_col_prev(self): self._move_win_col(-1); self._go(-1)

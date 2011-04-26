@@ -88,10 +88,13 @@ binds = {
     "u": tags.go_win_next,
     "y": tags.go_win_prev,
 
-    "o": tags.make_new_window,
+    "o": tags.make_new_win,
 
-    "d": tags.move_window_col_next,
-    "a": tags.move_window_col_prev,
+    "d": tags.move_win_col_next,
+    "a": tags.move_win_col_prev,
+
+    "s": tags.move_win_stack_next,
+    "w": tags.move_win_stack_prev,
 }
 
 for key, func in binds.iteritems():
