@@ -79,7 +79,7 @@ class Container(object):
 
     def remove_at(self, i):
         ret = self.items[i]
-        #self.collapse()
+        del   self.items[i]
 
         return ret
 

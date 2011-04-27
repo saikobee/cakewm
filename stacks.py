@@ -10,13 +10,11 @@ class Stacks(container.Container):
 
     def _move_win_stack(self, a):
         stack = self .get_cur_item()
-        win   = stack.get_cur_item()
+        win   = stack.remove_cur_item()
 
         nstck = self._get_item(a)
 
         nstck._make_new(win, -1)
-
-        stack.remove_cur_item()
 
         self._go(a)
 

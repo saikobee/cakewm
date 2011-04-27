@@ -14,7 +14,8 @@ from tags       import Tags
 title("cakewm test program")
 show()
 
-tags = SIMPLE_TAGS
+#tags = SIMPLE_TAGS
+tags = THREE_COLUMN_TAGS
 tags.organize()
 
 binds = {
