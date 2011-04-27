@@ -3,6 +3,7 @@
 from pypixel    import *
 
 from util       import *
+from const      import *
 from window     import Window
 from columns    import Columns
 from stacks     import Stacks
@@ -13,69 +14,7 @@ from tags       import Tags
 title("cakewm test program")
 show()
 
-tags = Tags(
-    cur=0,
-    items=[
-        Columns(
-            cur=0,
-            items=[
-                Stacks(
-                    cur=0,
-                    items=[
-                        Stack(
-                            cur=0,
-                            items=[
-                                Window(),
-                                Window(),
-                            ]
-                        ),
-                        Stack(
-                            cur=0,
-                            items=[
-                                Window(),
-                            ]
-                        ),
-                    ]
-                ),
-                Stacks(
-                    cur=0,
-                    items=[
-                        Stack(
-                            cur=0,
-                            items=[
-                                Window(),
-                            ]
-                        ),
-                    ]
-                ),
-                Stacks(
-                    cur=0,
-                    items=[
-                        Stack(
-                            cur=0,
-                            items=[
-                                Window(),
-                            ]
-                        ),
-                        Stack(
-                            cur=0,
-                            items=[
-                                Window(),
-                            ]
-                        ),
-                        Stack(
-                            cur=0,
-                            items=[
-                                Window(),
-                            ]
-                        ),
-                    ]
-                ),
-            ]
-        )
-    ]
-)
-
+tags = SIMPLE_TAGS
 tags.organize()
 
 binds = {
@@ -102,6 +41,8 @@ for key, func in binds.iteritems():
 
 while True:
     tags.big_looper()
+
+    debug(tags)
 
     update()
     clear()

@@ -1,6 +1,9 @@
 from container import Container
 
 class Tags(Container):
+
+    SHORT_CLASS = "Tags"
+
     def organize(self):
         for item in self.items:
             item.organize()
@@ -21,6 +24,7 @@ class Tags(Container):
         if self.cur is None:
             return
 
+        self.collapse()
         self.organize()
 
         cols = self.items[self.cur]

@@ -3,6 +3,10 @@ from util       import *
 
 class Window(object):
     FOCUS_COLOR = WHITE
+    NUMBER = 0
+
+    def __str__(self):
+        return "#W:%i" % self.number
 
     def __init__(self, **kwargs):
         self.rect = kwargs.get("rect", ((0, 0), (0, 0)))
@@ -19,6 +23,10 @@ class Window(object):
         self.focused = False
 
         self.color = kwargs.get("color", THE_RAINBOW.next())
+
+        self.number = type(self).NUMBER
+
+        type(self).NUMBER += 1
 
     def draw(self):
         #if self.focused: rectangle(WHITE,      self.rect)

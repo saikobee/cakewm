@@ -3,6 +3,15 @@ from util import *
 class Container(object):
     '''Base class representing containers'''
 
+    SHORT_CLASS = "C"
+
+    def __str__(self):
+        return "#%s(cur=%i, items=[%s])" % (
+            type(self).SHORT_CLASS,
+            self.cur,
+            ", ".join(map(str, self.items))
+        )
+
     def __init__(self, **kwargs):
         self.items = kwargs.get("items", [])
         self.cur   = kwargs.get("cur",   None)
@@ -68,13 +77,27 @@ class Container(object):
     def get_next_item(self): return self._get_item(+1)
     def get_prev_item(self): return self._get_item(-1)
 
-    def remove_cur_item(self):
-        ret = self.get_cur_item()
-
-        if ret is not None:
-            del self.items[self.cur]
+    def remove_at(self, i):
+        ret = self.items[i]
+        #self.collapse()
 
         return ret
+
+    def remove_cur_item(self):
+        if self.cur is None:
+            return None
+        else:
+            return self.remove_at(self.cur)
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+    def collapse(self):
+        for i, item in self.each():
+            if item.is_empty():
+                self.remove_at(i)
+            else:
+                item.collapse()
 
     def move_win_stack_next(self): self.get_cur_item().move_win_stack_next()
     def move_win_stack_prev(self): self.get_cur_item().move_win_stack_prev()

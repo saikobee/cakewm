@@ -5,6 +5,9 @@ import container
 from util import *
 
 class Columns(container.Container):
+
+    SHORT_CLASS = "Cols"
+
     def organize(self):
         '''Place windows appropriately'''
 
