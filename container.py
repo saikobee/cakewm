@@ -81,6 +81,8 @@ class Container(object):
         ret = self.items[i]
         del   self.items[i]
 
+        self.cur = clamp(self.cur, 0, len(self.items) - 1)
+
         return ret
 
     def remove_cur_item(self):
