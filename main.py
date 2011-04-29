@@ -49,7 +49,7 @@ for key, func in binds.iteritems():
 while True:
     tags.big_looper()
 
-    debug(tags)
+    #debug(tags)
 
     update()
     clear()
