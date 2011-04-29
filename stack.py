@@ -16,6 +16,9 @@ class Stack(Container):
 
     def collapse(self): pass
 
+    def num_cur_wins(self):
+        return len(self.items)
+
     def make_new_win(self):
         '''Add a new window to the stack'''
         self.make_new_next(Window())

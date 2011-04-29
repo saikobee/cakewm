@@ -48,11 +48,10 @@ class Container(object):
     def move_item_prev(self, item): self._move_item(item, -1)
 
     def _make_new(self, item, a):
-        b = a
-        if b == -1:
-            b = 0
+        if a == -1:
+            a = 0
 
-        self.items.insert(self.cur + b, item)
+        self.items.insert(self.cur + a, item)
         self._go(a)
 
     def make_new_next(self, item): self._make_new(item, +1)
@@ -103,6 +102,11 @@ class Container(object):
 
     def move_win_stack_next(self): self.get_cur_item().move_win_stack_next()
     def move_win_stack_prev(self): self.get_cur_item().move_win_stack_prev()
+
+    def make_win_stack_next(self): self.get_cur_item().make_win_stack_next()
+    def make_win_stack_prev(self): self.get_cur_item().make_win_stack_prev()
+
+    def num_cur_wins(self): return self.get_cur_item().num_cur_wins()
 
     doc({
         swap_next: "Swap item with the next one",
