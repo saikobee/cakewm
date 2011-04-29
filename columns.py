@@ -1,10 +1,10 @@
 from pypixel import *
 
-import container
+from container  import *
+from stacks     import *
+from util       import *
 
-from util import *
-
-class Columns(container.Container):
+class Columns(Container):
 
     SHORT_CLASS = "Cols"
 
@@ -40,3 +40,15 @@ class Columns(container.Container):
 
     def move_win_col_next(self): self._move_win_col(+1); self._go(+1)
     def move_win_col_prev(self): self._move_win_col(-1); self._go(-1)
+
+    def _make_win_col(self, a):
+        stacks  = self      .get_cur_item()
+        stack   = stacks    .get_cur_item()
+        win     = stack     .remove_cur_item()
+
+        nstacks = Stacks(cur=0, items=[Stack(cur=0, items=[win])])
+        self._make_new(nstacks, a)
+        stack._go(a)
+
+    def make_win_col_next(self): self._make_win_col(+1)
+    def make_win_col_prev(self): self._make_win_col(-1)

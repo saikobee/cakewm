@@ -106,6 +106,9 @@ class Container(object):
     def make_win_stack_next(self): self.get_cur_item().make_win_stack_next()
     def make_win_stack_prev(self): self.get_cur_item().make_win_stack_prev()
 
+    def make_win_col_next(self): self.get_cur_item().make_win_col_next()
+    def make_win_col_prev(self): self.get_cur_item().make_win_col_prev()
+
     def num_cur_wins(self): return self.get_cur_item().num_cur_wins()
 
     doc({

@@ -38,6 +38,9 @@ binds = {
 
     "n": tags.make_win_stack_next,
     "m": tags.make_win_stack_prev,
+
+    "b": tags.make_win_col_next,
+    "v": tags.make_win_col_prev,
 }
 
 for key, func in binds.iteritems():
