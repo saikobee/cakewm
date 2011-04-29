@@ -20,6 +20,8 @@ class Stacks(Container):
         #nstck._make_new(win, a)
 
         #self._go(a)
+        if a == -1:
+            self._go(a)
 
     def move_win_stack_next(self): self._move_win_stack(+1)
     def move_win_stack_prev(self): self._move_win_stack(-1)
