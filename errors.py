@@ -1,0 +1,1 @@
+class RangeError(Exception): pass
