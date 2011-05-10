@@ -1,1 +1,1 @@
-class RangeError(Exception): pass
+class DirectionError(Exception): pass
