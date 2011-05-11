@@ -10,14 +10,13 @@ class Tag(object):
     def move_win_col_num(self, number):
         "Move the current window to the nth column"
 
-        win = self.take_cur_win()
-        if win is not None:
+        if self.cur is not None:
             try:
-                tag = self.tags[number]
-                if tag is not None:
-                   tag.add_window(win)
+                win = self.take_cur_win()
+                if win is not None:
+                    self.cols[self.cur].add_window(win)
             except IndexError:
-                debug("Screen out of range")
+                debug("Attempted to move window to non-existent column")
 
     def set_num_cols(self, number):
         # TODO

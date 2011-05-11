@@ -10,14 +10,13 @@ class Display(object):
     def move_win_screen_num(self, number):
         "Moves the current window to nth screen"
 
-        win = self.take_cur_win()
-        if win is not None:
+        if self.cur is not None:
             try:
-                screen = self.screens[number]
-                if screen is not None:
-                   screen.add_window(win)
+                win = self.take_cur_win()
+                if win is not None:
+                    self.screens[self.cur].add_window(win)
             except IndexError:
-                debug("Screen out of range")
+                debug("Attempted to move window to non-existent screen")
 
     def swap_tags_num(self, number):
         "Swap the current tags on the current and nth screen"
