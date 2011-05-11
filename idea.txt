@@ -16,10 +16,8 @@
         - Select nth stack
 
         * Stack[windows]
-          - Select next window
-          - Select prev window
-          - Move window to next position
-          - Move window to prev position
+          - Select next/prev window
+          - Move window to next/prev position
           - Add window
           - Close window
 
