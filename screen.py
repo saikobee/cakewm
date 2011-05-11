@@ -1,7 +1,7 @@
 from util import *
 
 class Screen(object):
-    "A screen manages the set of tags associated with a single screen"
+    "A screen manages tags"
 
     def __init__(self, **kwargs):
         self.cur  = kwargs.get("cur",  None)

@@ -1,7 +1,7 @@
 from util import *
 
 class Tag(object):
-    "A tag manages all the columns for a screen"
+    "A tag manages columns"
 
     def __init__(self, **kwargs):
         self.cur  = kwargs.get("cur",  None)

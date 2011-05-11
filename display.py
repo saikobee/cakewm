@@ -1,7 +1,7 @@
 from util import *
 
 class Display(object):
-    "A display manages all the screens for an X server"
+    "A display manages screens"
 
     def __init__(self, **kwargs):
         self.cur     = kwargs.get("cur",     None)
