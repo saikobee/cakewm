@@ -1,5 +1,3 @@
-import const
-
 class Display(object):
     "A display manages all the screens for an X server"
 
@@ -7,40 +5,33 @@ class Display(object):
         self.cur     = kwargs.get("cur",     None)
         self.screens = kwargs.get("screens", [])
 
-    def move_win_screen(self, direction):
-        "Moves the current window to next/prev screen"
+    def move_win_screen_num(self, number):
+        "Moves the current window to nth screen"
 
         win = self.take_cur_win()
         if win is not None:
-            screen = self.get_screen(direction)
-            if screen is not None:
-               screen.add_window(win)
+            try:
+                screen = self.screens[number]
+                if screen is not None:
+                   screen.add_window(win)
+            except IndexError:
+                debug("Screen out of range")
 
-    def swap_tags(self, direction):
-        "Swap the current tags on the current and next/prev screen"
+    def swap_tags_num(self, number):
+        "Swap the current tags on the current and nth screen"
 
-        this_screen = self.get_screen(const.CUR)
-        that_screen = self.get_screen(direction)
+        try:
+            this_screen = self.screens[self.cur]
+            that_screen = self.screens[number  ]
 
-        if (this_screen is not None and
-            that_screen is not None):
+            if (this_screen is not None and
+                that_screen is not None):
+                this_tag_num = this_screen.cur
+                that_tag_num = that_screen.cur
 
-            this_tag = this_screen.get_tag(const.CUR)
-            that_tag = that_screen.get_tag(const.CUR)
-
-            this_screen.set_tag(that_tag)
-            that_screen.set_tag(this_tag)
-
-    def get_screen(self, direction):
-        "Returns the cur/next/prev screen, or None if there isn't one"
-
-        if self.cur is None:
-            return None
-        else:
-            index = clamp(self.cur + direction.num, self.num_screens())
-            return self.screens[index]
-
-    def num_screens(self):
-        "Returns the number of screens for this display"
-
-        return len(self.screens)
+                if (this_tag_num is not None and
+                    that_tag_num is not None):
+                    this_screen[this_tag_num] = that_tag
+                    that_screen[that_tag_num] = this_tag
+        except IndexError:
+            debug("Screen out of range")

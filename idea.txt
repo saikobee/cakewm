@@ -1,8 +1,6 @@
 * Display[screens]
-  - Move window to next screen
-  - Move window to prev screen
-  - Swap current tag with next screen
-  - Swap current tag with prev screen
+  - Move window to nth screen
+  - Swap current tag with nth screen
 
   * Screen[tags]
     - Move window to nth tag
@@ -14,10 +12,8 @@
       - Select nth column
 
       * Column[stacks]
-        - Move window to next stack
-        - Move window to prev stack
-        - Select next stack
-        - Select prev stack
+        - Move window to nth stack
+        - Select nth stack
 
         * Stack[windows]
           - Select next window

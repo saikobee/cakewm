@@ -5,7 +5,7 @@ class Screen(object):
         self.cur  = kwargs.get("cur",  None)
         self.tags = kwargs.get("tags", [])
 
-    def move_win_tag(self, number):
+    def move_win_tag_num(self, number):
         "Moves the current window to the tag identified by the given number"
 
         if self.cur is not None:
@@ -16,6 +16,6 @@ class Screen(object):
             except IndexError:
                 debug("Attempted to move window to non-existent tag")
 
-    def select_tag(self, number):
+    def select_tag_num(self, number):
         if between2(number, len(self.tags)):
             self.cur = number
