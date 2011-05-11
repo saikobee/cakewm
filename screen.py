@@ -1,3 +1,5 @@
+from util import *
+
 class Screen(object):
     "A screen manages the set of tags associated with a single screen"
 

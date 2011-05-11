@@ -1,3 +1,5 @@
+from util import *
+
 class Display(object):
     "A display manages all the screens for an X server"
 

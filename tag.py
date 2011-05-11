@@ -1,3 +1,5 @@
+from util import *
+
 class Tag(object):
     "A tag manages all the columns for a screen"
 
