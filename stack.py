@@ -6,8 +6,8 @@ class Stack(object):
     "A stack manages windows"
 
     def __init__(self, **kwargs):
-        self.cur  = kwargs.get("cur",     None)
-        self.cols = kwargs.get("windows", [])
+        self.cur     = kwargs.get("cur",     None)
+        self.windows = kwargs.get("windows", [])
 
     def _select_win(self, direction):
         if self.cur is not None:
@@ -32,3 +32,7 @@ class Stack(object):
     def add_win(self):
         if self.cur is not None:
             self.windows.insert(self.cur, Window())
+
+    def draw(self):
+        if self.cur is not None:
+            self.windows[self.cur].draw()

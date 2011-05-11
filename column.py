@@ -4,8 +4,8 @@ class Column(object):
     "A column manages stacks"
 
     def __init__(self, **kwargs):
-        self.cur  = kwargs.get("cur",    None)
-        self.cols = kwargs.get("stacks", [])
+        self.cur    = kwargs.get("cur",    None)
+        self.stacks = kwargs.get("stacks", [])
 
     def move_win_stack_num(self, number):
         "Moves the current window to the nth stack"
@@ -14,7 +14,7 @@ class Column(object):
             try:
                 win = self.take_cur_win()
                 if win is not None:
-                    self.cols[self.cur].add_window(win)
+                    self.stacks[self.cur].add_window(win)
             except IndexError:
                 debug("Attempted to move window to non-existent column")
 

@@ -12,11 +12,11 @@ def clamp2(x, q):
 
 def between(x, a, b):
     '''Returns if a number is in the range [a, b]'''
-    return a <= x && x <= b
+    return a <= x and x <= b
 
 def between2(x, a):
     '''Returns if a number is in the range [0, a)'''
-    return 0 <= x && x < a
+    return 0 <= x and x < a
 
 def swap(ary, i, j):
     '''Swaps the values at locations i and j in the list ary'''

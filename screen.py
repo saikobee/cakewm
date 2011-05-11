@@ -1,4 +1,5 @@
-from util import *
+from pypixel    import *
+from util       import *
 
 class Screen(object):
     "A screen manages tags"
@@ -6,6 +7,9 @@ class Screen(object):
     def __init__(self, **kwargs):
         self.cur  = kwargs.get("cur",  None)
         self.tags = kwargs.get("tags", [])
+
+        self.w = WIDTH
+        self.h = HEIGHT
 
     def move_win_tag_num(self, number):
         "Moves the current window to the tag identified by the given number"
