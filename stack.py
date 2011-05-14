@@ -1,13 +1,14 @@
 from util import *
+from container import Container
 
 import const
 
-class Stack(object):
+class Stack(Container):
     "A stack manages windows"
 
-    def __init__(self, **kwargs):
-        self.cur     = kwargs.get("cur",     None)
-        self.windows = kwargs.get("windows", [])
+    @property
+    def windows(self):
+        return self.items
 
     def _select_win(self, direction):
         if self.cur is not None:

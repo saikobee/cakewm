@@ -19,24 +19,74 @@ show()
 display = \
 Display(
     cur=0,
-    screens=[
+    items=[
         Screen(
             cur=0,
-            tags=[
+            items=[
                 Tag(
                     cur=0,
-                    cols=[
+                    items=[
                         Column(
                             cur=0,
-                            stacks=[
+                            items=[
                                 Stack(
                                     cur=0,
-                                    windows=[
+                                    items=[
                                         Window(),
                                         Window(),
                                         Window(),
                                     ]
-                                )
+                                ),
+                                Stack(
+                                    cur=0,
+                                    items=[
+                                        Window(),
+                                        Window(),
+                                        Window(),
+                                    ]
+                                ),
+                            ]
+                        ),
+                        Column(
+                            cur=0,
+                            items=[
+                                Stack(
+                                    cur=0,
+                                    items=[
+                                        Window(),
+                                        Window(),
+                                        Window(),
+                                    ]
+                                ),
+                            ]
+                        ),
+                        Column(
+                            cur=0,
+                            items=[
+                                Stack(
+                                    cur=0,
+                                    items=[
+                                        Window(),
+                                        Window(),
+                                        Window(),
+                                    ]
+                                ),
+                                Stack(
+                                    cur=0,
+                                    items=[
+                                        Window(),
+                                        Window(),
+                                        Window(),
+                                    ]
+                                ),
+                                Stack(
+                                    cur=0,
+                                    items=[
+                                        Window(),
+                                        Window(),
+                                        Window(),
+                                    ]
+                                ),
                             ]
                         ),
                     ]

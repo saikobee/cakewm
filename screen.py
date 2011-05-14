@@ -1,26 +1,21 @@
 from pypixel    import *
 from util       import *
+from container import Container
 
-class Screen(object):
+class Screen(Container):
     "A screen manages tags"
 
+    @property
+    def tags(self):
+        return self.items
+
     def __init__(self, **kwargs):
-        self.cur  = kwargs.get("cur",  None)
-        self.tags = kwargs.get("tags", [])
+        super(Screen, self).__init__(**kwargs)
 
         self.w = WIDTH
         self.h = HEIGHT
 
-    def move_win_tag_num(self, number):
-        "Moves the current window to the tag identified by the given number"
-
-        if self.cur is not None:
-            try:
-                win = self.take_cur_win()
-                if win is not None:
-                    self.tags[self.cur].add_window(win)
-            except IndexError:
-                debug("Attempted to move window to non-existent tag")
+    move_win_tag_num = Container.move_win_num
 
     def select_tag_num(self, number):
         if between2(number, len(self.tags)):

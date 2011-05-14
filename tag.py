@@ -1,22 +1,14 @@
 from util import *
+from container import Container
 
-class Tag(object):
+class Tag(Container):
     "A tag manages columns"
 
-    def __init__(self, **kwargs):
-        self.cur  = kwargs.get("cur",  None)
-        self.cols = kwargs.get("cols", [])
+    @property
+    def cols(self):
+        return self.items
 
-    def move_win_col_num(self, number):
-        "Move the current window to the nth column"
-
-        if self.cur is not None:
-            try:
-                win = self.take_cur_win()
-                if win is not None:
-                    self.cols[self.cur].add_window(win)
-            except IndexError:
-                debug("Attempted to move window to non-existent column")
+    move_win_col_num = Container.move_win_num
 
     def set_num_cols(self, number):
         # TODO

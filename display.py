@@ -1,22 +1,15 @@
 from util import *
 
-class Display(object):
+from container import Container
+
+class Display(Container):
     "A display manages screens"
 
-    def __init__(self, **kwargs):
-        self.cur     = kwargs.get("cur",     None)
-        self.screens = kwargs.get("screens", [])
+    @property
+    def screens(self):
+        return self.items
 
-    def move_win_screen_num(self, number):
-        "Moves the current window to nth screen"
-
-        if self.cur is not None:
-            try:
-                win = self.take_cur_win()
-                if win is not None:
-                    self.screens[self.cur].add_window(win)
-            except IndexError:
-                debug("Attempted to move window to non-existent screen")
+    move_win_screen_num = Container.move_win_num
 
     def swap_tags_num(self, number):
         "Swap the current tags on the current and nth screen"
