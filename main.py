@@ -3,144 +3,14 @@
 from pypixel    import *
 
 import util
-from util       import *
 
-from display    import Display
-from screen     import Screen
-from tag        import Tag
-from column     import Column
-from stack      import Stack
-from window     import Window
 from binds      import Binds
-
 from cake.wm    import WM
+
+from junk       import display
 
 title("cakewm test program")
 show()
-
-display = \
-Display(
-    cur=0,
-    items=[
-        Screen(
-            cur=0,
-            items=[
-                Tag(
-                    cur=0,
-                    items=[
-                        Column(
-                            cur=0,
-                            items=[
-                                Stack(
-                                    cur=0,
-                                    items=[
-                                        Window(),
-                                    ]
-                                ),
-                                Stack(
-                                    cur=0,
-                                    items=[
-                                        Window(),
-                                    ]
-                                ),
-                            ]
-                        ),
-                        Column(
-                            cur=0,
-                            items=[
-                                Stack(
-                                    cur=0,
-                                    items=[
-                                        Window(),
-                                    ]
-                                ),
-                            ]
-                        ),
-                        Column(
-                            cur=0,
-                            items=[
-                                Stack(
-                                    cur=0,
-                                    items=[
-                                        Window(),
-                                    ]
-                                ),
-                                Stack(
-                                    cur=0,
-                                    items=[
-                                        Window(),
-                                    ]
-                                ),
-                                Stack(
-                                    cur=0,
-                                    items=[
-                                        Window(),
-                                    ]
-                                ),
-                            ]
-                        ),
-                    ]
-                ),
-                Tag(
-                    cur=0,
-                    items=[
-                        Column(
-                            cur=0,
-                            items=[
-                                Stack(
-                                    cur=0,
-                                    items=[
-                                        Window(),
-                                    ]
-                                ),
-                                Stack(
-                                    cur=0,
-                                    items=[
-                                        Window(),
-                                    ]
-                                ),
-                            ]
-                        ),
-                        Column(
-                            cur=0,
-                            items=[
-                                Stack(
-                                    cur=0,
-                                    items=[
-                                        Window(),
-                                    ]
-                                ),
-                            ]
-                        ),
-                        Column(
-                            cur=0,
-                            items=[
-                                Stack(
-                                    cur=0,
-                                    items=[
-                                        Window(),
-                                    ]
-                                ),
-                                Stack(
-                                    cur=0,
-                                    items=[
-                                        Window(),
-                                    ]
-                                ),
-                                Stack(
-                                    cur=0,
-                                    items=[
-                                        Window(),
-                                    ]
-                                ),
-                            ]
-                        ),
-                    ]
-                ),
-            ]
-        ),
-    ]
-)
 
 the_wm      = WM(display)
 the_binds   = Binds(display)
