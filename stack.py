@@ -32,13 +32,17 @@ class Stack(Container):
             try:
                 del self.windows[self.cur]
                 self.cur = clamp2(self.cur - 1, len(self.items))
+                if self.windows == []:
+                    self.cur = None
             except IndexError:
                 util.debug("Bad index removing window from stack")
 
     def add_win(self):
         if self.cur is not None:
-            util.debug("Can add_win: len(self.windows) = %s" % len(self.windows))
             self.windows.insert(self.cur, Window())
+        elif self.cur is None and self.windows == []:
+            self.windows.append(Window())
+            self.cur = 0
         else:
             util.debug("Cannot add_win: sef.cur is None")
 

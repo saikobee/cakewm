@@ -24,7 +24,7 @@ class Container(object):
             return None
 
     def __repr__(self):
-        return "C:%d[%s]" % (
+        return "C:%s:[%s]" % (
             self.cur,
             ", ".join(map(str, self.items))
         )

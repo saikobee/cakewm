@@ -38,4 +38,4 @@ class WM(object):
                         win.x = win.w * i_col
                         win.y = win.h * i_stack
 
-                        win.draw()
+                        stack.draw()

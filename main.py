@@ -35,15 +35,11 @@ Display(
                                     cur=0,
                                     items=[
                                         Window(),
-                                        Window(),
-                                        Window(),
                                     ]
                                 ),
                                 Stack(
                                     cur=0,
                                     items=[
-                                        Window(),
-                                        Window(),
                                         Window(),
                                     ]
                                 ),
@@ -56,8 +52,6 @@ Display(
                                     cur=0,
                                     items=[
                                         Window(),
-                                        Window(),
-                                        Window(),
                                     ]
                                 ),
                             ]
@@ -69,23 +63,17 @@ Display(
                                     cur=0,
                                     items=[
                                         Window(),
-                                        Window(),
-                                        Window(),
                                     ]
                                 ),
                                 Stack(
                                     cur=0,
                                     items=[
                                         Window(),
-                                        Window(),
-                                        Window(),
                                     ]
                                 ),
                                 Stack(
                                     cur=0,
                                     items=[
-                                        Window(),
-                                        Window(),
                                         Window(),
                                     ]
                                 ),
@@ -106,6 +94,8 @@ keybinds = {
     "a": the_binds.add_win(),
     "c": the_binds.close_win(),
     "q": the_binds.select_nth_col(0),
+    "u": the_binds.select_next_win(),
+    "y": the_binds.select_prev_win(),
 }
 
 for key, func in keybinds.iteritems():
@@ -114,8 +104,8 @@ for key, func in keybinds.iteritems():
 
     # Debug bind
     def debug_func(func=func):
-        util.debug(display)
         func()
+        util.debug(display)
     bind(key, debug_func)
 
 while True:

@@ -72,7 +72,7 @@ class Binds(object):
     @util.lazy
     def select_prev_win(self):
         stack = self.stack()
-        stack.select_win_next()
+        stack.select_win_prev()
     @util.lazy
     def move_win_next(self):
         stack = self.stack()
@@ -83,7 +83,6 @@ class Binds(object):
         stack.move_win_prev()
     @util.lazy
     def add_win(self):
-        util.debug("Attempting to :add_win")
         stack = self.stack()
         stack.add_win()
     @util.lazy
