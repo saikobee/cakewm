@@ -1,6 +1,6 @@
 #!/usr/bin/python2
 
-from pypixel    import *
+import pypixel
 
 import util
 
@@ -9,8 +9,8 @@ from cake.wm    import WM
 
 from junk       import display
 
-title("cakewm test program")
-show()
+pypixel.title("cakewm test program")
+pypixel.show()
 
 the_wm      = WM(display)
 the_binds   = Binds(display)
@@ -36,17 +36,17 @@ keybinds = {
 
 for key, func in keybinds.iteritems():
     # Normal bind
-    #bind(key, func)
+    #pypixel.bind(key, func)
 
     # Debug bind
     def debug_func(func=func):
         func()
         util.debug(display)
-    bind(key, debug_func)
+    pypixel.bind(key, debug_func)
 
 while True:
     the_wm.organize()
-    update()
-    clear()
+    pypixel.update()
+    pypixel.clear()
 
-pause()
+pypixel.pause()
