@@ -14,7 +14,7 @@ def mk(klass, func, num):
 mk_stack    = mk(Stack,     Window,     1)
 mk_col      = mk(Column,    mk_stack,   4)
 mk_tag      = mk(Tag,       mk_col,     4)
-mk_screen   = mk(Screen,    mk_tag,     9)
+mk_screen   = mk(Screen,    mk_tag,     4)
 mk_display  = mk(Display,   mk_screen,  3)
 
 display = mk_display()
