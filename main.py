@@ -36,13 +36,13 @@ keybinds = {
 
 for key, func in keybinds.iteritems():
     # Normal bind
-    #pypixel.bind(key, func)
+    pypixel.bind(key, func)
 
     # Debug bind
-    def debug_func(func=func):
-        func()
-        util.debug(display)
-    pypixel.bind(key, debug_func)
+    #def debug_func(func=func):
+    #    func()
+    #    util.debug(display)
+    #pypixel.bind(key, debug_func)
 
 while True:
     the_wm.organize()
