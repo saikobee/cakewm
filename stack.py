@@ -37,14 +37,19 @@ class Stack(Container):
             except IndexError:
                 util.debug("Bad index removing window from stack")
 
-    def add_win(self):
+    def add_win(self, win):
         if self.cur is not None:
-            self.windows.insert(self.cur, Window())
+            self.windows.insert(self.cur, win)
         elif self.cur is None and self.windows == []:
-            self.windows.append(Window())
+            self.windows.append(win)
             self.cur = 0
         else:
             util.debug("Cannot add_win: sef.cur is None")
+
+    def take_cur_win(self):
+        win = self.item()
+        self.close_win()
+        return win
 
     def draw(self):
         if self.cur is not None:

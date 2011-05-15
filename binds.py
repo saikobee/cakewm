@@ -1,4 +1,5 @@
 import util
+from window import Window
 
 class Binds(object):
     "A binds object is used for making keybinds"
@@ -82,9 +83,9 @@ class Binds(object):
         stack = self.stack()
         stack.move_win_prev()
     @util.lazy
-    def add_win(self):
+    def add_win(self, win=Window()):
         stack = self.stack()
-        stack.add_win()
+        stack.add_win(win)
     @util.lazy
     def close_win(self):
         stack = self.stack()

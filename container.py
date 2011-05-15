@@ -1,3 +1,6 @@
+import util
+from window import Window
+
 class Container(object):
     '''This is the base class for the various containers
     (Display, Screen, Tag, Column, Stack)'''
@@ -13,15 +16,23 @@ class Container(object):
             try:
                 win = self.take_cur_win()
                 if win is not None:
-                    self.items[self.cur].add_window(win)
+                    self.items[number].add_win(win)
             except IndexError:
-                debug("Attempted to move window to non-existent container")
+                util.debug("Attempted to move window to non-existent container")
 
     def item(self):
         try:
             return self.items[self.cur]
         except (TypeError, IndexError):
             return None
+
+    def take_cur_win(self):
+        item = self.item()
+        return item.take_cur_win()
+
+    def add_win(self, win):
+        item = self.item()
+        return item.add_win(win)
 
     def __repr__(self):
         return "C:%s:[%s]" % (

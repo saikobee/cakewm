@@ -37,6 +37,11 @@ keybinds = {
     "7": the_binds.select_nth_tag(6),
     "8": the_binds.select_nth_tag(7),
     "9": the_binds.select_nth_tag(8),
+
+    "q": the_binds.move_win_nth_tag(0),
+    "w": the_binds.move_win_nth_tag(1),
+    "e": the_binds.move_win_nth_tag(2),
+    "r": the_binds.move_win_nth_tag(3),
 }
 
 for key, func in keybinds.iteritems():
@@ -44,10 +49,10 @@ for key, func in keybinds.iteritems():
     pypixel.bind(key, func)
 
     # Debug bind
-    #def debug_func(func=func):
-    #    func()
-    #    util.debug(display)
-    #pypixel.bind(key, debug_func)
+    def debug_func(key=key, func=func):
+        func()
+        util.debug(key + ": " + str(display))
+    pypixel.bind(key, debug_func)
 
 while True:
     the_wm.organize()
