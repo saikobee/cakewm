@@ -93,9 +93,14 @@ the_binds   = Binds(display)
 keybinds = {
     "a": the_binds.add_win(),
     "c": the_binds.close_win(),
-    "q": the_binds.select_nth_col(0),
+
     "u": the_binds.select_next_win(),
     "y": the_binds.select_prev_win(),
+
+    "h": the_binds.select_nth_col(0),
+    "j": the_binds.select_nth_col(1),
+    "k": the_binds.select_nth_col(2),
+    "l": the_binds.select_nth_col(3),
 }
 
 for key, func in keybinds.iteritems():
