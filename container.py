@@ -26,6 +26,12 @@ class Container(object):
         except (TypeError, IndexError):
             return None
 
+    def select_num(self, number):
+        if util.between2(number, len(self.items)):
+            self.cur = number
+        else:
+            util.debug("Out of range")
+
     def take_cur_win(self):
         item = self.item()
         return item.take_cur_win()

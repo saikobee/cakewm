@@ -33,6 +33,9 @@ class Binds(object):
     @util.lazy
     def swap_tag_nth_screen(self, number):
         self.display.swap_tags_num(number)
+    @util.lazy
+    def select_nth_screen(self, number):
+        self.display.select_screen_num(number)
 
     # Screen binds
     @util.lazy

@@ -42,6 +42,10 @@ keybinds = {
     "w": the_binds.move_win_nth_tag(1),
     "e": the_binds.move_win_nth_tag(2),
     "r": the_binds.move_win_nth_tag(3),
+
+    "[" : the_binds.select_nth_screen(0),
+    "]" : the_binds.select_nth_screen(1),
+    "\\": the_binds.select_nth_screen(2),
 }
 
 for key, func in keybinds.iteritems():
@@ -51,7 +55,8 @@ for key, func in keybinds.iteritems():
     # Debug bind
     def debug_func(key=key, func=func):
         func()
-        util.debug(key + ": " + str(display))
+        # util.debug(key + ": " + str(display))
+        util.debug(key)
     pypixel.bind(key, debug_func)
 
 while True:

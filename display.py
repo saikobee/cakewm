@@ -10,6 +10,7 @@ class Display(Container):
         return self.items
 
     move_win_screen_num = Container.move_win_num
+    select_screen_num   = Container.select_num
 
     def swap_tags_num(self, number):
         "Swap the current tags on the current and nth screen"

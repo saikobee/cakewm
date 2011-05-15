@@ -16,9 +16,4 @@ class Screen(Container):
         self.h = HEIGHT
 
     move_win_tag_num = Container.move_win_num
-
-    def select_tag_num(self, number):
-        if between2(number, len(self.tags)):
-            self.cur = number
-        else:
-            debug("Tag out of range")
+    select_tag_num   = Container.select_num
