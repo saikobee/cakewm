@@ -32,6 +32,11 @@ keybinds = {
     "2": the_binds.select_nth_tag(1),
     "3": the_binds.select_nth_tag(2),
     "4": the_binds.select_nth_tag(3),
+    "5": the_binds.select_nth_tag(4),
+    "6": the_binds.select_nth_tag(5),
+    "7": the_binds.select_nth_tag(6),
+    "8": the_binds.select_nth_tag(7),
+    "9": the_binds.select_nth_tag(8),
 }
 
 for key, func in keybinds.iteritems():
