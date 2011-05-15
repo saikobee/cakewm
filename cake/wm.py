@@ -25,11 +25,10 @@ class WM(object):
                             screen.cur,
                             tag.cur,
                             col.cur,
-                            stack.cur,
+                            # stack.cur,
                         )
 
                         if indices == curs:
-                            debug("Focusing window!")
                             win.focus()
 
                         win.w = screen.w / len(tag.cols)
@@ -38,4 +37,4 @@ class WM(object):
                         win.x = win.w * i_col
                         win.y = win.h * i_stack
 
-                        stack.draw()
+                    stack.draw()
