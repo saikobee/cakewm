@@ -1,5 +1,7 @@
+import util
 from util import *
-from container import Container
+from container  import Container
+from window     import Window
 
 import const
 
@@ -27,12 +29,18 @@ class Stack(Container):
 
     def close_win(self):
         if self.cur is not None:
-            del self.windows[self.cur]
-            self.cur = clamp2(self.cur, len(self.items))
+            try:
+                del self.windows[self.cur]
+                self.cur = clamp2(self.cur - 1, len(self.items))
+            except IndexError:
+                util.debug("Bad index removing window from stack")
 
     def add_win(self):
         if self.cur is not None:
+            util.debug("Can add_win: len(self.windows) = %s" % len(self.windows))
             self.windows.insert(self.cur, Window())
+        else:
+            util.debug("Cannot add_win: sef.cur is None")
 
     def draw(self):
         if self.cur is not None:

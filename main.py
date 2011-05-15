@@ -2,6 +2,7 @@
 
 from pypixel    import *
 
+import util
 from util       import *
 
 from display    import Display
@@ -10,6 +11,7 @@ from tag        import Tag
 from column     import Column
 from stack      import Stack
 from window     import Window
+from binds      import Binds
 
 from cake.wm    import WM
 
@@ -96,16 +98,28 @@ Display(
     ]
 )
 
-wm = WM(display)
+the_wm      = WM(display)
+the_binds   = Binds(display)
 
-binds = {
+
+keybinds = {
+    "a": the_binds.add_win(),
+    "c": the_binds.close_win(),
+    "q": the_binds.select_nth_col(0),
 }
 
-for key, func in binds.iteritems():
-    bind(key, func)
+for key, func in keybinds.iteritems():
+    # Normal bind
+    #bind(key, func)
+
+    # Debug bind
+    def debug_func(func=func):
+        util.debug(display)
+        func()
+    bind(key, debug_func)
 
 while True:
-    wm.organize()
+    the_wm.organize()
     update()
     clear()
 

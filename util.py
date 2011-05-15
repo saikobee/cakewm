@@ -31,6 +31,23 @@ def doc(d):
     for function, docstring in d.iteritems():
         function.__doc__ = docstring
 
+def lazy(f):
+    '''Returns a new function with delayed execution
+
+    Examples:
+    class A(object):
+        @util.lazy
+        def add(x, y):
+            print x + y
+
+    obj = A()
+    dispatcher = {
+        "a": obj.add(1, 2),
+        "b": obj.add(4, 9),
+    }'''
+
+    return lambda *args, **kwargs: lambda: f(*args, **kwargs)
+
 def rainbow(step=30):
     '''Generates an infinite list of rainbow colors'''
 

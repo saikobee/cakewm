@@ -16,3 +16,15 @@ class Container(object):
                     self.items[self.cur].add_window(win)
             except IndexError:
                 debug("Attempted to move window to non-existent container")
+
+    def item(self):
+        try:
+            return self.items[self.cur]
+        except (TypeError, IndexError):
+            return None
+
+    def __repr__(self):
+        return "C:%d[%s]" % (
+            self.cur,
+            ", ".join(map(str, self.items))
+        )
