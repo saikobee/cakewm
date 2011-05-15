@@ -81,6 +81,62 @@ Display(
                         ),
                     ]
                 ),
+                Tag(
+                    cur=0,
+                    items=[
+                        Column(
+                            cur=0,
+                            items=[
+                                Stack(
+                                    cur=0,
+                                    items=[
+                                        Window(),
+                                    ]
+                                ),
+                                Stack(
+                                    cur=0,
+                                    items=[
+                                        Window(),
+                                    ]
+                                ),
+                            ]
+                        ),
+                        Column(
+                            cur=0,
+                            items=[
+                                Stack(
+                                    cur=0,
+                                    items=[
+                                        Window(),
+                                    ]
+                                ),
+                            ]
+                        ),
+                        Column(
+                            cur=0,
+                            items=[
+                                Stack(
+                                    cur=0,
+                                    items=[
+                                        Window(),
+                                    ]
+                                ),
+                                Stack(
+                                    cur=0,
+                                    items=[
+                                        Window(),
+                                    ]
+                                ),
+                                Stack(
+                                    cur=0,
+                                    items=[
+                                        Window(),
+                                    ]
+                                ),
+                            ]
+                        ),
+                    ]
+                ),
             ]
         ),
     ]
