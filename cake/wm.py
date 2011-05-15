@@ -25,7 +25,6 @@ class WM(object):
                             screen.cur,
                             tag.cur,
                             col.cur,
-                            # stack.cur,
                         )
 
                         if indices == curs:
@@ -37,4 +36,16 @@ class WM(object):
                         win.x = win.w * i_col
                         win.y = win.h * i_stack
 
-                    stack.draw()
+
+                    indices = (
+                        i_screen,
+                        i_tag,
+                    )
+
+                    curs = (
+                        self.display.cur,
+                        screen.cur,
+                    )
+
+                    if indices == curs:
+                        stack.draw()

@@ -101,6 +101,11 @@ keybinds = {
     "j": the_binds.select_nth_col(1),
     "k": the_binds.select_nth_col(2),
     "l": the_binds.select_nth_col(3),
+
+    "1": the_binds.select_nth_tag(0),
+    "2": the_binds.select_nth_tag(1),
+    "3": the_binds.select_nth_tag(2),
+    "4": the_binds.select_nth_tag(3),
 }
 
 for key, func in keybinds.iteritems():
