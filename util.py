@@ -62,8 +62,13 @@ def rainbow(step=30):
 _use_debug = True
 
 def debug(*args):
-    import sys
     if _use_debug:
-        sys.stdout.write(" ".join(map(str, args)) + "\n")
+        import sys
+        prefix = "cakewm: "
+        sys.stdout.write(
+            prefix
+            + " ".join(map(str, args))
+            + "\n"
+        )
 
 THE_RAINBOW = rainbow()
