@@ -28,6 +28,11 @@ keybinds = {
     "k": the_binds.select_nth_col(2),
     "l": the_binds.select_nth_col(3),
 
+    "v": the_binds.move_win_nth_col(0),
+    "b": the_binds.move_win_nth_col(1),
+    "n": the_binds.move_win_nth_col(2),
+    "m": the_binds.move_win_nth_col(3),
+
     "1": the_binds.select_nth_tag(0),
     "2": the_binds.select_nth_tag(1),
     "3": the_binds.select_nth_tag(2),
