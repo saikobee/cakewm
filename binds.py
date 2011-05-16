@@ -86,9 +86,9 @@ class Binds(object):
         stack = self.stack()
         stack.move_win_prev()
     @util.lazy
-    def add_win(self, win=Window()):
+    def add_win(self, win=None):
         stack = self.stack()
-        stack.add_win(win)
+        stack.add_win(win or Window())
     @util.lazy
     def close_win(self):
         stack = self.stack()
