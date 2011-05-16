@@ -23,15 +23,8 @@ keybinds = {
     "a": the_binds.select_next_win(),
     "s": the_binds.select_prev_win(),
 
-    "h": the_binds.select_nth_col(0),
-    "j": the_binds.select_nth_col(1),
-    "k": the_binds.select_nth_col(2),
-    "l": the_binds.select_nth_col(3),
-
-    "v": the_binds.move_win_nth_col(0),
-    "b": the_binds.move_win_nth_col(1),
-    "n": the_binds.move_win_nth_col(2),
-    "m": the_binds.move_win_nth_col(3),
+    "d": the_binds.move_win_next(),
+    "f": the_binds.move_win_prev(),
 
     "y": the_binds.select_nth_stack(0),
     "u": the_binds.select_nth_stack(1),
@@ -42,6 +35,16 @@ keybinds = {
     "x": the_binds.move_win_nth_stack(1),
     "c": the_binds.move_win_nth_stack(2),
     "v": the_binds.move_win_nth_stack(3),
+
+    "h": the_binds.select_nth_col(0),
+    "j": the_binds.select_nth_col(1),
+    "k": the_binds.select_nth_col(2),
+    "l": the_binds.select_nth_col(3),
+
+    "b": the_binds.move_win_nth_col(0),
+    "n": the_binds.move_win_nth_col(1),
+    "m": the_binds.move_win_nth_col(2),
+    ",": the_binds.move_win_nth_col(3),
 
     "1": the_binds.select_nth_tag(0),
     "2": the_binds.select_nth_tag(1),
@@ -66,9 +69,9 @@ keybinds = {
     "-": the_binds.win_to_nth_screen(1),
     "=": the_binds.win_to_nth_screen(2),
 
-    ",": the_binds.swap_tag_nth_screen(0),
-    ".": the_binds.swap_tag_nth_screen(1),
-    "/": the_binds.swap_tag_nth_screen(2),
+    #",": the_binds.swap_tag_nth_screen(0),
+    ".": the_binds.swap_tag_nth_screen(0),
+    "/": the_binds.swap_tag_nth_screen(1),
 }
 
 for key, func in keybinds.iteritems():
