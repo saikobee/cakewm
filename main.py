@@ -33,6 +33,11 @@ keybinds = {
     "n": the_binds.move_win_nth_col(2),
     "m": the_binds.move_win_nth_col(3),
 
+    "y": the_binds.select_nth_stack(0),
+    "u": the_binds.select_nth_stack(1),
+    "i": the_binds.select_nth_stack(2),
+    "o": the_binds.select_nth_stack(3),
+
     "1": the_binds.select_nth_tag(0),
     "2": the_binds.select_nth_tag(1),
     "3": the_binds.select_nth_tag(2),
