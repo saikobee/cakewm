@@ -22,7 +22,8 @@ class Stack(Container):
     def _move_win(self, direction):
         if self.cur is not None:
             index = clamp2(self.cur + direction.num, len(self.windows))
-            swap(windows, self.cur, index)
+            swap(self.windows, self.cur, index)
+            self.cur = index
 
     def move_win_next(self): self._move_win(const.NEXT)
     def move_win_prev(self): self._move_win(const.PREV)
