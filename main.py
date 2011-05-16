@@ -17,11 +17,11 @@ the_binds   = Binds(display)
 
 
 keybinds = {
-    "a": the_binds.add_win(),
-    "c": the_binds.close_win(),
+    "p": the_binds.add_win(),
+    "`": the_binds.close_win(),
 
-    "u": the_binds.select_next_win(),
-    "y": the_binds.select_prev_win(),
+    "a": the_binds.select_next_win(),
+    "s": the_binds.select_prev_win(),
 
     "h": the_binds.select_nth_col(0),
     "j": the_binds.select_nth_col(1),
