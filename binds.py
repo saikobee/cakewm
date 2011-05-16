@@ -28,8 +28,8 @@ class Binds(object):
 
     # Display binds
     @util.lazy
-    def win_to_nth_screen(self):
-        self.display.move_win_screen_num()
+    def win_to_nth_screen(self, number):
+        self.display.move_win_screen_num(number)
     @util.lazy
     def swap_tag_nth_screen(self, number):
         self.display.swap_tags_num(number)

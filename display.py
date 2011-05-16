@@ -23,10 +23,12 @@ class Display(Container):
                 that_screen is not None):
                 this_tag_num = this_screen.cur
                 that_tag_num = that_screen.cur
+                that_tag     = that_screen.item()
+                this_tag     = this_screen.item()
 
                 if (this_tag_num is not None and
                     that_tag_num is not None):
-                    this_screen[this_tag_num] = that_tag
-                    that_screen[that_tag_num] = this_tag
+                    this_screen.items[this_tag_num] = that_tag
+                    that_screen.items[that_tag_num] = this_tag
         except IndexError:
             debug("Screen out of range")
