@@ -94,6 +94,7 @@ _keybinds = {
     pygame.locals.K_v: _toggle_show_fps,
     pygame.locals.K_p: _toggle_paused,
 
+    pygame.locals.K_RETURN: _toggle_full_screen,
     pygame.locals.K_SPACE:  _toggle_paused,
     pygame.locals.K_ESCAPE: exit,
 }
