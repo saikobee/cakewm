@@ -48,7 +48,7 @@ def lazy(f):
 
     return lambda *args, **kwargs: lambda: f(*args, **kwargs)
 
-def rainbow(step=30):
+def rainbow(step=10):
     '''Generates an infinite list of rainbow colors'''
 
     h, s, l = 0, 100, 50
