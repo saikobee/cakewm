@@ -14,7 +14,9 @@ class Container(object):
 
         if self.cur is not None:
             try:
+                # Guard against IndexError
                 self.items[number]
+
                 win = self.take_cur_win()
                 if win is not None:
                     self.items[number].add_win(win)
