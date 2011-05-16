@@ -20,6 +20,7 @@ class Container(object):
                 win = self.take_cur_win()
                 if win is not None:
                     self.items[number].add_win(win)
+                    self.select_num(number)
             except IndexError:
                 util.debug("Attempted to move window to non-existent container")
 
