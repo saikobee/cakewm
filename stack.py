@@ -2,10 +2,11 @@ import util
 from util import *
 from container  import Container
 from window     import Window
+from focusable  import Focusable
 
 import const
 
-class Stack(Container):
+class Stack(Container, Focusable):
     "A stack manages windows"
 
     @property
@@ -55,3 +56,17 @@ class Stack(Container):
     def draw(self):
         if self.cur is not None:
             self.windows[self.cur].draw()
+
+    def focus(self):
+        super(Stack, self).focus()
+
+        item = self.item()
+        if item is not None:
+            item.focus()
+
+    def unfocus(self):
+        super(Stack, self).unfocus()
+
+        item = self.item()
+        if item is not None:
+            item.unfocus()

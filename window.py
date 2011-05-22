@@ -1,7 +1,10 @@
 from pypixel    import *
 from util       import *
 
-class Window(object):
+from focusable      import Focusable
+from floatingrect   import FloatingRect
+
+class Window(FloatingRect, Focusable):
     FOCUS_COLOR = WHITE
     NUMBER = 0
 
@@ -9,18 +12,7 @@ class Window(object):
         return "#W:%i" % self.number
 
     def __init__(self, **kwargs):
-        self.rect = kwargs.get("rect", ((0, 0), (0, 0)))
-
-        self.size = kwargs.get("size", (0, 0))
-        self.pos  = kwargs.get("pos",  (0, 0))
-
-        self.x = kwargs.get("x", 0)
-        self.y = kwargs.get("y", 0)
-
-        self.w = kwargs.get("w", 20)
-        self.h = kwargs.get("h", 20)
-
-        self.focused = False
+        super(Window, self).__init__(**kwargs)
 
         self.color = kwargs.get("color", THE_RAINBOW.next())
 
@@ -45,10 +37,6 @@ class Window(object):
             rect = ((self.x + q, self.y + q), (self.w - 2*q, self.h - 2*q))
             rectangle(self.color, rect)
             #rectangle(self.color, self.rect)
-
-    def focus(self):        self.focused = True
-    def unfocus(self):      self.focused = False
-    def focus_toggle(self): self.focused = not self.focused
 
     @property
     def size(self):

@@ -7,26 +7,26 @@ class WM(object):
             for i_tag, tag in enumerate(screen.tags):
                 for i_col, col in enumerate(tag.cols):
                     for i_stack, stack in enumerate(col.stacks):
+                        stack.unfocus()
+
+                        indices = (
+                            i_screen,
+                            i_tag,
+                            i_col,
+                            i_stack,
+                        )
+
+                        curs = (
+                            self.display.cur,
+                            screen.cur,
+                            tag.cur,
+                            col.cur,
+                        )
+
+                        if indices == curs:
+                            stack.focus()
+
                         for i_win, win in enumerate(stack.windows):
-                            win.unfocus()
-
-                            indices = (
-                                i_screen,
-                                i_tag,
-                                i_col,
-                                i_stack,
-                            )
-
-                            curs = (
-                                self.display.cur,
-                                screen.cur,
-                                tag.cur,
-                                col.cur,
-                            )
-
-                            if indices == curs:
-                                win.focus()
-
                             win.w = screen.w / len(tag.cols)
                             win.h = screen.h / len(col.stacks)
 
