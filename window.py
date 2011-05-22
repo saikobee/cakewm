@@ -55,14 +55,6 @@ class Window(FloatingRect, Focusable):
         self.x, self.y = pos
 
     @property
-    def grid_pos(self):
-        return (self.row, self.col)
-
-    @grid_pos.setter
-    def grid_pos(self, grid_pos):
-        self.row, self.col = grid_pos
-
-    @property
     def rect(self):
         return (self.pos, self.size)
 
