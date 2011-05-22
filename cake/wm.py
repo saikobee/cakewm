@@ -2,19 +2,11 @@ class WM(object):
     def __init__(self, display):
         self.display = display
 
-    def organize(self):
+    def set_focii(self):
         for i_screen, screen in enumerate(self.display.screens):
-            n_screens = len(self.display.screens)
-
             for i_tag, tag in enumerate(screen.tags):
-                n_tags = len(screen.tags)
-
                 for i_col, col in enumerate(tag.cols):
-                    n_cols = len(tag.cols)
-
                     for i_stack, stack in enumerate(col.stacks):
-                        n_stacks = len(col.stacks)
-
                         stack.unfocus()
 
                         indices = (
@@ -34,6 +26,37 @@ class WM(object):
                         if indices == curs:
                             stack.focus()
 
+    def draw(self):
+        for i_screen, screen in enumerate(self.display.screens):
+            for i_tag, tag in enumerate(screen.tags):
+                for i_col, col in enumerate(tag.cols):
+                    for i_stack, stack in enumerate(col.stacks):
+                        indices = (
+                            i_screen,
+                            i_tag,
+                        )
+
+                        curs = (
+                            self.display.cur,
+                            screen.cur,
+                        )
+
+                        if indices == curs:
+                            stack.draw()
+
+    def organize(self):
+        for i_screen, screen in enumerate(self.display.screens):
+            n_screens = len(self.display.screens)
+
+            for i_tag, tag in enumerate(screen.tags):
+                n_tags = len(screen.tags)
+
+                for i_col, col in enumerate(tag.cols):
+                    n_cols = len(tag.cols)
+
+                    for i_stack, stack in enumerate(col.stacks):
+                        n_stacks = len(col.stacks)
+
                         stack.w = screen.w / n_cols
                         stack.h = screen.h / n_stacks
                         stack.x = stack.w * i_col
@@ -52,16 +75,3 @@ class WM(object):
                             stack.h = screen.h - (int(screen.h / n_stacks) * (n_stacks - 1))
 
                         stack.organize()
-
-                        indices = (
-                            i_screen,
-                            i_tag,
-                        )
-
-                        curs = (
-                            self.display.cur,
-                            screen.cur,
-                        )
-
-                        if indices == curs:
-                            stack.draw()

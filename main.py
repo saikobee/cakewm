@@ -87,6 +87,8 @@ for key, func in keybinds.iteritems():
 
 while True:
     the_wm.organize()
+    the_wm.set_focii()
+    the_wm.draw()
     pypixel.update()
     pypixel.clear()
 
