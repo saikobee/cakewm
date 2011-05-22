@@ -21,22 +21,20 @@ class Window(FloatingRect, Focusable):
         type(self).NUMBER += 1
 
     def draw(self):
-        #if self.focused: rectangle(WHITE,      self.rect)
-        if self.focused:
-            q = 18; rec1 = ((self.x + q, self.y + q), (self.w - 2*q, self.h - 2*q))
-            q =  9; rec2 = ((self.x + q, self.y + q), (self.w - 2*q, self.h - 2*q))
-            q =  3; rec3 = ((self.x + q, self.y + q), (self.w - 2*q, self.h - 2*q))
+        colr3 = BLACK
+        colr2 = GREY
+        colr1 = self.color
 
-            rectangle(BLACK,      self.rect)
-            rectangle(WHITE,           rec3)
-            rectangle(BLACK,           rec2)
-            rectangle(self.color,      rec1)
-            #rectangle(self.color, self.rect)
-        else:
-            q = 3
-            rect = ((self.x + q, self.y + q), (self.w - 2*q, self.h - 2*q))
-            rectangle(self.color, rect)
-            #rectangle(self.color, self.rect)
+        if self.focused:
+            colr2 = WHITE
+
+        q = 4; rec1 = ((self.x + q, self.y + q), (self.w - 2*q, self.h - 2*q))
+        q = 1; rec2 = ((self.x + q, self.y + q), (self.w - 2*q, self.h - 2*q))
+        pass;  rec3 = self.rect
+
+        rectangle(colr3, rec3)
+        rectangle(colr2, rec2)
+        rectangle(colr1, rec1)
 
     @property
     def size(self):
