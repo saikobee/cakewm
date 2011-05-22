@@ -78,11 +78,6 @@ class Stack(Container, Focusable, FloatingRect):
         top   = y
         bot   = y + h - 1
 
-        util.debug(
-            "(x, y), (w, h) = (%3d, %3d), (%3d, %3d)" %
-            (x, y, w, h)
-        )
-
         top_r_x = None
 
         pypixel.rectangle(color, self.rect)
