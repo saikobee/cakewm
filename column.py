@@ -1,7 +1,8 @@
 from util import *
 from container import Container
+from ratio     import Ratio
 
-class Column(Container):
+class Column(Container, Ratio):
     "A column manages stacks"
 
     @property

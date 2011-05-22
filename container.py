@@ -6,6 +6,7 @@ class Container(object):
     (Display, Screen, Tag, Column, Stack)'''
 
     def __init__(self, **kwargs):
+        super(Container, self).__init__()
         self.cur    = kwargs.get("cur",     0)
         self.items  = kwargs.get("items",   [])
 
