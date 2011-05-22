@@ -63,11 +63,11 @@ keybinds = {
 
     "[" : the_binds.select_nth_screen(0),
     "]" : the_binds.select_nth_screen(1),
-    "\\": the_binds.select_nth_screen(2),
+    # "\\": the_binds.select_nth_screen(2),
 
     "0": the_binds.win_to_nth_screen(0),
     "-": the_binds.win_to_nth_screen(1),
-    "=": the_binds.win_to_nth_screen(2),
+    # "=": the_binds.win_to_nth_screen(2),
 
     #",": the_binds.swap_tag_nth_screen(0),
     ".": the_binds.swap_tag_nth_screen(0),
@@ -76,7 +76,7 @@ keybinds = {
 
 for key, func in keybinds.iteritems():
     # Normal bind
-    pypixel.bind(key, func)
+    # pypixel.bind(key, func)
 
     # Debug bind
     def debug_func(key=key, func=func):
