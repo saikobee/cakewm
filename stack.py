@@ -1,13 +1,20 @@
 import util
 from util import *
-from container  import Container
-from window     import Window
-from focusable  import Focusable
+from container      import Container
+from window         import Window
+from focusable      import Focusable
+from floatingrect   import FloatingRect
+
+import pypixel
 
 import const
 
-class Stack(Container, Focusable):
+class Stack(Container, Focusable, FloatingRect):
     "A stack manages windows"
+
+    def __init__(self, **kwargs):
+        super(Stack, self).__init__(**kwargs)
+        FloatingRect.__init__(self)
 
     @property
     def windows(self):
@@ -54,8 +61,43 @@ class Stack(Container, Focusable):
         return win
 
     def draw(self):
-        if self.cur is not None:
-            self.windows[self.cur].draw()
+        color = pypixel.BLACK
+        if self.focused:
+            color = pypixel.YELLOW
+
+        light = pypixel.GREEN
+        dark  = pypixel.RED
+
+        x = self.x
+        y = self.y
+        w = self.w
+        h = self.h
+
+        left  = x
+        right = x + w - 1
+        top   = y
+        bot   = y + h - 1
+
+        util.debug(
+            "(x, y), (w, h) = (%3d, %3d), (%3d, %3d)" %
+            (x, y, w, h)
+        )
+
+        top_r_x = None
+
+        pypixel.rectangle(color, self.rect)
+
+        # Draw light edge
+        pypixel.line(light, (left, top), (right, top))
+        pypixel.line(light, (left, top), (left,  bot))
+
+        # Draw dark edge
+        pypixel.line(dark, (right, bot), (right, top))
+        pypixel.line(dark, (right, bot), (left,  bot))
+
+        item = self.item()
+        if item is not None:
+            item.draw()
 
     def focus(self):
         super(Stack, self).focus()
@@ -70,3 +112,12 @@ class Stack(Container, Focusable):
         item = self.item()
         if item is not None:
             item.unfocus()
+
+    def organize(self):
+        pad = 6
+        for i, win in enumerate(self.windows):
+           win.x = self.x + pad
+           win.y = self.y + pad
+
+           win.w = self.w - pad - pad
+           win.h = self.h - pad - pad

@@ -26,13 +26,12 @@ class WM(object):
                         if indices == curs:
                             stack.focus()
 
-                        for i_win, win in enumerate(stack.windows):
-                            win.w = screen.w / len(tag.cols)
-                            win.h = screen.h / len(col.stacks)
+                        stack.w = screen.w / len(tag.cols)
+                        stack.h = screen.h / len(col.stacks)
+                        stack.x = stack.w * i_col
+                        stack.y = stack.h * i_stack
 
-                            win.x = win.w * i_col
-                            win.y = win.h * i_stack
-
+                        stack.organize()
 
                         indices = (
                             i_screen,
