@@ -78,8 +78,6 @@ class Stack(Container, Focusable, FloatingRect):
         top   = y
         bot   = y + h - 1
 
-        top_r_x = None
-
         pypixel.rectangle(color, self.rect)
 
         # Draw light edge
