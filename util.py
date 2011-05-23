@@ -1,5 +1,7 @@
-from pypixel import *
+import sys
 import itertools
+
+import pypixel
 
 def clamp(x, a, b):
     '''Clamp x between a and b'''
@@ -53,7 +55,6 @@ _use_debug = True
 
 def debug(*args):
     if _use_debug:
-        import sys
         prefix = "cakewm: "
         sys.stdout.write(
             prefix
@@ -63,7 +64,7 @@ def debug(*args):
 
 INFINITE_RAINBOW = itertools.cycle(
     map(
-        lambda hue: hsl2rgb((hue, 100, 50)),
+        lambda hue: pypixel.hsl2rgb((hue, 100, 50)),
         xrange(0, 360, 20)
     )
 )

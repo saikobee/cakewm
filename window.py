@@ -28,8 +28,12 @@ class Window(FloatingRect, Focusable):
         if self.focused:
             colr2 = WHITE
 
-        q = 2; rec1 = ((self.x + q, self.y + q), (self.w - 2*q, self.h - 2*q))
-        q = 1; rec2 = ((self.x + q, self.y + q), (self.w - 2*q, self.h - 2*q))
+        x = self.x
+        y = self.y
+        w = self.w
+        h = self.h
+        q = 2; rec1 = ((x + q, y + q), (w - q - q, h - q - q))
+        q = 1; rec2 = ((x + q, y + q), (w - q - q, h - q - q))
         pass;  rec3 = self.rect
 
         rectangle(colr3, rec3)
