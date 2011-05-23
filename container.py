@@ -35,7 +35,7 @@ class Container(object):
         return len(self.items)
 
     def select_num(self, number):
-        if util.between2(number, len(self.items)):
+        if util.between2(number, self.n_items()):
             self.cur = number
         else:
             util.debug("Out of range")

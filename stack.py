@@ -22,14 +22,14 @@ class Stack(Container, Focusable, FloatingRect):
 
     def _select_win(self, direction):
         if self.cur is not None:
-            self.cur = clamp2(self.cur + direction.num, len(self.windows))
+            self.cur = util.clamp2(self.cur + direction.num, self.n_items())
 
     def select_win_next(self): self._select_win(const.NEXT)
     def select_win_prev(self): self._select_win(const.PREV)
 
     def _move_win(self, direction):
         if self.cur is not None:
-            index = clamp2(self.cur + direction.num, len(self.windows))
+            index = util.clamp2(self.cur + direction.num, self.n_items())
             swap(self.windows, self.cur, index)
             self.cur = index
 
@@ -40,7 +40,7 @@ class Stack(Container, Focusable, FloatingRect):
         if self.cur is not None:
             try:
                 del self.windows[self.cur]
-                self.cur = clamp2(self.cur - 1, len(self.items))
+                self.cur = util.clamp2(self.cur - 1, self.n_items())
                 if self.windows == []:
                     self.cur = None
             except IndexError:
