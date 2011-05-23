@@ -1,4 +1,5 @@
 from pypixel import *
+import itertools
 
 def clamp(x, a, b):
     '''Clamp x between a and b'''
@@ -48,17 +49,6 @@ def lazy(f):
 
     return lambda *args, **kwargs: lambda: f(*args, **kwargs)
 
-def rainbow(step=10):
-    '''Generates an infinite list of rainbow colors'''
-
-    h, s, l = 0, 100, 50
-
-    while True:
-        yield hsl2rgb((h, s, l))
-
-        h += step
-        h %= 360
-
 _use_debug = True
 
 def debug(*args):
@@ -71,4 +61,9 @@ def debug(*args):
             + "\n"
         )
 
-THE_RAINBOW = rainbow()
+THE_RAINBOW = itertools.cycle(
+    map(
+        lambda hue: hsl2rgb((hue, 100, 50)),
+        xrange(0, 360, 20)
+    )
+)
