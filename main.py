@@ -56,12 +56,12 @@ keybinds = {
     #"8": the_binds.select_nth_tag(7),
     #"9": the_binds.select_nth_tag(8),
 
-    "5": the_binds.set_tag_ratio(0.50),
-    "6": the_binds.set_tag_ratio(0.75),
+    "5": the_binds.mod_tag_ratio(-0.05),
+    "6": the_binds.mod_tag_ratio(+0.05),
     "7": the_binds.set_tag_ratio_complement(),
 
-    "8": the_binds.set_col_ratio(0.50),
-    "9": the_binds.set_col_ratio(0.75),
+    "8": the_binds.mod_col_ratio(-0.05),
+    "9": the_binds.mod_col_ratio(+0.05),
     "0": the_binds.set_col_ratio_complement(),
 
     "q": the_binds.move_win_nth_tag(0),

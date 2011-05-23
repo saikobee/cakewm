@@ -1,5 +1,6 @@
 import util
 from window import Window
+from ratio  import Ratio
 
 class Binds(object):
     "A binds object is used for making keybinds"
@@ -58,9 +59,13 @@ class Binds(object):
         tag = self.tag()
         tag.select_col_num(number)
     @util.lazy
-    def set_tag_ratio(self, number):
+    def mod_tag_ratio(self, number):
         tag = self.tag()
-        tag.ratio = number
+        tag.ratio = util.clamp(
+            tag.ratio + number,
+            Ratio.MIN,
+            Ratio.MAX
+        )
     @util.lazy
     def set_tag_ratio_complement(self):
         tag = self.tag()
@@ -76,9 +81,13 @@ class Binds(object):
         col = self.col()
         col.select_stack_num(number)
     @util.lazy
-    def set_col_ratio(self, number):
+    def mod_col_ratio(self, number):
         col = self.col()
-        col.ratio = number
+        col.ratio = util.clamp(
+            col.ratio + number,
+            Ratio.MIN,
+            Ratio.MAX
+        )
     @util.lazy
     def set_col_ratio_complement(self):
         col = self.col()
