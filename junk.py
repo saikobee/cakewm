@@ -11,7 +11,7 @@ from window     import Window
 def mk(klass, func, num):
     return klass(cur=0, items=[func() for i in xrange(num)])
 
-mk_stack    = mk(Stack,     Window,     1)
+mk_stack    = mk(Stack,     Window,     0)
 mk_col      = mk(Column,    mk_stack,   2)
 mk_tag      = mk(Tag,       mk_col,     2)
 mk_screen   = mk(Screen,    mk_tag,     3)

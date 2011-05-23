@@ -61,7 +61,7 @@ def debug(*args):
             + "\n"
         )
 
-THE_RAINBOW = itertools.cycle(
+INFINITE_RAINBOW = itertools.cycle(
     map(
         lambda hue: hsl2rgb((hue, 100, 50)),
         xrange(0, 360, 20)
