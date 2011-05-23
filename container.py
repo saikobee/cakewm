@@ -31,6 +31,9 @@ class Container(object):
         except (TypeError, IndexError):
             return None
 
+    def n_items(self):
+        return len(self.items)
+
     def select_num(self, number):
         if util.between2(number, len(self.items)):
             self.cur = number
