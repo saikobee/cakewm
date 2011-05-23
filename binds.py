@@ -57,6 +57,14 @@ class Binds(object):
     def select_nth_col(self, number):
         tag = self.tag()
         tag.select_col_num(number)
+    @util.lazy
+    def set_tag_ratio(self, number):
+        tag = self.tag()
+        tag.ratio = number
+    @util.lazy
+    def set_tag_ratio_complement(self):
+        tag = self.tag()
+        tag.ratio = 1 - tag.ratio
 
     # Column binds
     @util.lazy
@@ -67,6 +75,14 @@ class Binds(object):
     def select_nth_stack(self, number):
         col = self.col()
         col.select_stack_num(number)
+    @util.lazy
+    def set_col_ratio(self, number):
+        col = self.col()
+        col.ratio = number
+    @util.lazy
+    def set_col_ratio_complement(self):
+        col = self.col()
+        col.ratio = 1 - col.ratio
 
     # Stack binds
     @util.lazy
