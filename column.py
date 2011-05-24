@@ -21,8 +21,17 @@ class Column(Container, Ratio, Magic):
     def stacks(self):
         return self.items
 
+    def n_wins(self):
+        tot = 0
+        for stack in self.stacks:
+            tot += stack.n_wins()
+
+        return tot
+
     def organize(self, screen):
-        if self.n_items() == 1:
+        if self.n_items() == 0:
+            pass
+        elif self.n_items() == 1:
             self.stacks[0].h = screen.h
             self.stacks[0].y = 0
         elif self.n_items() == 2:

@@ -3,6 +3,7 @@ from container  import Container
 from ratio      import Ratio
 from column     import Column
 from magic      import Magic
+from stack      import Stack
 
 class Tag(Container, Ratio, Magic):
     "A tag manages columns"
@@ -10,7 +11,7 @@ class Tag(Container, Ratio, Magic):
     MAX = 3
 
     def default_item(self):
-        return Column(cur=0, items=[])
+        return Column(cur=0, items=[Stack(cur=0, items=[])])
 
     def __init__(self, **kwargs):
         super(Tag, self).__init__(**kwargs)

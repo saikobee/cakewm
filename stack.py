@@ -20,6 +20,8 @@ class Stack(Container, Focusable, FloatingRect):
     def windows(self):
         return self.items
 
+    n_wins = Container.n_items
+
     def _select_win(self, direction):
         if self.cur is not None:
             self.cur = util.clamp2(self.cur + direction.num, self.n_items())
