@@ -1,9 +1,16 @@
 import util
 from container  import Container
 from ratio      import Ratio
+from column     import Column
+from magic      import Magic
 
-class Tag(Container, Ratio):
+class Tag(Container, Ratio, Magic):
     "A tag manages columns"
+
+    MAX = 3
+
+    def default_item(self):
+        return Column(cur=0, items=[])
 
     def __init__(self, **kwargs):
         super(Tag, self).__init__(**kwargs)
@@ -19,10 +26,6 @@ class Tag(Container, Ratio):
 
     move_win_col_num = Container.move_win_num
     select_col_num   = Container.select_num
-
-    def set_num_cols(self, number):
-        # TODO
-        util.debug("Tag.set_num_cols: PLEASE IMPLEMENT ME")
 
     def draw_fullscreen(self, screen):
         col = self.item()

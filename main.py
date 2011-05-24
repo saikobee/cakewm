@@ -74,6 +74,9 @@ keybinds = {
     "/": the_binds.swap_tag_nth_screen(1),
 
     ";": the_binds.toggle_fullscreen(),
+
+    "'" : the_binds.stack_magic(),
+    "\\": the_binds.column_magic(),
 }
 
 for key, func in keybinds.iteritems():

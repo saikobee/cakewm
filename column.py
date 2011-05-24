@@ -1,9 +1,16 @@
 from util import *
 from container import Container
+from stack     import Stack
 from ratio     import Ratio
+from magic     import Magic
 
-class Column(Container, Ratio):
+class Column(Container, Ratio, Magic):
     "A column manages stacks"
+
+    MAX = 3
+
+    def default_item(self):
+        return Stack(cur=0, items=[])
 
     def __init__(self, **kwargs):
         super(Column, self).__init__(**kwargs)

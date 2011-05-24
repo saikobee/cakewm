@@ -1,4 +1,5 @@
 import util
+import itertools
 from window import Window
 from ratio  import Ratio
 
@@ -49,7 +50,10 @@ class Binds(object):
         screen.select_tag_num(number)
 
     # Tag binds
-    # TODO cycle_col_num
+    @util.lazy
+    def column_magic(self):
+        tag = self.tag()
+        tag.item_magic()
     @util.lazy
     def toggle_fullscreen(self):
         tag = self.tag()
@@ -76,6 +80,10 @@ class Binds(object):
         tag.ratio = 1 - tag.ratio
 
     # Column binds
+    @util.lazy
+    def stack_magic(self):
+        col = self.col()
+        col.item_magic()
     @util.lazy
     def move_win_nth_stack(self, number):
         col = self.col()
