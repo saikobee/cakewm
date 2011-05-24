@@ -1,11 +1,10 @@
-from pypixel    import *
-from util       import *
-
+import pypixel
+import util
 from focusable      import Focusable
 from floatingrect   import FloatingRect
 
 class Window(FloatingRect, Focusable):
-    FOCUS_COLOR = WHITE
+    FOCUS_COLOR = pypixel.WHITE
     NUMBER = 0
 
     def __str__(self):
@@ -14,19 +13,27 @@ class Window(FloatingRect, Focusable):
     def __init__(self, **kwargs):
         super(Window, self).__init__(**kwargs)
 
-        self.color = kwargs.get("color", INFINITE_RAINBOW.next())
+        self.color = kwargs.get("color", util.INFINITE_RAINBOW.next())
 
         self.number = type(self).NUMBER
 
         type(self).NUMBER += 1
 
+    def draw_fullscreen(self, screen):
+       w = screen.w
+       h = screen.h
+       x = 0
+       y = 0
+
+       pypixel.rectangle(self.color, ((x, y), (w, h)))
+
     def draw(self):
-        colr3 = BLACK
-        colr2 = GREY
+        colr3 = pypixel.BLACK
+        colr2 = pypixel.GREY
         colr1 = self.color
 
         if self.focused:
-            colr2 = WHITE
+            colr2 = pypixel.WHITE
 
         x = self.x
         y = self.y
@@ -36,6 +43,6 @@ class Window(FloatingRect, Focusable):
         q = 1; rec2 = ((x + q, y + q), (w - q - q, h - q - q))
         pass;  rec3 = self.rect
 
-        rectangle(colr3, rec3)
-        rectangle(colr2, rec2)
-        rectangle(colr1, rec1)
+        pypixel.rectangle(colr3, rec3)
+        pypixel.rectangle(colr2, rec2)
+        pypixel.rectangle(colr1, rec1)

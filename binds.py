@@ -51,6 +51,10 @@ class Binds(object):
     # Tag binds
     # TODO cycle_col_num
     @util.lazy
+    def toggle_fullscreen(self):
+        tag = self.tag()
+        tag.toggle_fullscreen()
+    @util.lazy
     def move_win_nth_col(self, number):
         tag = self.tag()
         tag.move_win_col_num(number)

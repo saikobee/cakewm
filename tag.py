@@ -1,9 +1,17 @@
-from util import *
+import util
 from container  import Container
 from ratio      import Ratio
 
 class Tag(Container, Ratio):
     "A tag manages columns"
+
+    def __init__(self, **kwargs):
+        super(Tag, self).__init__(**kwargs)
+
+        self.fullscreen = False
+
+    def toggle_fullscreen(self):
+        self.fullscreen = not self.fullscreen
 
     @property
     def cols(self):
@@ -14,7 +22,14 @@ class Tag(Container, Ratio):
 
     def set_num_cols(self, number):
         # TODO
-        debug("Tag.set_num_cols: PLEASE IMPLEMENT ME")
+        util.debug("Tag.set_num_cols: PLEASE IMPLEMENT ME")
+
+    def draw_fullscreen(self, screen):
+        col = self.item()
+        stk = col .item()
+        win = stk .item()
+
+        win.draw_fullscreen(screen)
 
     def organize(self, screen):
         if self.n_items() == 1:

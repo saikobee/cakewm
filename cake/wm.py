@@ -29,6 +29,19 @@ class WM(object):
     def draw(self):
         for i_screen, screen in enumerate(self.display.screens):
             for i_tag, tag in enumerate(screen.tags):
+                indices = (
+                    i_screen,
+                    i_tag,
+                )
+
+                curs = (
+                    self.display.cur,
+                    screen.cur,
+                )
+
+                if tag.fullscreen and indices == curs:
+                    tag.draw_fullscreen(screen)
+                    return
                 for i_col, col in enumerate(tag.cols):
                     for i_stack, stack in enumerate(col.stacks):
                         indices = (
@@ -47,4 +60,4 @@ class WM(object):
     def organize(self):
         for screen in self.display.screens:
             for tag in screen.tags:
-                tag.organize(screen) 
+                tag.organize(screen)
