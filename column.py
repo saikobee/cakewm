@@ -17,6 +17,11 @@ class Column(Container, Ratio, Magic):
         self.x = None
         self.w = None
 
+    def item_magic(self):
+        super(Column, self).item_magic()
+        if self.stacks == []:
+            self.stacks.append(Stack(cur=0, items=[]))
+
     @property
     def stacks(self):
         return self.items

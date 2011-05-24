@@ -13,7 +13,7 @@ def mk(klass, func, num):
 
 mk_stack    = mk(Stack,     Window,     1)
 mk_col      = mk(Column,    mk_stack,   3)
-mk_tag      = mk(Tag,       mk_col,     1)
+mk_tag      = mk(Tag,       mk_col,     3)
 mk_screen   = mk(Screen,    mk_tag,     3)
 mk_display  = mk(Display,   mk_screen,  2)
 
