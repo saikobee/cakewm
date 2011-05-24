@@ -50,11 +50,6 @@ keybinds = {
     "2": the_binds.select_nth_tag(1),
     "3": the_binds.select_nth_tag(2),
     "4": the_binds.select_nth_tag(3),
-    #"5": the_binds.select_nth_tag(4),
-    #"6": the_binds.select_nth_tag(5),
-    #"7": the_binds.select_nth_tag(6),
-    #"8": the_binds.select_nth_tag(7),
-    #"9": the_binds.select_nth_tag(8),
 
     "5": the_binds.mod_tag_ratio(-0.05),
     "6": the_binds.mod_tag_ratio(+0.05),
@@ -71,13 +66,10 @@ keybinds = {
 
     "[" : the_binds.select_nth_screen(0),
     "]" : the_binds.select_nth_screen(1),
-    # "\\": the_binds.select_nth_screen(2),
 
     "-": the_binds.win_to_nth_screen(0),
     "=": the_binds.win_to_nth_screen(1),
-    # "=": the_binds.win_to_nth_screen(2),
 
-    #",": the_binds.swap_tag_nth_screen(0),
     ".": the_binds.swap_tag_nth_screen(0),
     "/": the_binds.swap_tag_nth_screen(1),
 
