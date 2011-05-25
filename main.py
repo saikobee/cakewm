@@ -17,66 +17,68 @@ the_binds   = Binds(display)
 
 
 keybinds = {
-    "p": the_binds.add_win(),
-    "`": the_binds.close_win(),
+    "p": the_binds.add_win,
+    "`": the_binds.close_win,
 
-    "a": the_binds.select_next_win(),
-    "s": the_binds.select_prev_win(),
+    "a": the_binds.select_next_win,
+    "s": the_binds.select_prev_win,
 
-    "d": the_binds.move_win_next(),
-    "f": the_binds.move_win_prev(),
+    "d": the_binds.move_win_next,
+    "f": the_binds.move_win_prev,
 
-    "y": the_binds.select_nth_stack(0),
-    "u": the_binds.select_nth_stack(1),
-    "i": the_binds.select_nth_stack(2),
-    "o": the_binds.select_nth_stack(3),
+    "y": the_binds.select_stack_next,
+    "u": the_binds.select_stack_prev,
 
-    "z": the_binds.move_win_nth_stack(0),
-    "x": the_binds.move_win_nth_stack(1),
-    "c": the_binds.move_win_nth_stack(2),
-    "v": the_binds.move_win_nth_stack(3),
+    "z": the_binds.move_win_stack_next,
+    "x": the_binds.move_win_stack_prev,
 
-    "h": the_binds.select_nth_col(0),
-    "j": the_binds.select_nth_col(1),
-    "k": the_binds.select_nth_col(2),
-    "l": the_binds.select_nth_col(3),
+    "h": the_binds.select_col_next,
+    "j": the_binds.select_col_prev,
 
-    "b": the_binds.move_win_nth_col(0),
-    "n": the_binds.move_win_nth_col(1),
-    "m": the_binds.move_win_nth_col(2),
-    ",": the_binds.move_win_nth_col(3),
+    "b": the_binds.move_win_col_next,
+    "n": the_binds.move_win_col_next,
 
-    "1": the_binds.select_nth_tag(0),
-    "2": the_binds.select_nth_tag(1),
-    "3": the_binds.select_nth_tag(2),
-    "4": the_binds.select_nth_tag(3),
+    "1": the_binds.select_tag_1,
+    "2": the_binds.select_tag_2,
+    "3": the_binds.select_tag_3,
+    "4": the_binds.select_tag_4,
+    # "5": the_binds.select_tag_5,
+    # "6": the_binds.select_tag_6,
+    # "7": the_binds.select_tag_7,
+    # "8": the_binds.select_tag_8,
+    # "9": the_binds.select_tag_9,
 
-    "5": the_binds.mod_tag_ratio(-0.05),
-    "6": the_binds.mod_tag_ratio(+0.05),
-    "7": the_binds.set_tag_ratio_complement(),
+    "5": the_binds.inc_tag_ratio,
+    "6": the_binds.dec_tag_ratio,
+    "7": the_binds.set_tag_ratio_complement,
 
-    "8": the_binds.mod_col_ratio(-0.05),
-    "9": the_binds.mod_col_ratio(+0.05),
-    "0": the_binds.set_col_ratio_complement(),
+    "8": the_binds.inc_col_ratio,
+    "9": the_binds.dec_col_ratio,
+    "0": the_binds.set_col_ratio_complement,
 
-    "q": the_binds.move_win_nth_tag(0),
-    "w": the_binds.move_win_nth_tag(1),
-    "e": the_binds.move_win_nth_tag(2),
-    "r": the_binds.move_win_nth_tag(3),
+    "q": the_binds.move_win_tag_1,
+    "w": the_binds.move_win_tag_2,
+    "e": the_binds.move_win_tag_3,
+    "r": the_binds.move_win_tag_4,
+    # ???: the_binds.move_win_tag_5,
+    # ???: the_binds.move_win_tag_6,
+    # ???: the_binds.move_win_tag_7,
+    # ???: the_binds.move_win_tag_8,
+    # ???: the_binds.move_win_tag_9,
 
-    "[" : the_binds.select_nth_screen(0),
-    "]" : the_binds.select_nth_screen(1),
+    "[" : the_binds.select_screen_next,
+    "]" : the_binds.select_screen_next,
 
-    "-": the_binds.win_to_nth_screen(0),
-    "=": the_binds.win_to_nth_screen(1),
+    "-": the_binds.win_to_screen_next,
+    "=": the_binds.win_to_screen_next,
 
-    ".": the_binds.swap_tag_nth_screen(0),
-    "/": the_binds.swap_tag_nth_screen(1),
+    ".": the_binds.swap_tag_screen_next,
+    "/": the_binds.swap_tag_screen_prev,
 
-    ";": the_binds.toggle_fullscreen(),
+    ";": the_binds.toggle_fullscreen,
 
-    "'" : the_binds.stack_magic(),
-    "\\": the_binds.column_magic(),
+    "'" : the_binds.stack_magic,
+    "\\": the_binds.column_magic,
 }
 
 for key, func in keybinds.iteritems():
