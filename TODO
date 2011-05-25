@@ -1,0 +1,9 @@
+Don't use a hash of returned functions in keybinds-- name them first
+
+"k": the_binds.blah_blah(4),
+
+VS
+
+blah_blah_4 = the_binds.blah_blah(4)
+
+"k": blah_blah_4
