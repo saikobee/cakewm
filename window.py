@@ -6,9 +6,10 @@ from floatingrect   import FloatingRect
 class Window(FloatingRect, Focusable):
     FOCUS_COLOR = pypixel.WHITE
     NUMBER = 0
+    NAME = "Win"
 
     def __str__(self):
-        return "#W:%i" % self.number
+        return "%s:%i" % (type(self).NAME, self.number)
 
     def __init__(self, **kwargs):
         super(Window, self).__init__(**kwargs)

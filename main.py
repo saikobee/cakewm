@@ -86,7 +86,7 @@ for key, func in keybinds.iteritems():
     # Debug bind
     def debug_func(key=key, func=func):
         func()
-        # util.debug(key + ": " + str(display))
+        # util.debug("%s: %s" % (key, str(display)))
         util.debug(key)
     pypixel.bind(key, debug_func)
 

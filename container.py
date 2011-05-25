@@ -5,10 +5,18 @@ class Container(object):
     '''This is the base class for the various containers
     (Display, Screen, Tag, Column, Stack)'''
 
+    NAME = "Cntr"
+
     def __init__(self, **kwargs):
         super(Container, self).__init__()
         self.cur    = kwargs.get("cur",     0)
         self.items  = kwargs.get("items",   [])
+
+    def fix_cur(self):
+        if self.n_items() == 0:
+            self.cur = None
+        else:
+            self.cur = util.clamp2(self.cur, self.n_items())
 
     def move_win_num(self, number):
         "Moves the current window to nth screen"
@@ -48,8 +56,9 @@ class Container(object):
         item = self.item()
         return item.add_win(win)
 
-    def __repr__(self):
-        return "C:%s:[%s]" % (
+    def __str__(self):
+        return "%s:%s:[%s]" % (
+            type(self).NAME,
             self.cur,
             ", ".join(map(str, self.items))
         )

@@ -5,6 +5,8 @@ from container import Container
 class Screen(Container):
     "A screen manages tags"
 
+    NAME = "Scr"
+
     @property
     def tags(self):
         return self.items

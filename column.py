@@ -7,7 +7,8 @@ from magic     import Magic
 class Column(Container, Ratio, Magic):
     "A column manages stacks"
 
-    MAX = 3
+    MAX  = 3
+    NAME = "Col"
 
     def default_item(self):
         return Stack(cur=0, items=[])
@@ -20,7 +21,7 @@ class Column(Container, Ratio, Magic):
     def item_magic(self):
         super(Column, self).item_magic()
         if self.stacks == []:
-            self.stacks.append(Stack(cur=0, items=[]))
+            self.stacks.append(Stack(cur=None, items=[]))
 
     @property
     def stacks(self):

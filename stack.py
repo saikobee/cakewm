@@ -12,6 +12,8 @@ import const
 class Stack(Container, Focusable, FloatingRect):
     "A stack manages windows"
 
+    NAME = "Stk"
+
     def __init__(self, **kwargs):
         super(Stack, self).__init__(**kwargs)
         FloatingRect.__init__(self)

@@ -5,6 +5,8 @@ from container import Container
 class Display(Container):
     "A display manages screens"
 
+    NAME = "Dpy"
+
     @property
     def screens(self):
         return self.items

@@ -8,7 +8,8 @@ from stack      import Stack
 class Tag(Container, Ratio, Magic):
     "A tag manages columns"
 
-    MAX = 3
+    MAX  = 3
+    NAME = "Tag"
 
     def default_item(self):
         return Column(cur=0, items=[Stack(cur=0, items=[])])
@@ -20,6 +21,12 @@ class Tag(Container, Ratio, Magic):
 
     def toggle_fullscreen(self):
         self.fullscreen = not self.fullscreen
+
+    def item_magic(self):
+        super(Tag, self).item_magic()
+        if self.cols == []:
+            util.debug("HELP!")
+            self.cols.append(Column(cur=0, items=[Stack(cur=None, items=[])]))
 
     @property
     def cols(self):
