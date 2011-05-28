@@ -1,3 +1,5 @@
+import util
+
 class Ratio(object):
     "Ratio merely has one member: `ratio', with a default value: 0.50"
     DEFAULT = 0.50
