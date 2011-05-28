@@ -7,7 +7,6 @@ class Binds(object):
     "A binds object is used for making keybinds"
 
     def __init__(self, **kwargs):
-        util.debug(kwargs)
         self.display = kwargs["display"]
         self.conf    = kwargs["conf"]
 
