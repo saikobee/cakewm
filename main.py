@@ -26,17 +26,17 @@ keybinds = {
     "d": the_binds.move_win_next,
     "f": the_binds.move_win_prev,
 
-    "y": the_binds.select_stack_next,
-    "u": the_binds.select_stack_prev,
+    "j": the_binds.select_stack_next,
+    "k": the_binds.select_stack_prev,
 
-    "z": the_binds.move_win_stack_next,
-    "x": the_binds.move_win_stack_prev,
+    "n": the_binds.move_win_stack_next,
+    "m": the_binds.move_win_stack_prev,
 
-    "h": the_binds.select_col_next,
-    "j": the_binds.select_col_prev,
+    "l": the_binds.select_col_next,
+    "h": the_binds.select_col_prev,
 
-    "b": the_binds.move_win_col_next,
-    "n": the_binds.move_win_col_prev,
+    ",": the_binds.move_win_col_next,
+    "b": the_binds.move_win_col_prev,
 
     "1": the_binds.select_tag_1,
     "2": the_binds.select_tag_2,
