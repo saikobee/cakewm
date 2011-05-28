@@ -20,11 +20,11 @@ keybinds = {
     "p": the_binds.add_win,
     "`": the_binds.close_win,
 
-    "a": the_binds.select_win_next,
-    "s": the_binds.select_win_prev,
+    "u": the_binds.select_win_next,
+    "i": the_binds.select_win_prev,
 
-    "d": the_binds.move_win_next,
-    "f": the_binds.move_win_prev,
+    "o": the_binds.move_win_next,
+    "y": the_binds.move_win_prev,
 
     "j": the_binds.select_stack_next,
     "k": the_binds.select_stack_prev,
