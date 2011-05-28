@@ -25,16 +25,13 @@ class Container(object):
         "Moves the current window to nth screen"
 
         if self.cur is not None:
-            try:
-                # Guard against IndexError
-                self.items[number]
-
+            if util.between2(number, self.n_items()):
                 win = self.take_cur_win()
                 if win is not None:
                     self.items[number].add_win(win)
                     self.select_num(number)
-            except IndexError:
-                util.debug("Attempted to move window to non-existent container")
+            else:
+                util.debug("Out of range")
 
     def item(self):
         try:
