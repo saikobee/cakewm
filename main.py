@@ -48,13 +48,13 @@ keybinds = {
     # "8": the_binds.select_tag_8,
     # "9": the_binds.select_tag_9,
 
-    "5": the_binds.inc_tag_ratio,
-    "6": the_binds.dec_tag_ratio,
-    "7": the_binds.complement_tag_ratio,
+    "f": the_binds.inc_tag_ratio,
+    "a": the_binds.dec_tag_ratio,
+    "z": the_binds.complement_tag_ratio,
 
-    "8": the_binds.inc_col_ratio,
-    "9": the_binds.dec_col_ratio,
-    "0": the_binds.complement_col_ratio,
+    "s": the_binds.inc_col_ratio,
+    "d": the_binds.dec_col_ratio,
+    "x": the_binds.complement_col_ratio,
 
     "q": the_binds.move_win_tag_1,
     "w": the_binds.move_win_tag_2,
@@ -72,13 +72,13 @@ keybinds = {
     "-": the_binds.move_win_screen_next,
     "=": the_binds.move_win_screen_prev,
 
-    ".": the_binds.swap_tags_next,
-    "/": the_binds.swap_tags_prev,
+    "/": the_binds.swap_tags_next,
+    ".": the_binds.swap_tags_prev,
 
-    ";": the_binds.toggle_fullscreen,
+    "\\": the_binds.toggle_fullscreen,
 
     "'" : the_binds.stack_magic,
-    "\\": the_binds.column_magic,
+    ";": the_binds.column_magic,
 }
 
 for key, func in keybinds.iteritems():
