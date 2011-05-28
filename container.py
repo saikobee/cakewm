@@ -18,6 +18,9 @@ class Container(object):
         else:
             self.cur = util.clamp2(self.cur, self.n_items())
 
+    def move_win_next(self): self.move_win_num((self.cur or 0) + 1)
+    def move_win_prev(self): self.move_win_num((self.cur or 0) - 1)
+
     def move_win_num(self, number):
         "Moves the current window to nth screen"
 
@@ -41,6 +44,9 @@ class Container(object):
 
     def n_items(self):
         return len(self.items)
+
+    def select_next(self): self.select_num((self.cur or 0) + 1)
+    def select_prev(self): self.select_num((self.cur or 0) - 1)
 
     def select_num(self, number):
         if util.between2(number, self.n_items()):

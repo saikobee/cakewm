@@ -14,6 +14,15 @@ class Display(Container):
     move_win_screen_num = Container.move_win_num
     select_screen_num   = Container.select_num
 
+    select_screen_next = Container.select_next
+    select_screen_prev = Container.select_prev
+
+    move_win_screen_next = Container.move_win_next
+    move_win_screen_prev = Container.move_win_prev
+
+    swap_tags_next = lambda self: self.swap_tags_num((self.cur or 0) + 1)
+    swap_tags_prev = lambda self: self.swap_tags_num((self.cur or 0) - 1)
+
     def swap_tags_num(self, number):
         "Swap the current tags on the current and nth screen"
 

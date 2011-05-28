@@ -1,6 +1,6 @@
 class WM(object):
-    def __init__(self, display):
-        self.display = display
+    def __init__(self, **kwargs):
+        self.display = kwargs["display"]
 
     def set_focii(self):
         for i_screen, screen in enumerate(self.display.screens):

@@ -12,16 +12,16 @@ from junk       import display
 pypixel.title("cakewm test program")
 pypixel.show()
 
-the_wm      = WM(display)
-the_binds   = Binds(display)
+the_wm      = WM(display=display)
+the_binds   = Binds(display=display, conf={})
 
 
 keybinds = {
     "p": the_binds.add_win,
     "`": the_binds.close_win,
 
-    "a": the_binds.select_next_win,
-    "s": the_binds.select_prev_win,
+    "a": the_binds.select_win_next,
+    "s": the_binds.select_win_prev,
 
     "d": the_binds.move_win_next,
     "f": the_binds.move_win_prev,
@@ -36,7 +36,7 @@ keybinds = {
     "j": the_binds.select_col_prev,
 
     "b": the_binds.move_win_col_next,
-    "n": the_binds.move_win_col_next,
+    "n": the_binds.move_win_col_prev,
 
     "1": the_binds.select_tag_1,
     "2": the_binds.select_tag_2,
@@ -50,11 +50,11 @@ keybinds = {
 
     "5": the_binds.inc_tag_ratio,
     "6": the_binds.dec_tag_ratio,
-    "7": the_binds.set_tag_ratio_complement,
+    "7": the_binds.complement_tag_ratio,
 
     "8": the_binds.inc_col_ratio,
     "9": the_binds.dec_col_ratio,
-    "0": the_binds.set_col_ratio_complement,
+    "0": the_binds.complement_col_ratio,
 
     "q": the_binds.move_win_tag_1,
     "w": the_binds.move_win_tag_2,
@@ -67,13 +67,13 @@ keybinds = {
     # ???: the_binds.move_win_tag_9,
 
     "[" : the_binds.select_screen_next,
-    "]" : the_binds.select_screen_next,
+    "]" : the_binds.select_screen_prev,
 
-    "-": the_binds.win_to_screen_next,
-    "=": the_binds.win_to_screen_next,
+    "-": the_binds.move_win_screen_next,
+    "=": the_binds.move_win_screen_prev,
 
-    ".": the_binds.swap_tag_screen_next,
-    "/": the_binds.swap_tag_screen_prev,
+    ".": the_binds.swap_tags_next,
+    "/": the_binds.swap_tags_prev,
 
     ";": the_binds.toggle_fullscreen,
 

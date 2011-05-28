@@ -19,3 +19,9 @@ class Screen(Container):
 
     move_win_tag_num = Container.move_win_num
     select_tag_num   = Container.select_num
+
+    select_tag_next = Container.select_next
+    select_tag_prev = Container.select_prev
+
+    move_win_tag_next = Container.move_win_next
+    move_win_tag_prev = Container.move_win_prev

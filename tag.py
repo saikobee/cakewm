@@ -28,12 +28,22 @@ class Tag(Container, Ratio, Magic):
             util.debug("HELP!")
             self.cols.append(Column(cur=0, items=[Stack(cur=None, items=[])]))
 
+    complement_tag_ratio = Ratio.complement_ratio
+    inc_tag_ratio = Ratio.inc_ratio
+    dec_tag_ratio = Ratio.dec_ratio
+
     @property
     def cols(self):
         return self.items
 
     move_win_col_num = Container.move_win_num
     select_col_num   = Container.select_num
+
+    select_col_next = Container.select_next
+    select_col_prev = Container.select_prev
+
+    move_win_col_next = Container.move_win_next
+    move_win_col_prev = Container.move_win_prev
 
     def draw_fullscreen(self, screen):
         col = self.item()
@@ -64,3 +74,5 @@ class Tag(Container, Ratio, Magic):
 
         for col in self.cols:
             col.organize(screen)
+
+Tag.column_magic = Tag.item_magic

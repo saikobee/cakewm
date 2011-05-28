@@ -62,3 +62,15 @@ class Column(Container, Ratio, Magic):
 
     move_win_stack_num = Container.move_win_num
     select_stack_num   = Container.select_num
+
+    select_stack_next = Container.select_next
+    select_stack_prev = Container.select_prev
+
+    move_win_stack_next = Container.move_win_next
+    move_win_stack_prev = Container.move_win_prev
+
+    complement_col_ratio = Ratio.complement_ratio
+    inc_col_ratio = Ratio.inc_ratio
+    dec_col_ratio = Ratio.dec_ratio
+
+Column.stack_magic = Column.item_magic
