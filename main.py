@@ -87,7 +87,7 @@ for key, func in keybinds.iteritems():
         # func()
         # util.debug("%s: %s" % (key, str(display)))
         # util.debug(key)
-    pypixel.bind(key, debug_func)
+    # pypixel.bind(key, debug_func)
 
 while True:
     the_wm.organize()
