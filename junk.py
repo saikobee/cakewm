@@ -1,11 +1,12 @@
 import util
 
-from display    import Display
-from screen     import Screen
-from tag        import Tag
-from column     import Column
-from stack      import Stack
-from window     import Window
+from containers.display    import Display
+from containers.screen     import Screen
+from containers.tag        import Tag
+from containers.column     import Column
+from containers.stack      import Stack
+
+from window import Window
 
 @util.lazy
 def mk(klass, func, num):

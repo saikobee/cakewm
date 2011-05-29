@@ -10,6 +10,10 @@ class Binds(object):
         self.display = kwargs["display"]
         self.conf    = kwargs["conf"]
 
+    def has_fullscreen(self):
+        tag = self.tag()
+        return tag.fullscreen
+
     def screen(self):
         screen = self.display.item()
         return screen
@@ -31,22 +35,28 @@ class Binds(object):
 
     def display_do(func):
         def inner(self, func=func):
+            if self.has_fullscreen():
+                return
             display = self.display
             if display is not None:
                 func(display)
 
         return inner
 
-    def screen_do(func):
-        def inner(self, func=func):
+    def screen_do(func, guard=True):
+        def inner(self, guard=guard, func=func):
+            if guard and self.has_fullscreen():
+                return
             screen = self.screen()
             if screen is not None:
                 func(screen)
 
         return inner
 
-    def tag_do(func):
-        def inner(self, func=func):
+    def tag_do(func, guard=True):
+        def inner(self, guard=guard, func=func):
+            if guard and self.has_fullscreen():
+                return
             tag = self.tag()
             if tag is not None:
                 func(tag)
@@ -55,14 +65,18 @@ class Binds(object):
 
     def col_do(func):
         def inner(self, func=func):
+            if self.has_fullscreen():
+                return
             col = self.col()
             if col is not None:
                 func(col)
 
         return inner
 
-    def stack_do(func):
-        def inner(self, func=func):
+    def stack_do(func, guard=True):
+        def inner(self, guard=guard, func=func):
+            if guard and self.has_fullscreen():
+                return
             stack = self.stack()
             if stack is not None:
                 func(stack)
@@ -89,21 +103,21 @@ class Binds(object):
     move_win_tag_7    = screen_do(lambda x: x.move_win_tag_num(6))
     move_win_tag_8    = screen_do(lambda x: x.move_win_tag_num(7))
     move_win_tag_9    = screen_do(lambda x: x.move_win_tag_num(8))
-    select_tag_next   = screen_do(lambda x: x.select_tag_next())
-    select_tag_prev   = screen_do(lambda x: x.select_tag_prev())
-    select_tag_1      = screen_do(lambda x: x.select_tag_num(0))
-    select_tag_2      = screen_do(lambda x: x.select_tag_num(1))
-    select_tag_3      = screen_do(lambda x: x.select_tag_num(2))
-    select_tag_4      = screen_do(lambda x: x.select_tag_num(3))
-    select_tag_5      = screen_do(lambda x: x.select_tag_num(4))
-    select_tag_6      = screen_do(lambda x: x.select_tag_num(5))
-    select_tag_7      = screen_do(lambda x: x.select_tag_num(6))
-    select_tag_8      = screen_do(lambda x: x.select_tag_num(7))
-    select_tag_9      = screen_do(lambda x: x.select_tag_num(8))
+    select_tag_next   = screen_do(lambda x: x.select_tag_next(), False)
+    select_tag_prev   = screen_do(lambda x: x.select_tag_prev(), False)
+    select_tag_1      = screen_do(lambda x: x.select_tag_num(0), False)
+    select_tag_2      = screen_do(lambda x: x.select_tag_num(1), False)
+    select_tag_3      = screen_do(lambda x: x.select_tag_num(2), False)
+    select_tag_4      = screen_do(lambda x: x.select_tag_num(3), False)
+    select_tag_5      = screen_do(lambda x: x.select_tag_num(4), False)
+    select_tag_6      = screen_do(lambda x: x.select_tag_num(5), False)
+    select_tag_7      = screen_do(lambda x: x.select_tag_num(6), False)
+    select_tag_8      = screen_do(lambda x: x.select_tag_num(7), False)
+    select_tag_9      = screen_do(lambda x: x.select_tag_num(8), False)
 
     # Tag binds
     column_magic         = tag_do(lambda x: x.column_magic())
-    toggle_fullscreen    = tag_do(lambda x: x.toggle_fullscreen())
+    toggle_fullscreen    = tag_do(lambda x: x.toggle_fullscreen(), False)
     move_win_col_next    = tag_do(lambda x: x.move_win_col_next())
     move_win_col_prev    = tag_do(lambda x: x.move_win_col_prev())
     select_col_next      = tag_do(lambda x: x.select_col_next())
@@ -128,4 +142,4 @@ class Binds(object):
     move_win_next   = stack_do(lambda x: x.move_win_next())
     move_win_prev   = stack_do(lambda x: x.move_win_prev())
     add_win         = stack_do(lambda x: x.add_win(Window()))
-    close_win       = stack_do(lambda x: x.close_win())
+    close_win       = stack_do(lambda x: x.close_win(), False)
