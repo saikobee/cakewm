@@ -20,23 +20,20 @@ keybinds = {
     "p": the_binds.add_win,
     "`": the_binds.close_win,
 
+    "y": the_binds.move_win_prev,
     "u": the_binds.select_win_next,
     "i": the_binds.select_win_prev,
-
     "o": the_binds.move_win_next,
-    "y": the_binds.move_win_prev,
 
+    "h": the_binds.select_col_prev,
     "j": the_binds.select_stack_next,
     "k": the_binds.select_stack_prev,
+    "l": the_binds.select_col_next,
 
+    "b": the_binds.move_win_col_prev,
     "n": the_binds.move_win_stack_next,
     "m": the_binds.move_win_stack_prev,
-
-    "l": the_binds.select_col_next,
-    "h": the_binds.select_col_prev,
-
     ",": the_binds.move_win_col_next,
-    "b": the_binds.move_win_col_prev,
 
     "1": the_binds.select_tag_1,
     "2": the_binds.select_tag_2,
@@ -48,12 +45,12 @@ keybinds = {
     # "8": the_binds.select_tag_8,
     # "9": the_binds.select_tag_9,
 
-    "f": the_binds.inc_tag_ratio,
     "a": the_binds.dec_tag_ratio,
-    "z": the_binds.complement_tag_ratio,
-
     "s": the_binds.inc_col_ratio,
     "d": the_binds.dec_col_ratio,
+    "f": the_binds.inc_tag_ratio,
+
+    "z": the_binds.complement_tag_ratio,
     "x": the_binds.complement_col_ratio,
 
     "q": the_binds.move_win_tag_1,
@@ -77,8 +74,8 @@ keybinds = {
 
     "\\": the_binds.toggle_fullscreen,
 
-    "'" : the_binds.stack_magic,
     ";": the_binds.column_magic,
+    "'" : the_binds.stack_magic,
 }
 
 for key, func in keybinds.iteritems():
