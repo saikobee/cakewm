@@ -63,8 +63,8 @@ keybinds = {
     # ???: the_binds.move_win_tag_8,
     # ???: the_binds.move_win_tag_9,
 
-    "[" : the_binds.select_screen_next,
-    "]" : the_binds.select_screen_prev,
+    "]" : the_binds.select_screen_next,
+    "[" : the_binds.select_screen_prev,
 
     "-": the_binds.move_win_screen_next,
     "=": the_binds.move_win_screen_prev,
