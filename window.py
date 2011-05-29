@@ -29,12 +29,12 @@ class Window(FloatingRect, Focusable):
        pypixel.rectangle(self.color, ((x, y), (w, h)))
 
     def draw(self):
-        colr3 = pypixel.BLACK
-        colr2 = pypixel.GREY
+        colr3 = pypixel.hex2rgb("000000")
+        colr2 = pypixel.hex2rgb("888888")
         colr1 = self.color
 
         if self.focused:
-            colr2 = pypixel.WHITE
+            colr2 = pypixel.hex2rgb("aaaaaa")
 
         x = self.x
         y = self.y

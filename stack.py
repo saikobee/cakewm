@@ -65,12 +65,13 @@ class Stack(Container, Focusable, FloatingRect):
         return win
 
     def draw(self):
-        color = pypixel.BLACK
+        color = pypixel.hex2rgb("222222")
+        light = pypixel.hex2rgb("444444")
+        dark  = pypixel.hex2rgb("000000")
         if self.focused:
-            color = pypixel.YELLOW
-
-        light = pypixel.GREEN
-        dark  = pypixel.RED
+            color = pypixel.hex2rgb("666666")
+            light = pypixel.hex2rgb("888888")
+            dark  = pypixel.hex2rgb("000000")
 
         x = self.x
         y = self.y

@@ -64,7 +64,7 @@ def debug(*args):
 
 INFINITE_RAINBOW = itertools.cycle(
     map(
-        lambda hue: pypixel.hsl2rgb((hue, 100, 50)),
+        lambda hue: pypixel.hsl2rgb((hue, 50, 40)),
         xrange(0, 360, 20)
     )
 )
