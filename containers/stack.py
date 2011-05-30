@@ -34,7 +34,7 @@ class Stack(Container, Focusable, FloatingRect):
     def _move_win(self, direction):
         if self.cur is not None:
             index = util.clamp2(self.cur + direction.num, self.n_items())
-            swap(self.windows, self.cur, index)
+            util.swap(self.windows, self.cur, index)
             self.cur = index
 
     def move_win_next(self): self._move_win(const.NEXT)
@@ -65,13 +65,13 @@ class Stack(Container, Focusable, FloatingRect):
         return win
 
     def draw(self):
-        color = pypixel.hex2rgb("222222")
-        light = pypixel.hex2rgb("444444")
-        dark  = pypixel.hex2rgb("000000")
+        color = pypixel.grey(20)
+        light = pypixel.grey(30)
+        dark  = pypixel.grey(10)
         if self.focused:
-            color = pypixel.hex2rgb("666666")
-            light = pypixel.hex2rgb("888888")
-            dark  = pypixel.hex2rgb("000000")
+            color = pypixel.grey(50)
+            light = pypixel.grey(60)
+            dark  = pypixel.grey(10)
 
         x = self.x
         y = self.y

@@ -282,14 +282,14 @@ def hsv2rgb(hsv):
     '''Create a new color from an HSV triplet. Hues range from 0 to 359,
     saturation ranges from 0 to 100, and value ranges from 0 to 100.'''
     c = pygame.Color(0)
-    c.hsva = hsv + (1,) 
+    c.hsva = hsv + (1,)
     return c[0:-1]
 
 def hsl2rgb(hsl):
     '''Create a new color from an HSL triplet. Hues range from 0 to 359,
     saturation ranges from 0 to 100, and lightness ranges from 0 to 100.'''
     c = pygame.Color(0)
-    c.hsla = hsl + (1,) 
+    c.hsla = hsl + (1,)
     return c[0:-1]
 
 def hex2rgb(hexcode):
@@ -304,6 +304,12 @@ def hex2rgb(hexcode):
     b = int(hexcode[4:6], 16)
     c = pygame.Color(r, g, b)
     return c[0:-1]
+
+def grey(lightness):
+    '''Makes a shade of grey based on the lightness value'''
+    return hsl2rgb((0, 0, lightness))
+
+gray = grey
 
 # {{{ Basic color palette for simple drawing
 RED     = hex2rgb("FF0000")
