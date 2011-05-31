@@ -71,7 +71,7 @@ class Stack(Container, Focusable, FloatingRect):
         if self.focused:
             color = pypixel.grey(50)
             light = pypixel.grey(60)
-            dark  = pypixel.grey(10)
+            dark  = pypixel.grey(20)
 
         x = self.x
         y = self.y
