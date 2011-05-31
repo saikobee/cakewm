@@ -4,7 +4,6 @@ from focusable      import Focusable
 from floatingrect   import FloatingRect
 
 class Window(FloatingRect, Focusable):
-    FOCUS_COLOR = pypixel.WHITE
     NUMBER = 0
     NAME = "Win"
 
