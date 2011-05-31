@@ -29,10 +29,11 @@ class Window(FloatingRect, Focusable):
 
     def draw(self):
         colr3 = pypixel.grey(20)
-        colr2 = pypixel.grey(50)
+        colr2 = pypixel.grey(70)
         colr1 = self.color
 
         if self.focused:
+            colr3 = pypixel.grey(20)
             colr2 = pypixel.grey(70)
 
         x = self.x
