@@ -50,7 +50,8 @@ class Tag(Container, Ratio, Magic):
         stk = col .item()
         win = stk .item()
 
-        win.draw_fullscreen(screen)
+        if win is not None:
+            win.draw_fullscreen(screen)
 
     def organize(self, screen):
         if self.n_items() == 1:
