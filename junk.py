@@ -16,6 +16,6 @@ mk_stack    = mk(Stack,     Window,     0)
 mk_col      = mk(Column,    mk_stack,   1)
 mk_tag      = mk(Tag,       mk_col,     1)
 mk_screen   = mk(Screen,    mk_tag,     9)
-mk_display  = mk(Display,   mk_screen,  1)
+mk_display  = mk(Display,   mk_screen,  2)
 
 display = mk_display()
