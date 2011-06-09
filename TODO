@@ -2,4 +2,3 @@
     - Output text to STDERR or STDOUT
 - Implement config file
     - Prototype config file before writing parser...
-- Fix toggle_fullscreen when there are no windows selected
