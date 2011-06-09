@@ -118,6 +118,7 @@ class Binds(object):
     # Tag binds
     column_magic         = tag_do(lambda x: x.column_magic())
     toggle_fullscreen    = tag_do(lambda x: x.toggle_fullscreen(), False)
+    close_win            = tag_do(lambda x: x.close_win(), False)
     move_win_col_next    = tag_do(lambda x: x.move_win_col_next())
     move_win_col_prev    = tag_do(lambda x: x.move_win_col_prev())
     select_col_next      = tag_do(lambda x: x.select_col_next())
@@ -142,4 +143,4 @@ class Binds(object):
     move_win_next   = stack_do(lambda x: x.move_win_next())
     move_win_prev   = stack_do(lambda x: x.move_win_prev())
     add_win         = stack_do(lambda x: x.add_win(Window()))
-    close_win       = stack_do(lambda x: x.close_win(), False)
+    # close_win       = stack_do(lambda x: x.close_win(), False)

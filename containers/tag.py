@@ -20,13 +20,25 @@ class Tag(Container, Ratio, Magic):
         self.fullscreen = False
 
     def toggle_fullscreen(self):
-        self.fullscreen = not self.fullscreen
+        col = self.item()
+        stk = col .item()
+        win = stk .item()
+
+        if win is not None:
+            self.fullscreen = not self.fullscreen
 
     def item_magic(self):
         super(Tag, self).item_magic()
         if self.cols == []:
             util.debug("HELP!")
             self.cols.append(Column(cur=0, items=[Stack(cur=None, items=[])]))
+
+    def close_win(self):
+        self.fullscreen = False
+        col = self.item()
+        stk = col .item()
+        if stk is not None:
+            stk.close_win()
 
     complement_tag_ratio = Ratio.complement_ratio
     inc_tag_ratio = Ratio.inc_ratio
