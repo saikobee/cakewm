@@ -7,7 +7,7 @@ from magic     import Magic
 class Column(Container, Ratio, Magic):
     "A column manages stacks"
 
-    MAX  = 9
+    max  = the_conf.max_stacks
     NAME = "Col"
 
     def default_item(self):

@@ -3,6 +3,10 @@ import itertools
 
 import pypixel
 
+def identity(x):
+    "The identity function: f(x) = x"
+    return x
+
 def clamp(x, a, b):
     '''Clamp x between a and b'''
 

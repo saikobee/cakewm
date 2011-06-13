@@ -18,5 +18,5 @@ class Magic(object):
             self.fix_cur()
         else:
             # Add another item only if we don't end up with too many
-            if self.n_items() + 1 <= type(self).MAX:
+            if self.n_items() + 1 <= type(self).max:
                 self.items.append(self.default_item())

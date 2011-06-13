@@ -8,7 +8,7 @@ from stack      import Stack
 class Tag(Container, Ratio, Magic):
     "A tag manages columns"
 
-    MAX  = 9
+    max  = 9
     NAME = "Tag"
 
     def default_item(self):
