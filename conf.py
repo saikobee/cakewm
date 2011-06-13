@@ -56,8 +56,8 @@ class Conf(object):
     @staticmethod
     def parse_str(str):
         # Remove quotes
-        del str[ 0]
-        del str[-1]
+        str = str[1:-1]
+        # Replace escaped quotes with real ones
         str = str.replace(r'\"', r'"')
         return str
 
