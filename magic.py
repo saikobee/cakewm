@@ -2,7 +2,7 @@ import util
 from   conf import conf
 
 class Magic(object):
-    '''The subclass must define MAX as a class variable and
+    '''The subclass must define get_max() as a static method and
     default_item() as an instance method'''
 
     def item_magic(self):
