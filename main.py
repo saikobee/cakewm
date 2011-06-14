@@ -3,79 +3,80 @@
 import pypixel
 
 import util
+from   util import conf
 
 from binds      import Binds
 from cake.wm    import WM
 
 from junk       import display
+from util       import conf
 
 pypixel.title("cakewm test program")
 pypixel.show()
 
-the_wm      = WM(display=display)
-the_binds   = Binds(display=display, conf={})
-
+wm      = WM(display=display)
+binds   = Binds(display=display, conf={})
 
 keybinds = {
-    "p": the_binds.add_win,
-    "`": the_binds.close_win,
+    "p": binds.add_win,
+    "`": binds.close_win,
 
-    "y": the_binds.move_win_prev,
-    "u": the_binds.select_win_next,
-    "i": the_binds.select_win_prev,
-    "o": the_binds.move_win_next,
+    "y": binds.move_win_prev,
+    "u": binds.select_win_next,
+    "i": binds.select_win_prev,
+    "o": binds.move_win_next,
 
-    "h": the_binds.select_col_prev,
-    "j": the_binds.select_stack_next,
-    "k": the_binds.select_stack_prev,
-    "l": the_binds.select_col_next,
+    "h": binds.select_col_prev,
+    "j": binds.select_stack_next,
+    "k": binds.select_stack_prev,
+    "l": binds.select_col_next,
 
-    "b": the_binds.move_win_col_prev,
-    "n": the_binds.move_win_stack_next,
-    "m": the_binds.move_win_stack_prev,
-    ",": the_binds.move_win_col_next,
+    "b": binds.move_win_col_prev,
+    "n": binds.move_win_stack_next,
+    "m": binds.move_win_stack_prev,
+    ",": binds.move_win_col_next,
 
-    "1": the_binds.select_tag_1,
-    "2": the_binds.select_tag_2,
-    "3": the_binds.select_tag_3,
-    "4": the_binds.select_tag_4,
-    # "5": the_binds.select_tag_5,
-    # "6": the_binds.select_tag_6,
-    # "7": the_binds.select_tag_7,
-    # "8": the_binds.select_tag_8,
-    # "9": the_binds.select_tag_9,
+    "1": binds.select_tag_1,
+    "2": binds.select_tag_2,
+    "3": binds.select_tag_3,
+    "4": binds.select_tag_4,
+    # "5": binds.select_tag_5,
+    # "6": binds.select_tag_6,
+    # "7": binds.select_tag_7,
+    # "8": binds.select_tag_8,
+    # "9": binds.select_tag_9,
 
-    "a": the_binds.dec_tag_ratio,
-    "s": the_binds.inc_col_ratio,
-    "d": the_binds.dec_col_ratio,
-    "f": the_binds.inc_tag_ratio,
+    "a": binds.dec_tag_ratio,
+    "s": binds.inc_col_ratio,
+    "d": binds.dec_col_ratio,
+    "f": binds.inc_tag_ratio,
 
-    "z": the_binds.complement_tag_ratio,
-    "x": the_binds.complement_col_ratio,
+    "z": binds.complement_tag_ratio,
+    "x": binds.complement_col_ratio,
 
-    "q": the_binds.move_win_tag_1,
-    "w": the_binds.move_win_tag_2,
-    "e": the_binds.move_win_tag_3,
-    "r": the_binds.move_win_tag_4,
-    # ???: the_binds.move_win_tag_5,
-    # ???: the_binds.move_win_tag_6,
-    # ???: the_binds.move_win_tag_7,
-    # ???: the_binds.move_win_tag_8,
-    # ???: the_binds.move_win_tag_9,
+    "q": binds.move_win_tag_1,
+    "w": binds.move_win_tag_2,
+    "e": binds.move_win_tag_3,
+    "r": binds.move_win_tag_4,
+    # ???: binds.move_win_tag_5,
+    # ???: binds.move_win_tag_6,
+    # ???: binds.move_win_tag_7,
+    # ???: binds.move_win_tag_8,
+    # ???: binds.move_win_tag_9,
 
-    "]" : the_binds.select_screen_next,
-    "[" : the_binds.select_screen_prev,
+    "]" : binds.select_screen_next,
+    "[" : binds.select_screen_prev,
 
-    "-": the_binds.move_win_screen_next,
-    "=": the_binds.move_win_screen_prev,
+    "-": binds.move_win_screen_next,
+    "=": binds.move_win_screen_prev,
 
-    "/": the_binds.swap_tags_next,
-    ".": the_binds.swap_tags_prev,
+    "/": binds.swap_tags_next,
+    ".": binds.swap_tags_prev,
 
-    "\\": the_binds.toggle_fullscreen,
+    "\\": binds.toggle_fullscreen,
 
-    ";": the_binds.column_magic,
-    "'" : the_binds.stack_magic,
+    ";": binds.column_magic,
+    "'" : binds.stack_magic,
 }
 
 for key, func in keybinds.iteritems():
@@ -89,10 +90,12 @@ for key, func in keybinds.iteritems():
         # util.debug(key)
     # pypixel.bind(key, debug_func)
 
+util.debug(conf)
+
 while True:
-    the_wm.organize()
-    the_wm.set_focii()
-    the_wm.draw()
+    wm.organize()
+    wm.set_focii()
+    wm.draw()
     pypixel.update()
     pypixel.clear()
 

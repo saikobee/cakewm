@@ -4,11 +4,15 @@ from ratio      import Ratio
 from column     import Column
 from magic      import Magic
 from stack      import Stack
+from util       import conf
 
 class Tag(Container, Ratio, Magic):
     "A tag manages columns"
 
-    max  = 9
+    @staticmethod
+    def get_max():
+        return conf.max_columns
+
     NAME = "Tag"
 
     def default_item(self):

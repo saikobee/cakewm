@@ -3,9 +3,8 @@ import itertools
 
 import pypixel
 
-def identity(x):
-    "The identity function: f(x) = x"
-    return x
+from conf import Conf
+conf = Conf()
 
 def clamp(x, a, b):
     '''Clamp x between a and b'''

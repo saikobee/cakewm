@@ -1,4 +1,5 @@
 import util
+from   util import conf
 
 class Magic(object):
     '''The subclass must define MAX as a class variable and
@@ -18,5 +19,5 @@ class Magic(object):
             self.fix_cur()
         else:
             # Add another item only if we don't end up with too many
-            if self.n_items() + 1 <= type(self).max:
+            if self.n_items() + 1 <= type(self).get_max():
                 self.items.append(self.default_item())

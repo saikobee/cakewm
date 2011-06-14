@@ -3,11 +3,15 @@ from container import Container
 from stack     import Stack
 from ratio     import Ratio
 from magic     import Magic
+from util      import conf
 
 class Column(Container, Ratio, Magic):
     "A column manages stacks"
 
-    max  = the_conf.max_stacks
+    @staticmethod
+    def get_max():
+        return conf.max_stacks
+
     NAME = "Col"
 
     def default_item(self):

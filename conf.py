@@ -30,28 +30,28 @@ class Conf(object):
 
     COMMENT   = WS + COMMENT_CHAR + ANYTHING
 
-    DEFN_STR  = re.compile(DEFN_STR)
-    DEFN_WORD = re.compile(DEFN_WORD)
-    DEFN_INT  = re.compile(DEFN_INT)
-    DEFN_BOOL = re.compile(DEFN_BOOL)
-    COMMENT   = re.compile(COMMENT)
+    DEFN_STR    = re.compile(DEFN_STR)
+    DEFN_WORD   = re.compile(DEFN_WORD)
+    DEFN_INT    = re.compile(DEFN_INT)
+    DEFN_BOOL   = re.compile(DEFN_BOOL)
+    COMMENT     = re.compile(COMMENT)
     DEFN_PREFIX = re.compile(DEFN_PREFIX)
 
     def __init__(self):
         "Search for user config files and load them"
-        Conf.set_defaults(self)
-        Conf.load(self, "cakewm.conf")
+        self.set_defaults()
+        self.load("cakewm.conf")
 
-    @staticmethod
     def set_defaults(self):
-        for attr, val in Conf.attr_to_default_val.iteritems():
-            setattr(self, attr, val)
+        self.stuff = Conf.attr_to_default_val.copy()
 
-    @staticmethod
     def load(self, file):
         with open(file) as f:
             for line in f.readlines():
-                Conf.process_line(self, line)
+                self.process_line(line)
+
+    def __getattr__(self, attr):
+        return self.stuff[attr]
 
     @staticmethod
     def parse_str(str):
@@ -74,7 +74,6 @@ class Conf(object):
             ) % bool
             return ParseError(msg)
 
-    @staticmethod
     def process_defn_line(self, line):
         attr  = Conf.DEFN_PREFIX.findall(line)[0]
         type  = Conf.attr_to_type [attr]
@@ -82,22 +81,28 @@ class Conf(object):
         regex = Conf.type_to_regex[type]
         if regex.match(line):
             attr, val = regex.findall(line)[0]
-            setattr(self, attr, func(val))
+            self.stuff[attr] = func(val)
         else:
             raise ParseError("Error parsing line: %s" % line)
 
-    @staticmethod
     def process_line(self, line):
-        if   Conf.DEFN_PREFIX.match(line): Conf.process_defn_line(self, line)
+        if   Conf.DEFN_PREFIX.match(line): self.process_defn_line(line)
         elif Conf.COMMENT    .match(line): pass
         elif Conf.SPACE      .match(line): pass
         else:
             raise ParseError("Bad input line: " + line)
 
+    def __repr__(self):
+        title = "[Conf]"
+        pairs = self.stuff.items()
+        func  = lambda pair: "--- %s = %s" % pair
+        defns = map(func, pairs)
+        return title + "\n" + "\n".join(defns)
+
     type_to_func = {
         "int":  int,
         "str":  parse_str,
-        "word": util.identity,
+        "word": lambda x: x,
         "bool": parse_bool,
     }
 
@@ -109,11 +114,11 @@ class Conf(object):
     }
 
     attr_to_type = {
-        "max_stacks": "int",
+        "max_stacks":   "int",
+        "max_columns":  "int",
     }
 
     attr_to_default_val = {
-        "max_stacks": 9,
+        "max_stacks":   9,
+        "max_columns":  9,
     }
-
-the_conf = Conf()
