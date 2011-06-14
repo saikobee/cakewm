@@ -3,8 +3,7 @@ import itertools
 
 import pypixel
 
-from conf import Conf
-conf = Conf()
+# from conf import Conf
 
 def clamp(x, a, b):
     '''Clamp x between a and b'''
@@ -64,6 +63,10 @@ def debug(*args):
             + " ".join(map(str, args))
             + "\n"
         )
+
+def error(message):
+    sys.stderr.write("cakewm: error: %s\n" % message)
+    sys.exit(1)
 
 INFINITE_RAINBOW = itertools.cycle(
     map(

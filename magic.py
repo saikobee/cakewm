@@ -1,5 +1,5 @@
 import util
-from   util import conf
+from   conf import conf
 
 class Magic(object):
     '''The subclass must define MAX as a class variable and

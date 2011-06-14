@@ -2,8 +2,6 @@ import re
 
 import util
 
-class ParseError(Exception): pass
-
 class Conf(object):
     "Contains all the config entries"
 
@@ -11,7 +9,9 @@ class Conf(object):
     COMMENT_CHAR = r'#'
     WS = r'\s*'
 
-    BOOL  = r'(?:(?i)true|false|on|off|yes|no)'
+    TRUTHY = r'(?:[Tt]rue|TRUE|[Oo]n|ON|[Yy]es|YES)'
+    FALSEY = r'(?:[Ff]alse|FALSE|[Oo]ff|OFF|[Nn]o|NO)'
+    BOOL  = r'(?:' + TRUTHY + r'|' + FALSEY + r')'
     WORD  = r'\w+'
     IDENT = WORD
     QCHAR = r'(?:[^"]|\\")'
@@ -30,6 +30,8 @@ class Conf(object):
 
     COMMENT   = WS + COMMENT_CHAR + ANYTHING
 
+    TRUTHY      = re.compile(TRUTHY)
+    FALSEY      = re.compile(FALSEY)
     DEFN_STR    = re.compile(DEFN_STR)
     DEFN_WORD   = re.compile(DEFN_WORD)
     DEFN_INT    = re.compile(DEFN_INT)
@@ -46,14 +48,14 @@ class Conf(object):
         self.stuff = Conf.attr_to_default_val.copy()
 
     def load(self, file):
+        util.debug("loading config: %s" % file)
         with open(file) as f:
-            for line in f.readlines():
-                self.process_line(line)
+            for lineno, line in enumerate(f.readlines()):
+                self.process_line(lineno + 1, line.rstrip("\n"))
 
     def __getattr__(self, attr):
         return self.stuff[attr]
 
-    @staticmethod
     def parse_str(str):
         # Remove quotes
         str = str[1:-1]
@@ -61,20 +63,17 @@ class Conf(object):
         str = str.replace(r'\"', r'"')
         return str
 
-    @staticmethod
     def parse_bool(bool):
-        if bool.lower() in ("true", "yes", "on"):
-            return True
-        elif bool.ower() in ("false", "no", "off"):
-            return False
+        if   Conf.TRUTHY.match(bool): return True
+        elif Conf.FALSEY.match(bool): return False
         else:
             msg = (
-                "Invalid boolean constant: %s; " +
+                "invalid boolean constant: %s; " +
                 "expecting true/false, yes/no, on/off"
             ) % bool
-            return ParseError(msg)
+            util.error(msg)
 
-    def process_defn_line(self, line):
+    def process_defn_line(self, lineno, line):
         attr  = Conf.DEFN_PREFIX.findall(line)[0]
         type  = Conf.attr_to_type [attr]
         func  = Conf.type_to_func [type]
@@ -83,14 +82,14 @@ class Conf(object):
             attr, val = regex.findall(line)[0]
             self.stuff[attr] = func(val)
         else:
-            raise ParseError("Error parsing line: %s" % line)
+            util.error("could not parse line %i: %s" % (lineno, line))
 
-    def process_line(self, line):
-        if   Conf.DEFN_PREFIX.match(line): self.process_defn_line(line)
+    def process_line(self, lineno, line):
+        if   Conf.DEFN_PREFIX.match(line): self.process_defn_line(lineno, line)
         elif Conf.COMMENT    .match(line): pass
         elif Conf.SPACE      .match(line): pass
         else:
-            raise ParseError("Bad input line: " + line)
+            util.error("could not parse line %i: %s" % (lineno, line))
 
     def __repr__(self):
         title = "[Conf]"
@@ -116,9 +115,18 @@ class Conf(object):
     attr_to_type = {
         "max_stacks":   "int",
         "max_columns":  "int",
+        "exit_message": "bool",
+        "welcome_message": "bool",
     }
 
     attr_to_default_val = {
         "max_stacks":   9,
         "max_columns":  9,
+        "exit_message": False,
+        "welcome_message": False,
     }
+
+    parse_bool = staticmethod(parse_bool)
+    parse_str  = staticmethod(parse_str)
+
+conf = Conf()

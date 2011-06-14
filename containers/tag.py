@@ -4,7 +4,7 @@ from ratio      import Ratio
 from column     import Column
 from magic      import Magic
 from stack      import Stack
-from util       import conf
+from conf       import conf
 
 class Tag(Container, Ratio, Magic):
     "A tag manages columns"

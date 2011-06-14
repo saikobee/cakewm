@@ -1,15 +1,16 @@
 #!/usr/bin/python2
 
+import atexit
+
 import pypixel
 
 import util
-from   util import conf
 
 from binds      import Binds
 from cake.wm    import WM
 
 from junk       import display
-from util       import conf
+from conf       import conf
 
 pypixel.title("cakewm test program")
 pypixel.show()
@@ -91,6 +92,15 @@ for key, func in keybinds.iteritems():
     # pypixel.bind(key, debug_func)
 
 util.debug(conf)
+
+@atexit.register
+def goodbye():
+    if conf.exit_message:
+        util.debug("Thanks for using cakewm!")
+        util.debug("Goodbye!")
+
+if conf.welcome_message:
+    util.debug("Welcome to cakewm!")
 
 while True:
     wm.organize()

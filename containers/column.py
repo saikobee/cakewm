@@ -3,7 +3,7 @@ from container import Container
 from stack     import Stack
 from ratio     import Ratio
 from magic     import Magic
-from util      import conf
+from conf      import conf
 
 class Column(Container, Ratio, Magic):
     "A column manages stacks"
