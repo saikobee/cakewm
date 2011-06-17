@@ -50,8 +50,9 @@ class Conf(object):
     def load(self, file):
         util.debug("loading config: %s" % file)
         with open(file) as f:
-            for lineno, line in enumerate(f.readlines()):
-                self.process_line(lineno + 1, line.rstrip("\n"))
+            for lineno, line in enumerate(f.readlines(), start=1):
+                line = line.rstrip("\n")
+                self.process_line(lineno, line)
 
     def __getattr__(self, attr):
         return self.stuff[attr]
