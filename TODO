@@ -5,4 +5,5 @@
         - import colorsys
         - #FF00AA
         - rgb(rrr, ggg, bbb)
-        - hsl(hhh, sss, lll) ???
+        - hsl(hhh, sss, lll)
+        - hsv(hhh, sss, vvv)
