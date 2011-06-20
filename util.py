@@ -5,6 +5,34 @@ import pypixel
 
 # from conf import Conf
 
+def rgb_assert(rgb):
+    bad_val      = lambda val: not (0 <= val <= 255)
+    any_bad_vals = any(map(bad_val, rgb))
+    if any_bad_vals:
+        color_error()
+
+def hsl_assert(hsl):
+    h, s, l  = hsl
+    good_h   = 0 <= h <= 360
+    good_s   = 0 <= s <= 100
+    good_l   = 0 <= l <= 100
+    all_good_vals = all((good_h, good_s, good_l))
+    if not all_good_vals:
+        color_error()
+
+# The ranges and order are the same for HSL and HSV colors
+hsv_assert = hsl_assert
+
+def color_error():
+    errors(
+        "Bad color value",
+        "Hex colors must be 3 or 6 digits",
+        "RGB colors must be in the range 0-255",
+        "As for HSL and HSV colors,",
+        "Hue must be in the range 0-360",
+        "Saturation, lightness, and value must all be in the range 0-100"
+    )
+
 def clamp(x, a, b):
     '''Clamp x between a and b'''
 
@@ -66,6 +94,14 @@ def debug(*args):
 
 def error(message):
     sys.stderr.write("cakewm: error: %s\n" % message)
+    sys.exit(1)
+
+def errors(message0, *messages):
+    sys.stderr.write("cakewm: error: %s\n" % message0)
+    # Pad out the subsequent messages
+    spacing = "-" * len("error:")
+    for message in messages:
+        sys.stderr.write("cakewm: %s %s\n" % (spacing, message))
     sys.exit(1)
 
 INFINITE_RAINBOW = itertools.cycle(

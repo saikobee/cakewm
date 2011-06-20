@@ -1,9 +1,3 @@
 - Draw empty bars on top and bottom
     - Output text to STDERR or STDOUT
 - Implement config file
-    - Add COLOR type for parsing
-        - import colorsys
-        - #FF00AA
-        - rgb(rrr, ggg, bbb)
-        - hsl(hhh, sss, lll)
-        - hsv(hhh, sss, vvv)
