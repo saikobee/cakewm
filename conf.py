@@ -10,32 +10,31 @@ class Conf(object):
     COMMENT_CHAR = r'#'
     WS = r'\s*'
 
-    HEX_DIGIT = r'[0-9a-fA-F]'
-    HEX_DIGITS_2 = r'[0-9a-fA-F]{2}'
-    HEX_DIGITS_3 = r'[0-9a-fA-F]{3}'
-    HEX_DIGITS_6 = r'[0-9a-fA-F]{6}'
+    HEX_DIGIT    = r'[0-9a-fA-F]'
+    HEX_DIGITS_2 = r'%s{%d}' % (HEX_DIGIT, 2)
+    HEX_DIGITS_3 = r'%s{%d}' % (HEX_DIGIT, 3)
+    HEX_DIGITS_6 = r'%s{%d}' % (HEX_DIGIT, 6)
     HEX_DIGITS_EXTRACT_3 = (r'(%s)' % HEX_DIGIT)    * 3
     HEX_DIGITS_EXTRACT_6 = (r'(%s)' % HEX_DIGITS_2) * 3
 
     NUM         = r'\d+'
     WS_NUM      = WS + NUM
-    COLOR_HEX_3 = r'"#' + HEX_DIGITS_3 + r'"'
-    COLOR_HEX_6 = r'"#' + HEX_DIGITS_6 + r'"'
+    COLOR_HEX_3 = r'"#%s"' % HEX_DIGITS_3
+    COLOR_HEX_6 = r'"#%s"' % HEX_DIGITS_6
     COLOR_RGB   = r'%s\(%s,%s,%s\)' % (r'rgb', WS_NUM, WS_NUM, WS_NUM)
     COLOR_HSL   = r'%s\(%s,%s,%s\)' % (r'hsl', WS_NUM, WS_NUM, WS_NUM)
     COLOR_HSV   = r'%s\(%s,%s,%s\)' % (r'hsv', WS_NUM, WS_NUM, WS_NUM)
-    #COLOR_ANY   = r'(?:%s|%s|%s|%s)' % (COLOR_HEX_3, COLOR_HEX_6, COLOR_RGB, COLOR_HSL)
-    COLOR_ANY = r'(?:%s|%s|%s|%s|%s)' % (COLOR_HEX_3, COLOR_HEX_6, COLOR_RGB, COLOR_HSL, COLOR_HSV)
+    COLOR_ANY   = r'(?:%s|%s|%s|%s|%s)' % (COLOR_HEX_3, COLOR_HEX_6, COLOR_RGB, COLOR_HSL, COLOR_HSV)
 
-    COLOR_EXTRACT_HEX_3 = r'"#' + HEX_DIGITS_EXTRACT_3 + r'"'
-    COLOR_EXTRACT_HEX_6 = r'"#' + HEX_DIGITS_EXTRACT_6 + r'"'
+    COLOR_EXTRACT_HEX_3 = r'"#%s"' % HEX_DIGITS_EXTRACT_3
+    COLOR_EXTRACT_HEX_6 = r'"#%s"' % HEX_DIGITS_EXTRACT_6
     COLOR_EXTRACT_RGB   = r'%s\((%s),(%s),(%s)\)' % (r'rgb', WS_NUM, WS_NUM, WS_NUM)
     COLOR_EXTRACT_HSL   = r'%s\((%s),(%s),(%s)\)' % (r'hsl', WS_NUM, WS_NUM, WS_NUM)
     COLOR_EXTRACT_HSV   = r'%s\((%s),(%s),(%s)\)' % (r'hsv', WS_NUM, WS_NUM, WS_NUM)
 
     TRUTHY = r'(?:[Tt]rue|TRUE|[Oo]n|ON|[Yy]es|YES)'
     FALSEY = r'(?:[Ff]alse|FALSE|[Oo]ff|OFF|[Nn]o|NO)'
-    BOOL  = r'(?:' + TRUTHY + r'|' + FALSEY + r')'
+    BOOL  = r'(?:%s|%s)' % (TRUTHY, FALSEY)
     WORD  = r'\w+'
     IDENT = WORD
     QCHAR = r'(?:[^"]|\\")'
@@ -82,7 +81,8 @@ class Conf(object):
 
     def parse_color_any(color):
         for regex, parse_func in Conf.color_regex_to_parse_func.iteritems():
-            if re.match(regex, color): return parse_func(color)
+            if re.match(regex, color):
+                return parse_func(color)
 
         util.error("Could not parse color: %s" % color)
 
@@ -146,11 +146,10 @@ class Conf(object):
         if   re.match(Conf.TRUTHY, bool): return True
         elif re.match(Conf.FALSEY, bool): return False
         else:
-            msg = (
-                "invalid boolean constant: %s; " +
+            util.errors(
+                "invalid boolean constant: %s; " % bool,
                 "expecting true/false, yes/no, on/off"
-            ) % bool
-            util.error(msg)
+            )
 
     def process_defn_line(self, lineno, line):
         attr  = re.findall(Conf.DEFN_PREFIX, line)[0]
@@ -174,7 +173,7 @@ class Conf(object):
         title = "[Conf]"
         pairs = self.stuff.items()
         pairs.sort()
-        func  = lambda pair: "--- %s = %s" % pair
+        func  = lambda pair: "------- %s = %s" % pair
         defns = map(func, pairs)
         return title + "\n" + "\n".join(defns)
 
