@@ -2,6 +2,7 @@ import pypixel
 import util
 from focusable      import Focusable
 from floatingrect   import FloatingRect
+from conf           import conf
 
 class Window(FloatingRect, Focusable):
     NUMBER = 0
@@ -28,13 +29,13 @@ class Window(FloatingRect, Focusable):
        pypixel.rectangle(self.color, ((x, y), (w, h)))
 
     def draw(self):
-        colr3 = pypixel.grey(20)
-        colr2 = pypixel.grey(70)
+        colr3 = conf.window_focused_shadow
+        colr2 = conf.window_focused_highlight
         colr1 = self.color
 
         if self.focused:
-            colr3 = pypixel.grey(20)
-            colr2 = pypixel.grey(70)
+            colr3 = conf.window_unfocused_shadow
+            colr2 = conf.window_unfocused_highlight
 
         x = self.x
         y = self.y

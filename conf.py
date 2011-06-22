@@ -6,9 +6,11 @@ import util
 class Conf(object):
     "Contains all the config entries"
 
-    ANYTHING = r'.*'
+    ANYTHING     = r'.*'
     COMMENT_CHAR = r'#'
-    WS = r'\s*'
+
+    WS  = r'\s*'
+    EOL = r'$'
 
     HEX_DIGIT    = r'[0-9a-fA-F]'
     HEX_DIGITS_2 = r'%s{%d}' % (HEX_DIGIT, 2)
@@ -53,6 +55,7 @@ class Conf(object):
     DEFN_COLOR = DEFN + r'('  + COLOR_ANY  + r')'  + WS
 
     COMMENT   = WS + COMMENT_CHAR + ANYTHING
+    SPACE     = WS + EOL
 
     def __init__(self):
         "Search for user config files and load them"
@@ -152,15 +155,18 @@ class Conf(object):
             )
 
     def process_defn_line(self, lineno, line):
-        attr  = re.findall(Conf.DEFN_PREFIX, line)[0]
-        type  = Conf.attr_to_type [attr]
-        func  = Conf.type_to_func [type]
-        regex = Conf.type_to_regex[type]
-        if re.match(regex, line):
-            attr, val = re.findall(regex, line)[0]
-            self.stuff[attr] = func(val)
-        else:
-            util.error("could not parse line %i: %s" % (lineno, line))
+        attr = re.findall(Conf.DEFN_PREFIX, line)[0]
+        try:
+            type  = Conf.attr_to_type [attr]
+            func  = Conf.type_to_func [type]
+            regex = Conf.type_to_regex[type]
+            if re.match(regex, line):
+                attr, val = re.findall(regex, line)[0]
+                self.stuff[attr] = func(val)
+            else:
+                util.error("could not parse line %i: %s" % (lineno, line))
+        except KeyError:
+            util.error("'%s' is not a valid option" % attr)
 
     def process_line(self, lineno, line):
         if   re.match(Conf.DEFN_PREFIX, line): self.process_defn_line(lineno, line)
@@ -199,6 +205,11 @@ class Conf(object):
         "exit_message":    "bool",
         "welcome_message": "bool",
         "test_color":      "color",
+
+        "window_focused_highlight":   "color",
+        "window_unfocused_highlight": "color",
+        "window_focused_shadow":      "color",
+        "window_unfocused_shadow":    "color",
     }
 
     attr_to_default_val = {
@@ -207,6 +218,11 @@ class Conf(object):
         "exit_message":    False,
         "welcome_message": False,
         "test_color":      (123, 4, 89),
+
+        "window_focused_highlight":   (200, 200, 200),
+        "window_unfocused_highlight": (180, 180, 180),
+        "window_focused_shadow":      ( 70,  70,  70),
+        "window_unfocused_shadow":    ( 50,  50,  50),
     }
 
     color_regex_to_parse_func = {
