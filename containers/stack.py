@@ -114,7 +114,8 @@ class Stack(Container, Focusable, FloatingRect):
             item.unfocus()
 
     def organize(self):
-        pad = 6
+        # Try to use sane values for padding
+        pad = util.clamp(conf.stack_padding, 0, 100)
         for i, win in enumerate(self.windows):
            win.x = self.x + pad
            win.y = self.y + pad

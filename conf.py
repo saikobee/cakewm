@@ -206,6 +206,8 @@ class Conf(object):
         "welcome_message": "bool",
         "test_color":      "color",
 
+        "stack_padding": "int",
+
         "window_focused_highlight":   "color",
         "window_unfocused_highlight": "color",
         "window_focused_shadow":      "color",
@@ -232,6 +234,8 @@ class Conf(object):
         "exit_message":    False,
         "welcome_message": False,
         "test_color":      (123, 4, 89),
+
+        "stack_padding": 3,
 
         "window_focused_highlight":   (200, 200, 200),
         "window_focused_shadow":      ( 70,  70,  70),
