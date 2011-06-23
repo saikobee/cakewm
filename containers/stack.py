@@ -4,6 +4,7 @@ from container      import Container
 from window         import Window
 from focusable      import Focusable
 from floatingrect   import FloatingRect
+from conf           import conf
 
 import pypixel
 
@@ -65,13 +66,14 @@ class Stack(Container, Focusable, FloatingRect):
         return win
 
     def draw(self):
-        color = pypixel.grey(20)
-        light = pypixel.grey(30)
-        dark  = pypixel.grey(10)
+        color = conf.stack_unfocused_color
+        light = conf.stack_unfocused_highlight
+        dark  = conf.stack_unfocused_shadow
+
         if self.focused:
-            color = pypixel.grey(50)
-            light = pypixel.grey(60)
-            dark  = pypixel.grey(20)
+            color = conf.stack_focused_color
+            light = conf.stack_focused_highlight
+            dark  = conf.stack_focused_shadow
 
         x = self.x
         y = self.y

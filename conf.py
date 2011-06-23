@@ -210,6 +210,20 @@ class Conf(object):
         "window_unfocused_highlight": "color",
         "window_focused_shadow":      "color",
         "window_unfocused_shadow":    "color",
+
+        "window_focused_highlight": "color",
+        "window_focused_shadow":    "color",
+
+        "window_unfocused_highlight": "color",
+        "window_unfocused_shadow":    "color",
+
+        "stack_focused_color":     "color",
+        "stack_focused_highlight": "color",
+        "stack_focused_shadow":    "color",
+
+        "stack_unfocused_color":     "color",
+        "stack_unfocused_highlight": "color",
+        "stack_unfocused_shadow":    "color",
     }
 
     attr_to_default_val = {
@@ -220,9 +234,18 @@ class Conf(object):
         "test_color":      (123, 4, 89),
 
         "window_focused_highlight":   (200, 200, 200),
-        "window_unfocused_highlight": (180, 180, 180),
         "window_focused_shadow":      ( 70,  70,  70),
+
+        "window_unfocused_highlight": (180, 180, 180),
         "window_unfocused_shadow":    ( 50,  50,  50),
+
+        "stack_focused_color":     (130, 130, 130),
+        "stack_focused_highlight": (150, 150, 150),
+        "stack_focused_shadow":    ( 50,  50,  50),
+
+        "stack_unfocused_color":     ( 50,  50,  50),
+        "stack_unfocused_highlight": ( 80,  80,  80),
+        "stack_unfocused_shadow":    ( 25,  25,  25),
     }
 
     color_regex_to_parse_func = {
