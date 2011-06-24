@@ -34,9 +34,12 @@ class Stack(Container, Focusable, FloatingRect):
 
     def _move_win(self, direction):
         if self.cur is not None:
-            index = util.clamp2(self.cur + direction.num, self.n_items())
-            util.swap(self.windows, self.cur, index)
-            self.cur = index
+            try:
+                index = util.clamp2(self.cur + direction.num, self.n_items())
+                util.swap(self.windows, self.cur, index)
+                self.cur = index
+            except IndexError:
+                util.debug("Bad index for moving window")
 
     def move_win_next(self): self._move_win(const.NEXT)
     def move_win_prev(self): self._move_win(const.PREV)
