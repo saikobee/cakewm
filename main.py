@@ -23,8 +23,8 @@ keybinds = {
     "`": binds.close_win,
 
     "y": binds.move_win_prev,
-    "u": binds.select_win_next,
-    "i": binds.select_win_prev,
+    "u": binds.select_win_prev,
+    "i": binds.select_win_next,
     "o": binds.move_win_next,
 
     "h": binds.select_col_prev,
@@ -77,7 +77,7 @@ keybinds = {
     "\\": binds.toggle_fullscreen,
 
     ";": binds.column_magic,
-    "'" : binds.stack_magic,
+    "'": binds.stack_magic,
 }
 
 for key, func in keybinds.iteritems():
@@ -106,6 +106,9 @@ while True:
     wm.organize()
     wm.set_focii()
     wm.draw()
+    wm.update_top_bar()
+    wm.update_bottom_bar()
+    wm.debug_bars()
     pypixel.update()
     pypixel.clear()
 

@@ -21,6 +21,19 @@ class Container(object):
     def move_win_next(self): self.move_win_num((self.cur or 0) + 1)
     def move_win_prev(self): self.move_win_num((self.cur or 0) - 1)
 
+    def _with_item(self, func):
+        item = self.item()
+        if item is None: return item
+        else:            return func(item)
+
+    def cur_win_title(self): return self._with_item(lambda item: item.cur_win_title())
+    def cur_screen(self):    return self._with_item(lambda item: item.cur_screen())
+    def tot_screens(self):   return self._with_item(lambda item: item.tot_screens())
+    def cur_tag(self):       return self._with_item(lambda item: item.cur_tag())
+    def tot_tags(self):      return self._with_item(lambda item: item.tot_tags())
+    def cur_win(self):       return self._with_item(lambda item: item.cur_win())
+    def tot_wins(self):      return self._with_item(lambda item: item.tot_wins())
+
     def move_win_num(self, number):
         "Moves the current window to nth screen"
 

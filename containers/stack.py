@@ -23,6 +23,12 @@ class Stack(Container, Focusable, FloatingRect):
     def windows(self):
         return self.items
 
+    def cur_win_title(self):
+        return self._with_item(lambda item: item.title())
+
+    def cur_win(self):  return self.cur
+    def tot_wins(self): return self.n_wins()
+
     n_wins = Container.n_items
 
     def _select_win(self, direction):

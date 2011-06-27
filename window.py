@@ -11,6 +11,9 @@ class Window(FloatingRect, Focusable):
     def __str__(self):
         return "%s:%i" % (type(self).NAME, self.number)
 
+    def title(self):
+        return "Window %d" % self.number
+
     def __init__(self, **kwargs):
         super(Window, self).__init__(**kwargs)
 

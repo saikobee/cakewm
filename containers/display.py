@@ -11,6 +11,9 @@ class Display(Container):
     def screens(self):
         return self.items
 
+    def cur_screen(self):  return self.cur
+    def tot_screens(self): return self.n_items()
+
     move_win_screen_num = Container.move_win_num
     select_screen_num   = Container.select_num
 

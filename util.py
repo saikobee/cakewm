@@ -1,9 +1,20 @@
+import os
 import sys
 import itertools
 
 import pypixel
 
 # from conf import Conf
+
+def clear():
+    "Clear the screen"
+
+    os.system("clear")
+
+def echo(*args):
+    "print wrapper"
+
+    print " ".join(map(str, args))
 
 def rgb_assert(rgb):
     bad_val      = lambda val: not (0 <= val <= 255)
@@ -81,7 +92,7 @@ def lazy(f):
 
     return lambda *args, **kwargs: lambda: f(*args, **kwargs)
 
-_use_debug = True
+_use_debug = False
 
 def debug(*args):
     if _use_debug:
