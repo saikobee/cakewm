@@ -125,6 +125,7 @@ class Binds(object):
     select_col_prev      = tag_do(lambda x: x.select_col_prev())
     inc_tag_ratio        = tag_do(lambda x: x.inc_tag_ratio())
     dec_tag_ratio        = tag_do(lambda x: x.dec_tag_ratio())
+    toggle_bar           = tag_do(lambda x: x.toggle_bar(), False)
     complement_tag_ratio = tag_do(lambda x: x.complement_tag_ratio())
 
     # Column binds

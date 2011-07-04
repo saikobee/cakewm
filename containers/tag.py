@@ -33,6 +33,22 @@ class Tag(Container, Ratio, Magic):
 
         self.y_offset = conf.bar_height
 
+        self.bar_hidden = False
+
+    def hide_bar(self):
+        self.h         += 2 * conf.bar_height
+        self.y_offset   = 0
+        self.bar_hidden = True
+
+    def show_bar(self):
+        self.h         -= 2 * conf.bar_height
+        self.y_offset   =     conf.bar_height
+        self.bar_hidden = False
+
+    def toggle_bar(self):
+        if self.bar_hidden: self.show_bar()
+        else:               self.hide_bar()
+
     def toggle_fullscreen(self):
         col = self.item()
         stk = col .item()

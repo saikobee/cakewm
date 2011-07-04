@@ -46,6 +46,9 @@ class WM(object):
         screen = self.display.item()
         tag    = screen.item()
 
+        if tag.bar_hidden:
+            return
+
         # Top bar
         x, y = 0, 0
         w, h = screen.dim
@@ -57,7 +60,7 @@ class WM(object):
 
         # Top bar
         x, y = screen.dim
-        x, y = 0, y - 1 - bh
+        x, y = 0, y - bh
         w, h = screen.dim
         w, h = w, bh
         rect = ((x, y),     (w,     bh))    # (x, y), (w, h)

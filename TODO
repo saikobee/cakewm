@@ -1,4 +1,6 @@
 - Implement a bar toggle function
+- Refactor binds.py
+  - Simply use string instead of lambda?
 - Implement config file
     - Add and test keybind type
     - Are there more things to be configured in cakewm.conf?

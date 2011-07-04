@@ -54,6 +54,7 @@ keybinds = {
 
     "z": binds.complement_tag_ratio,
     "x": binds.complement_col_ratio,
+    "c": binds.toggle_bar,
 
     "q": binds.move_win_tag_1,
     "w": binds.move_win_tag_2,
