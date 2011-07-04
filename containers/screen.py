@@ -11,6 +11,10 @@ class Screen(Container):
     def tags(self):
         return self.items
 
+    @property
+    def dim(self):
+        return (self.w, self.h)
+
     def cur_tag(self):  return self.cur
     def tot_tags(self): return self.n_items()
 

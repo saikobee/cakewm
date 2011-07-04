@@ -1,4 +1,8 @@
+import pypixel
+
 import util
+
+from conf import conf
 
 class WM(object):
     def __init__(self, **kwargs):
@@ -32,6 +36,32 @@ class WM(object):
             d.cur_win() + 1,
             d.tot_wins(),
         )
+
+    def draw_bars(self):
+        color     = conf.bar_color
+        highlight = conf.bar_highlight
+
+        bh = conf.bar_height
+
+        # Top bar
+        x, y = 0, 0
+        w, h = self.display.screens[0].dim
+        rect = ((x, y),      (w,     bh))     # (x, y), (w, h)
+        line = ((x, y - 2 + bh), (w - 1, y - 2 + bh)) # (x, y), (x, y)
+
+        pypixel.rectangle(color, rect)
+        pypixel.line(highlight, *line)
+
+        # Top bar
+        x, y = self.display.screens[0].dim
+        x, y = 0, y - 1 - bh
+        w, h = self.display.screens[0].dim
+        w, h = w, bh
+        rect = ((x, y),     (w,     bh))    # (x, y), (w, h)
+        line = ((x, y + 1), (w - 1, y + 1)) # (x, y), (x, y)
+
+        pypixel.rectangle(color, rect)
+        pypixel.line(highlight, *line)
 
     def set_focii(self):
         for i_screen, screen in enumerate(self.display.screens):

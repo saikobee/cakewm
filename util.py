@@ -92,7 +92,7 @@ def lazy(f):
 
     return lambda *args, **kwargs: lambda: f(*args, **kwargs)
 
-_use_debug = False
+_use_debug = True
 
 def debug(*args):
     if _use_debug:

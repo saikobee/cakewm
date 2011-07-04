@@ -208,6 +208,10 @@ class Conf(object):
 
         "stack_padding": "int",
 
+        "bar_height":    "int",
+        "bar_color":     "color",
+        "bar_highlight": "color",
+
         "window_focused_highlight":   "color",
         "window_unfocused_highlight": "color",
         "window_focused_shadow":      "color",
@@ -236,6 +240,10 @@ class Conf(object):
         "test_color":      (123, 4, 89),
 
         "stack_padding": 3,
+
+        "bar_height":    24,
+        "bar_color":     (  0,   0,   0),
+        "bar_highlight": (128, 128, 128),
 
         "window_focused_highlight":   (200, 200, 200),
         "window_focused_shadow":      ( 70,  70,  70),
