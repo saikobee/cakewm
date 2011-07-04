@@ -106,10 +106,10 @@ while True:
     wm.organize()
     wm.set_focii()
     wm.draw()
-    wm.update_top_bar()
-    wm.update_bottom_bar()
+    #wm.update_top_bar()
+    #wm.update_bottom_bar()
     wm.draw_bars()
-    wm.debug_bars()
+    #wm.debug_bars()
     pypixel.update()
     pypixel.clear()
 

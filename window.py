@@ -24,12 +24,13 @@ class Window(FloatingRect, Focusable):
         type(self).NUMBER += 1
 
     def draw_fullscreen(self, screen):
-       w = screen.w
-       h = screen.h
-       x = 0
-       y = 0
+        tag = screen.item()
+        w = tag.w
+        h = tag.h
+        x = 0
+        y = tag.y_offset
 
-       pypixel.rectangle(self.color, ((x, y), (w, h)))
+        pypixel.rectangle(self.color, ((x, y), (w, h)))
 
     def draw(self):
         colr3 = conf.window_unfocused_shadow

@@ -39,25 +39,26 @@ class Column(Container, Ratio, Magic):
         return tot
 
     def organize(self, screen):
+        tag = screen.item()
         if self.n_items() == 0:
             pass
         elif self.n_items() == 1:
-            self.stacks[0].h = screen.h
-            self.stacks[0].y = 0
+            self.stacks[0].h = tag.h
+            self.stacks[0].y = tag.y_offset
         elif self.n_items() == 2:
-            self.stacks[0].h = int(screen.h * self.ratio)
-            self.stacks[0].y = 0
-            self.stacks[1].h = screen.h - self.stacks[0].h
-            self.stacks[1].y = self.stacks[0].h
+            self.stacks[0].h = int(tag.h * self.ratio)
+            self.stacks[0].y = tag.y_offset
+            self.stacks[1].h = tag.h - self.stacks[0].h
+            self.stacks[1].y = tag.y_offset + self.stacks[0].h
         else:
             tot = 0
             for i, stack in enumerate(self.stacks):
-                stack.h = screen.h / self.n_items()
-                stack.y = stack.h * i
+                stack.h = tag.h / self.n_items()
+                stack.y = tag.y_offset + stack.h * i
 
                 tot += stack.h
 
-            self.stacks[-1].h = screen.h - tot + self.stacks[0].h
+            self.stacks[-1].h = tag.h - tot + self.stacks[0].h
 
         for stack in self.stacks:
             stack.w = self.w

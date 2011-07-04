@@ -1,3 +1,4 @@
+import pypixel
 import util
 from container  import Container
 from ratio      import Ratio
@@ -18,10 +19,19 @@ class Tag(Container, Ratio, Magic):
     def default_item(self):
         return Column(cur=0, items=[Stack(cur=0, items=[])])
 
+    @property
+    def dim(self):
+        return (self.w, self.h)
+
     def __init__(self, **kwargs):
         super(Tag, self).__init__(**kwargs)
 
         self.fullscreen = False
+
+        self.w = pypixel.WIDTH
+        self.h = pypixel.HEIGHT - 2 * conf.bar_height
+
+        self.y_offset = conf.bar_height
 
     def toggle_fullscreen(self):
         col = self.item()

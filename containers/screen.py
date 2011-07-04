@@ -1,6 +1,7 @@
 from pypixel    import *
 from util       import *
-from container import Container
+from container  import Container
+from conf       import conf
 
 class Screen(Container):
     "A screen manages tags"

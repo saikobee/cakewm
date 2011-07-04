@@ -43,9 +43,12 @@ class WM(object):
 
         bh = conf.bar_height
 
+        screen = self.display.item()
+        tag    = screen.item()
+
         # Top bar
         x, y = 0, 0
-        w, h = self.display.screens[0].dim
+        w, h = screen.dim
         rect = ((x, y),      (w,     bh))     # (x, y), (w, h)
         line = ((x, y - 2 + bh), (w - 1, y - 2 + bh)) # (x, y), (x, y)
 
@@ -53,9 +56,9 @@ class WM(object):
         pypixel.line(highlight, *line)
 
         # Top bar
-        x, y = self.display.screens[0].dim
+        x, y = screen.dim
         x, y = 0, y - 1 - bh
-        w, h = self.display.screens[0].dim
+        w, h = screen.dim
         w, h = w, bh
         rect = ((x, y),     (w,     bh))    # (x, y), (w, h)
         line = ((x, y + 1), (w - 1, y + 1)) # (x, y), (x, y)
