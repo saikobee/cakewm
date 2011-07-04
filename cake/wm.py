@@ -38,16 +38,15 @@ class WM(object):
         )
 
     def draw_bars(self):
-        color     = conf.bar_color
-        highlight = conf.bar_highlight
-
-        bh = conf.bar_height
-
         screen = self.display.item()
         tag    = screen.item()
 
         if tag.bar_hidden:
             return
+
+        color     = conf.bar_color
+        highlight = conf.bar_highlight
+        bh        = conf.bar_height
 
         # Top bar
         x, y = 0, 0
