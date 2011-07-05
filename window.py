@@ -8,6 +8,8 @@ class Window(FloatingRect, Focusable):
     NUMBER = 0
     NAME = "Win"
 
+    DEFAULT_COLOR = (84,) * 3
+
     def __str__(self):
         return "%s:%i" % (type(self).NAME, self.number)
 
@@ -17,7 +19,8 @@ class Window(FloatingRect, Focusable):
     def __init__(self, **kwargs):
         super(Window, self).__init__(**kwargs)
 
-        self.color = kwargs.get("color", util.INFINITE_RAINBOW.next())
+        #self.color = kwargs.get("color", util.INFINITE_RAINBOW.next())
+        self.color = kwargs.get("color", Window.DEFAULT_COLOR)
 
         self.number = type(self).NUMBER
 
