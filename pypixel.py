@@ -30,7 +30,7 @@ import pygame
 import pygame.locals
 
 # Screen size
-SIZE = WIDTH, HEIGHT = 640, 480
+SIZE = WIDTH, HEIGHT = 1280, 720
 CENTER = (WIDTH/2, HEIGHT/2)
 
 ### BEGIN PRIVATES

@@ -19,8 +19,8 @@ class Window(FloatingRect, Focusable):
     def __init__(self, **kwargs):
         super(Window, self).__init__(**kwargs)
 
-        #self.color = kwargs.get("color", util.INFINITE_RAINBOW.next())
-        self.color = kwargs.get("color", Window.DEFAULT_COLOR)
+        self.color = kwargs.get("color", util.INFINITE_RAINBOW.next())
+        #self.color = kwargs.get("color", Window.DEFAULT_COLOR)
 
         self.number = type(self).NUMBER
 
