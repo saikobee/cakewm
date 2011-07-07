@@ -16,7 +16,7 @@ pypixel.title("cakewm test program")
 pypixel.show()
 
 wm      = WM(display=display)
-binds   = Binds(display=display, conf={})
+binds   = Binds(display=display)
 
 keybinds = {
     "p": binds.add_win,

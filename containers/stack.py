@@ -60,7 +60,8 @@ class Stack(Container, Focusable, FloatingRect):
             except IndexError:
                 util.debug("Bad index removing window from stack")
 
-    def add_win(self, win):
+    def add_win(self, win=None):
+        win = win or Window()
         if self.cur is not None:
             self.windows.insert(self.cur, win)
         elif self.cur is None and self.windows == []:
