@@ -101,12 +101,12 @@ class Stack(Container, Focusable, FloatingRect):
         pypixel.rectangle(color, self.rect)
 
         # Draw light edge
-        pypixel.line(light, (left, top), (right, top))
-        pypixel.line(light, (left, top), (left,  bot))
+        pypixel.line(light, (left, top), (right, top)) # top
+        pypixel.line(light, (left, top), (left,  bot)) # left
 
         # Draw dark edge
-        pypixel.line(dark, (right, bot), (right, top))
-        pypixel.line(dark, (right, bot), (left,  bot))
+        pypixel.line(dark, (right, bot), (right, top)) # right
+        pypixel.line(dark, (right, bot), (left,  bot)) # bottom
 
         item = self.item()
         if item is not None:

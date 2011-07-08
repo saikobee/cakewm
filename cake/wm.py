@@ -121,7 +121,7 @@ class WM(object):
                 )
 
                 if indices == curs and tag.n_wins() == 0:
-                    util.debug("Skipping drawing!")
+                    #util.debug("Skipping drawing!")
                     return
 
                 if tag.fullscreen and indices == curs:
