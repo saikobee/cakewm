@@ -10,6 +10,21 @@ class WM(object):
         self.bar_top = ""
         self.bar_bot = ""
 
+    def draw_wallpaper(self):
+        grey0 = (32, ) * 3
+        grey1 = (128,) * 3
+
+        screen = self.display.item()
+        w, h   = screen.dim
+        for x in xrange(0, w, 2):
+            p0 = (x, 0    )
+            p1 = (x, h - 1)
+            pypixel.line(grey0, p0, p1)
+
+            p0 = (x + 1, 0    )
+            p1 = (x + 1, h - 1)
+            pypixel.line(grey1, p0, p1)
+
     def debug_bars(self):
         util.clear()
         util.echo("TOP:", self.bar_top)
@@ -105,11 +120,16 @@ class WM(object):
                     screen.cur,
                 )
 
+                if indices == curs and tag.n_wins() == 0:
+                    util.debug("Skipping drawing!")
+                    return
+
                 if tag.fullscreen and indices == curs:
                     tag.draw_fullscreen(screen)
                     return
                 for i_col, col in enumerate(tag.cols):
                     for i_stack, stack in enumerate(col.stacks):
+
                         indices = (
                             i_screen,
                             i_tag,

@@ -12,6 +12,9 @@ class Container(object):
         self.cur    = kwargs.get("cur",     0)
         self.items  = kwargs.get("items",   [])
 
+    def n_wins(self):
+        return sum(map(lambda item: item.n_wins(), self.items))
+
     def fix_cur(self):
         if self.n_items() == 0:
             self.cur = None

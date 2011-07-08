@@ -19,6 +19,9 @@ class Stack(Container, Focusable, FloatingRect):
         super(Stack, self).__init__(**kwargs)
         FloatingRect.__init__(self)
 
+    def num_win(self):
+        return self.n_wins()
+
     @property
     def windows(self):
         return self.items

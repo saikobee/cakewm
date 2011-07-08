@@ -86,11 +86,11 @@ for key, func in keybinds.iteritems():
     pypixel.bind(key, func)
 
     # Debug bind
-    # def debug_func(key=key, func=func):
-        # func()
-        # util.debug("%s: %s" % (key, str(display)))
-        # util.debug(key)
-    # pypixel.bind(key, debug_func)
+    #def debug_func(key=key, func=func):
+        #func()
+        #util.debug("%s: %s" % (key, str(display)))
+        #util.debug(key)
+    #pypixel.bind(key, debug_func)
 
 util.debug(conf)
 
@@ -106,6 +106,7 @@ if conf.welcome_message:
 while True:
     wm.organize()
     wm.set_focii()
+    wm.draw_wallpaper()
     wm.draw()
     #wm.update_top_bar()
     #wm.update_bottom_bar()
