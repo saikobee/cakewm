@@ -32,10 +32,10 @@ class Binds(object):
         stack = col.item()
         return stack
 
-    def do_do(thing, cmd, do_thing=do_thing, **kwargs):
+    def do_do(thing, cmd, **kwargs):
         fs_guard = kwargs.get("fs_guard", True)
         args     = kwargs.get("args", ())
-        def inner(self, fs_guard=fs_guard, cmd=cmd):
+        def inner(self, thing=thing, fs_guard=fs_guard, cmd=cmd):
             if fs_guard and self.has_fullscreen():
                 return
             thing = getattr(self, thing)()
