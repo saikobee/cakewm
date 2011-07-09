@@ -127,7 +127,9 @@ class WM(object):
                 if tag.fullscreen and indices == curs:
                     tag.draw_fullscreen(screen)
                     return
+                n_cols = len(tag.cols)
                 for i_col, col in enumerate(tag.cols):
+                    n_stacks = len(col.stacks)
                     for i_stack, stack in enumerate(col.stacks):
 
                         indices = (
@@ -140,8 +142,14 @@ class WM(object):
                             screen.cur,
                         )
 
+                        hint = ""
+                        if i_col   != (n_cols   - 1): hint += "r"
+                        if i_col   != 0             : hint += "l"
+                        if i_stack != (n_stacks - 1): hint += "b"
+                        if i_stack != 0             : hint += "t"
+
                         if indices == curs:
-                            stack.draw()
+                            stack.draw(hint=hint)
 
     def organize(self):
         for screen in self.display.screens:

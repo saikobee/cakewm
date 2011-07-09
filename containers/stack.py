@@ -78,7 +78,8 @@ class Stack(Container, Focusable, FloatingRect):
         self.close_win()
         return win
 
-    def draw(self):
+    def draw(self, **kwargs):
+        hint  = kwargs.get("hint", "tblr")
         color = conf.stack_unfocused_color
         light = conf.stack_unfocused_highlight
         dark  = conf.stack_unfocused_shadow
@@ -101,12 +102,12 @@ class Stack(Container, Focusable, FloatingRect):
         pypixel.rectangle(color, self.rect)
 
         # Draw light edge
-        pypixel.line(light, (left, top), (right, top)) # top
-        pypixel.line(light, (left, top), (left,  bot)) # left
+        if "t" in hint: pypixel.line(light, (left, top), (right, top)) # top
+        if "l" in hint: pypixel.line(light, (left, top), (left,  bot)) # left
 
         # Draw dark edge
-        pypixel.line(dark, (right, bot), (right, top)) # right
-        pypixel.line(dark, (right, bot), (left,  bot)) # bottom
+        if "r" in hint: pypixel.line(dark, (right, bot), (right, top)) # right
+        if "b" in hint: pypixel.line(dark, (right, bot), (left,  bot)) # bottom
 
         item = self.item()
         if item is not None:
