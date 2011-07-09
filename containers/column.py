@@ -27,6 +27,9 @@ class Column(Container, Ratio, Magic):
         if self.stacks == []:
             self.stacks.append(Stack(cur=None, items=[]))
 
+    def n_stacks(self):
+        return len(self.stacks)
+
     @property
     def stacks(self):
         return self.items

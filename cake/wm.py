@@ -120,8 +120,8 @@ class WM(object):
                     screen.cur,
                 )
 
-                if indices == curs and tag.n_wins() == 0:
-                    #util.debug("Skipping drawing!")
+                # Be nice and let the user see their desktop
+                if tag.n_stacks() <= 1 and tag.n_wins() == 0:
                     return
 
                 if tag.fullscreen and indices == curs:
