@@ -103,6 +103,9 @@ def debug(*args):
             + "\n"
         )
 
+def debugs(*args):
+    for arg in args: debug(arg)
+
 def error(message):
     sys.stderr.write("cakewm: error: %s\n" % message)
     sys.exit(1)

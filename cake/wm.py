@@ -53,7 +53,7 @@ class WM(object):
                 d.tot_wins(),
             )
         except Exception as e:
-            util.errors("issue updating bottom bar", str(e))
+            util.debugs("issue updating bottom bar", str(e))
 
     def draw_bars(self):
         screen = self.display.item()
