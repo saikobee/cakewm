@@ -39,18 +39,21 @@ class WM(object):
 
     def update_bottom_bar(self):
         d = self.display
-        self.bar_bot = "%s <RALIGN> screen:[%d/%d] tag:[%d/%d] window:[%02d/%02d]" % (
-            d.cur_win_title(),
+        try:
+            self.bar_bot = "%s <RALIGN> screen:[%d/%d] tag:[%d/%d] window:[%02d/%02d]" % (
+                d.cur_win_title() or "",
 
-            d.cur_screen() + 1,
-            d.tot_screens(),
+                d.cur_screen() + 1,
+                d.tot_screens(),
 
-            d.cur_tag() + 1,
-            d.tot_tags(),
+                d.cur_tag() + 1,
+                d.tot_tags(),
 
-            d.cur_win() + 1,
-            d.tot_wins(),
-        )
+                d.cur_win() + 1,
+                d.tot_wins(),
+            )
+        except Exception as e:
+            util.errors("issue updating bottom bar", str(e))
 
     def draw_bars(self):
         screen = self.display.item()

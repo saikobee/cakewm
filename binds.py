@@ -40,7 +40,13 @@ class Binds(object):
                 return
             thing = getattr(self, thing)()
             if thing is not None:
-                getattr(thing, cmd)(*args)
+                try:
+                    getattr(thing, cmd)(*args)
+                except Exception as e:
+                    util.errors(
+                        "tried doing %s.%s(%s)" % (thing, cmd, ", ".join(args)),
+                        str(e)
+                    )
 
         return inner
 
