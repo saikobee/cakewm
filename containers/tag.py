@@ -1,3 +1,5 @@
+import math
+
 import pypixel
 import util
 from container  import Container
@@ -5,9 +7,10 @@ from ratio      import Ratio
 from column     import Column
 from magic      import Magic
 from stack      import Stack
+from master     import Master
 from conf       import conf
 
-class Tag(Container, Ratio, Magic):
+class Tag(Container, Ratio, Magic, Master):
     "A tag manages columns"
 
     @staticmethod
@@ -25,6 +28,7 @@ class Tag(Container, Ratio, Magic):
 
     def __init__(self, **kwargs):
         super(Tag, self).__init__(**kwargs)
+        Master.__init__(self)
 
         self.fullscreen = False
 
@@ -99,21 +103,22 @@ class Tag(Container, Ratio, Magic):
         if self.n_items() == 1:
             self.cols[0].w = screen.w
             self.cols[0].x = 0
-        elif self.n_items() == 2:
-            self.cols[0].w = int(screen.w * self.ratio)
-            self.cols[0].x = 0
-
-            self.cols[1].w = screen.w - self.cols[0].w
-            self.cols[1].x = self.cols[0].w
         else:
+            tot  = screen.w
+            mw   = tot * self.ratio # master width
+            tot -= mw
+            q    = tot // self.n_items()
+            for i, col in enumerate(self.cols):
+                if not i == self.master:
+                    col.w = q
+                    tot  -= q
+
+            self.items[self.master].w = mw + tot
+
             tot = 0
             for i, col in enumerate(self.cols):
-                col.w = screen.w / self.n_items()
-                col.x = col.w * i
-
-                tot += col.w
-
-            self.cols[-1].w = screen.w - tot + self.cols[0].w
+                col.x = tot
+                tot  += col.w
 
         for col in self.cols:
             col.organize(screen)

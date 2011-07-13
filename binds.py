@@ -88,6 +88,7 @@ class Binds(object):
     close_win            = do_do("tag", "close_win", fs_guard=False)
     move_win_col_next    = do_do("tag", "move_win_col_next")
     move_win_col_prev    = do_do("tag", "move_win_col_prev")
+    tag_master_next      = do_do("tag", "next_master")
     select_col_next      = do_do("tag", "select_col_next")
     select_col_prev      = do_do("tag", "select_col_prev")
     inc_tag_ratio        = do_do("tag", "inc_tag_ratio")
@@ -97,6 +98,7 @@ class Binds(object):
 
     # Column binds
     stack_magic          = do_do("col", "stack_magic")
+    col_master_next      = do_do("col", "next_master")
     move_win_stack_next  = do_do("col", "move_win_stack_next")
     move_win_stack_prev  = do_do("col", "move_win_stack_prev")
     select_stack_next    = do_do("col", "select_stack_next")

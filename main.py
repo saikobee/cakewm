@@ -52,8 +52,8 @@ keybinds = {
     "d": binds.dec_col_ratio,
     "f": binds.inc_tag_ratio,
 
-    "z": binds.complement_tag_ratio,
-    "x": binds.complement_col_ratio,
+    "z": binds.tag_master_next,
+    "x": binds.col_master_next,
     "c": binds.toggle_bar,
 
     "q": binds.move_win_tag_1,
@@ -111,7 +111,7 @@ while True:
     wm.update_top_bar()
     wm.update_bottom_bar()
     wm.draw_bars()
-    wm.debug_bars()
+    #wm.debug_bars()
     pypixel.update()
     pypixel.clear()
 

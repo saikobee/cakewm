@@ -3,9 +3,10 @@ from container import Container
 from stack     import Stack
 from ratio     import Ratio
 from magic     import Magic
+from master    import Master
 from conf      import conf
 
-class Column(Container, Ratio, Magic):
+class Column(Container, Ratio, Magic, Master):
     "A column manages stacks"
 
     @staticmethod
