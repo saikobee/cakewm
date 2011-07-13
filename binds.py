@@ -44,7 +44,7 @@ class Binds(object):
                     getattr(thing, cmd)(*args)
                 except Exception as e:
                     util.errors(
-                        "tried doing %s.%s(%s)" % (thing, cmd, ", ".join(args)),
+                        "tried doing #<%s instance>.%s(%s)" % (type(thing).__name__, cmd, ", ".join(args)),
                         str(e)
                     )
 

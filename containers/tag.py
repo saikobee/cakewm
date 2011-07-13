@@ -100,14 +100,15 @@ class Tag(Container, Ratio, Magic, Master):
             win.draw_fullscreen(screen)
 
     def organize(self, screen):
-        if self.n_items() == 1:
+        n = self.n_items()
+        if n == 1:
             self.cols[0].w = screen.w
             self.cols[0].x = 0
-        else:
+        elif n > 1:
             tot  = screen.w
-            mw   = tot * self.ratio # master width
+            mw   = int(tot * self.ratio) # master width
             tot -= mw
-            q    = tot // self.n_items()
+            q    = tot // (n - 1)
             for i, col in enumerate(self.cols):
                 if not i == self.master:
                     col.w = q

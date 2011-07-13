@@ -1,3 +1,4 @@
+import util
 from util import *
 from container import Container
 from stack     import Stack
@@ -20,6 +21,7 @@ class Column(Container, Ratio, Magic, Master):
 
     def __init__(self, **kwargs):
         super(Column, self).__init__(**kwargs)
+        Master.__init__(self)
         self.x = None
         self.w = None
 
@@ -63,6 +65,34 @@ class Column(Container, Ratio, Magic, Master):
                 tot += stack.h
 
             self.stacks[-1].h = tag.h - tot + self.stacks[0].h
+
+        for stack in self.stacks:
+            stack.w = self.w
+            stack.x = self.x
+            stack.organize()
+
+    def organize(self, screen):
+        tag = screen.item()
+        n   = self.n_items()
+        if n == 1:
+            self.stacks[0].h = tag.h
+            self.stacks[0].y = tag.y_offset
+        elif n > 1:
+            tot  = tag.h
+            mh   = int(tot * self.ratio) # master height
+            tot -= mh
+            q    = tot // (n - 1)
+            for i, stack in enumerate(self.stacks):
+                if not i == self.master:
+                    stack.h = q
+                    tot    -= q
+
+            self.items[self.master].h = mh + tot
+
+            tot = tag.y_offset
+            for i, stack in enumerate(self.stacks):
+                stack.y = tot
+                tot    += stack.h
 
         for stack in self.stacks:
             stack.w = self.w
