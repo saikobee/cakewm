@@ -7,14 +7,17 @@ class Binds(object):
     "A binds object is used for making keybinds"
 
     def __init__(self, **kwargs):
-        self.display = kwargs["display"]
+        self._display = kwargs["display"]
 
     def has_fullscreen(self):
         tag = self.tag()
         return tag.fullscreen
 
+    def display(self):
+        return self._display
+
     def screen(self):
-        screen = self.display.item()
+        screen = self.display().item()
         return screen
 
     def tag(self):
@@ -38,7 +41,14 @@ class Binds(object):
         def inner(self, thing=thing, fs_guard=fs_guard, cmd=cmd):
             if fs_guard and self.has_fullscreen():
                 return
-            thing = getattr(self, thing)()
+            try:
+                thing = getattr(self, thing)()
+            except Exception as e:
+                util.errors(
+                    "tried doing #<%s instance>.%s()" % (type(self).__name__, thing),
+                    "this is the instance: %s" % repr(thing),
+                    str(e)
+                )
             if thing is not None:
                 try:
                     getattr(thing, cmd)(*args)
