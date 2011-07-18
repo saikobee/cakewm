@@ -64,10 +64,12 @@ _full_screen = False
 
 def _debug(*xs):
     if __debug__:
+        print "pypixel: ",
         print " ".join(map(str, xs))
 
 def _debug_noln(*xs):
     if __debug__:
+        print "pypixel: ",
         print " ".join(map(str, xs)),
         sys.stdout.flush()
 
@@ -88,7 +90,7 @@ def _toggle_full_screen():
     surf = None
     if not _full_screen:
         # (0, 0) means use the native resolution
-        surf = pygame.display.set_mode((0, 0), _FULLSCREEN_OPTS)
+        surf = pygame.display.set_mode(MAX_SIZE, _FULLSCREEN_OPTS)
     else:
         surf = pygame.display.set_mode(SIZE, _WINDOW_OPTS)
     HOOKS["resize"](surf.get_size())
@@ -179,7 +181,9 @@ def show():
     '''Set up the basic pypixel environment, like the main window.'''
     global _clock
     global _video_is_on
+    global MAX_SIZE
     pygame.init()
+    MAX_SIZE = max(pygame.display.list_modes())
     title(None)
     pygame.display.set_mode(SIZE, _WINDOW_OPTS)
     pygame.mouse.set_visible(False)
