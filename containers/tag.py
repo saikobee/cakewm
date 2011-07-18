@@ -39,6 +39,13 @@ class Tag(Container, Ratio, Magic, Master):
 
         self.bar_hidden = False
 
+    def set_resolution(self, res, **kwargs):
+        screen = kwargs["screen"]
+        self.w, self.h = res
+        self.h -= 2 * conf.bar_height
+        self.y_offset = conf.bar_height
+        self.organize(screen)
+
     def hide_bar(self):
         self.h         += 2 * conf.bar_height
         self.y_offset   = 0

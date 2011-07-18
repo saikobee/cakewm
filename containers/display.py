@@ -7,6 +7,10 @@ class Display(Container):
 
     NAME = "Dpy"
 
+    def set_resolution(self, res):
+        for screen in self.screens:
+            screen.set_resolution(res)
+
     @property
     def screens(self):
         return self.items

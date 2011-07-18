@@ -10,6 +10,10 @@ class WM(object):
         self.bar_top = ""
         self.bar_bot = ""
 
+    def set_resolution(self, res):
+        self.display.set_resolution(res)
+        self.organize()
+
     def draw_wallpaper(self):
         grey0 = (32, ) * 3
         grey1 = (128,) * 3

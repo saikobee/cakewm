@@ -18,6 +18,8 @@ pypixel.show()
 wm      = WM(display=display)
 binds   = Binds(display=display)
 
+pypixel.HOOKS["resize"] = wm.set_resolution
+
 keybinds = {
     "p": binds.add_win,
     "`": binds.close_win,

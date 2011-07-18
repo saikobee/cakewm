@@ -19,6 +19,11 @@ class Screen(Container):
     def cur_tag(self):  return self.cur
     def tot_tags(self): return self.n_items()
 
+    def set_resolution(self, res):
+        self.w, self.h = res
+        for tag in self.tags:
+            tag.set_resolution(res, screen=self)
+
     def __init__(self, **kwargs):
         super(Screen, self).__init__(**kwargs)
 

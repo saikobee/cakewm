@@ -44,9 +44,14 @@ _program = None
 
 _FPS = 60
 
+HOOKS = {
+    "resize": lambda: None,
+}
+
 _WINDOW_OPTS = (
     pygame.DOUBLEBUF |
-    pygame.HWSURFACE
+    pygame.HWSURFACE |
+    pygame.RESIZABLE
 )
 
 _FULLSCREEN_OPTS = (
@@ -79,11 +84,14 @@ def _toggle_paused():
 
 def _toggle_full_screen():
     global _full_screen
-    buf = _screen().copy()
+    buf  = _screen().copy()
+    surf = None
     if not _full_screen:
-        pygame.display.set_mode(SIZE, _FULLSCREEN_OPTS)
+        # (0, 0) means use the native resolution
+        surf = pygame.display.set_mode((0, 0), _FULLSCREEN_OPTS)
     else:
-        pygame.display.set_mode(SIZE, _WINDOW_OPTS)
+        surf = pygame.display.set_mode(SIZE, _WINDOW_OPTS)
+    HOOKS["resize"](surf.get_size())
     _screen().blit(buf, (0, 0))
     _full_screen = not _full_screen
 
@@ -114,9 +122,16 @@ def _noop():
     pass
 
 def _handle_events():
+    global SIZE
+    global WIDTH
+    global HEIGHT
     for event in pygame.event.get():
         if event.type == pygame.locals.QUIT:
             exit()
+        elif event.type == pygame.locals.VIDEORESIZE:
+            pygame.display.set_mode(event.size, _WINDOW_OPTS)
+            SIZE = WIDTH, HEIGHT = event.size
+            HOOKS["resize"](event.size)
         elif event.type == pygame.locals.KEYDOWN:
             # Execute the keybinding function, defaulting to a noop method
             _keybinds.get(event.key, _noop)()
