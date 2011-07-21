@@ -9,8 +9,10 @@ class Conf(object):
     ANYTHING     = r'.*'
     COMMENT_CHAR = r'#'
 
-    WS  = r'\s*'
-    EOL = r'$'
+    MANY  = r'*'
+    MANY1 = r'+'
+    WS    = r'\s*'
+    EOL   = r'$'
 
     HEX_DIGIT    = r'[0-9a-fA-F]'
     HEX_DIGITS_2 = r'%s{%d}' % (HEX_DIGIT, 2)
@@ -42,7 +44,25 @@ class Conf(object):
     QCHAR = r'(?:[^"]|\\")'
     STR   = QCHAR + r'*'
     INT   = r'[0-9]+'
+    BIND  = r'%s+-%s' % (MOD_CHAR, BINDABLE_KEYS)
     SEP_CHAR = r'='
+    MOD_CHAR = r'[WSAC]'
+    BINDABLE_KEYS = r'(?:%s)' % '|'.join(SYMBOL_KEYS + NUMBER_KEYS + ALPHA_KEYS + NAMED_KEYS)
+
+    SYMBOL_KEYS = "; ' / etc".split()
+    NUMBER_KEYS = map(str, range(10))
+    ALPHA_KEYS  = (map(chr, range(ord('a'), ord('z') + 1))
+                +  map(chr, range(ord('A'), ord('Z') + 1)))
+    NAMED_KEYS  = [
+        "return",
+        "enter",
+        "space",
+        "esc",
+        "escape",
+    ]
+    NAMED_KEYS = (NAMED_KEYS
+               + map(lambda s: s.capitalize(), NAMED_KEYS)
+               + map(lambda s: s.upper(), NAMED_KEYS))
 
     DEFN = WS + r'(' + IDENT + r')' + WS + SEP_CHAR + WS
 
@@ -73,7 +93,7 @@ class Conf(object):
                 self.process_line(lineno, line)
 
     def __getattr__(self, attr):
-        return self.stuff[attr]
+        return self.stuff.get(attr, None)
 
     def parse_str(str):
         # Remove quotes
@@ -230,6 +250,68 @@ class Conf(object):
         "stack_unfocused_color":     "color",
         "stack_unfocused_highlight": "color",
         "stack_unfocused_shadow":    "color",
+
+        "add_win": "bind",
+        "close_win": "bind",
+
+        "move_win_prev": "bind",
+        "select_win_prev": "bind",
+        "select_win_next": "bind",
+        "move_win_next": "bind",
+
+        "select_col_prev": "bind",
+        "select_stack_next": "bind",
+        "select_stack_prev": "bind",
+        "select_col_next": "bind",
+
+        "move_win_col_prev": "bind",
+        "move_win_stack_next": "bind",
+        "move_win_stack_prev": "bind",
+        "move_win_col_next": "bind",
+
+        "select_tag_1": "bind",
+        "select_tag_2": "bind",
+        "select_tag_3": "bind",
+        "select_tag_4": "bind",
+        "select_tag_5": "bind",
+        "select_tag_6": "bind",
+        "select_tag_7": "bind",
+        "select_tag_8": "bind",
+        "select_tag_9": "bind",
+
+        "dec_tag_ratio": "bind",
+        "inc_col_ratio": "bind",
+        "dec_col_ratio": "bind",
+        "inc_tag_ratio": "bind",
+
+        "tag_master_next": "bind",
+        "col_master_next": "bind",
+
+        "toggle_bar": "bind",
+
+        "move_win_tag_1": "bind",
+        "move_win_tag_2": "bind",
+        "move_win_tag_3": "bind",
+        "move_win_tag_4": "bind",
+        "move_win_tag_5": "bind",
+        "move_win_tag_6": "bind",
+        "move_win_tag_7": "bind",
+        "move_win_tag_8": "bind",
+        "move_win_tag_9": "bind",
+
+        "select_screen_next": "bind",
+        "select_screen_prev": "bind",
+
+        "move_win_screen_next": "bind",
+        "move_win_screen_prev": "bind",
+
+        "swap_tags_next": "bind",
+        "swap_tags_prev": "bind",
+
+        "toggle_fullscreen": "bind",
+
+        "column_magic": "bind",
+        "stack_magic": "bind",
     }
 
     attr_to_default_val = {
