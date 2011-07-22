@@ -86,7 +86,7 @@ bind_funcs = [
 
 for func in bind_funcs:
     # Normal bind
-    pypixel.bind(getattr(conf, "key_" + key, getattr(binds, func))
+    pypixel.bind(getattr(conf, "key_" + func), getattr(binds, func))
 
     # Debug bind
     #def debug_func(key=key, func=func):

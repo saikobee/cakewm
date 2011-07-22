@@ -3,6 +3,8 @@ import re
 
 import util
 
+from keybind import Keybind
+
 class Conf(object):
     "Contains all the config entries"
 
@@ -44,31 +46,26 @@ class Conf(object):
     QCHAR = r'(?:[^"]|\\")'
     STR   = QCHAR + r'*'
     INT   = r'[0-9]+'
-    BIND  = r'%s+-%s' % (MOD_CHAR, BINDABLE_KEYS)
     SEP_CHAR = r'='
     MOD_CHAR = r'[WSAC]'
-    BINDABLE_KEYS = r'(?:%s)' % '|'.join(SYMBOL_KEYS + NUMBER_KEYS + ALPHA_KEYS + NAMED_KEYS)
 
-    SYMBOL_KEYS = "; ' / etc".split()
-    NUMBER_KEYS = map(str, range(10))
-    ALPHA_KEYS  = (map(chr, range(ord('a'), ord('z') + 1))
-                +  map(chr, range(ord('A'), ord('Z') + 1)))
-    NAMED_KEYS  = [
-        "return",
-        "enter",
-        "space",
-        "esc",
-        "escape",
-    ]
-    NAMED_KEYS = (NAMED_KEYS
-               + map(lambda s: s.capitalize(), NAMED_KEYS)
-               + map(lambda s: s.upper(), NAMED_KEYS))
+    KEYS = Keybind.keys.keys()
+    KEYS = (KEYS
+         + map(lambda s: s.capitalize(), KEYS)
+         + map(lambda s: s.upper(),      KEYS))
+
+    util.debug("KEYS=%s" % KEYS)
+
+    ANY_KEY = r'(?:' + r'|'.join(map(re.escape, KEYS)) + r')'
+    util.debug("ANY_KEY=%s" % ANY_KEY)
+    BIND = r'%s+-%s' % (MOD_CHAR, ANY_KEY)
 
     DEFN = WS + r'(' + IDENT + r')' + WS + SEP_CHAR + WS
 
     DEFN_PREFIX = WS + r'(' + IDENT + r')' + WS + SEP_CHAR + WS + ANYTHING
 
     DEFN_STR   = DEFN + r'"(' + STR        + r')"' + WS
+    DEFN_BIND  = DEFN + r'"(' + BIND       + r')"' + WS
     DEFN_WORD  = DEFN + r'('  + WORD       + r')'  + WS
     DEFN_INT   = DEFN + r'('  + INT        + r')'  + WS
     DEFN_BOOL  = DEFN + r'('  + BOOL       + r')'  + WS
@@ -96,11 +93,11 @@ class Conf(object):
         return self.stuff.get(attr, None)
 
     def parse_str(str):
-        # Remove quotes
-        str = str[1:-1]
         # Replace escaped quotes with real ones
-        str = str.replace(r'\"', r'"')
-        return str
+        return str.replace(r'\"', r'"')
+
+    def parse_bind(bind):
+        return Keybind(bind)
 
     def parse_color_any(color):
         for regex, parse_func in Conf.color_regex_to_parse_func.iteritems():
@@ -185,7 +182,8 @@ class Conf(object):
                 self.stuff[attr] = func(val)
             else:
                 util.error("could not parse line %i: %s" % (lineno, line))
-        except KeyError:
+        #except KeyError:
+        except None:
             util.error("'%s' is not a valid option" % attr)
 
     def process_line(self, lineno, line):
@@ -209,6 +207,7 @@ class Conf(object):
         "word":  lambda x: x,
         "bool":  parse_bool,
         "color": parse_color_any,
+        "bind":  parse_bind,
     }
 
     type_to_regex = {
@@ -217,6 +216,7 @@ class Conf(object):
         "word":  DEFN_WORD,
         "bool":  DEFN_BOOL,
         "color": DEFN_COLOR,
+        "bind":  DEFN_BIND,
     }
 
     attr_to_type = {
@@ -225,6 +225,7 @@ class Conf(object):
         "exit_message":    "bool",
         "welcome_message": "bool",
         "test_color":      "color",
+        "test_str":        "str",
 
         "stack_padding": "int",
 
@@ -251,67 +252,67 @@ class Conf(object):
         "stack_unfocused_highlight": "color",
         "stack_unfocused_shadow":    "color",
 
-        "add_win": "bind",
-        "close_win": "bind",
+        "key_add_win": "bind",
+        "key_close_win": "bind",
 
-        "move_win_prev": "bind",
-        "select_win_prev": "bind",
-        "select_win_next": "bind",
-        "move_win_next": "bind",
+        "key_move_win_prev": "bind",
+        "key_select_win_prev": "bind",
+        "key_select_win_next": "bind",
+        "key_move_win_next": "bind",
 
-        "select_col_prev": "bind",
-        "select_stack_next": "bind",
-        "select_stack_prev": "bind",
-        "select_col_next": "bind",
+        "key_select_col_prev": "bind",
+        "key_select_stack_next": "bind",
+        "key_select_stack_prev": "bind",
+        "key_select_col_next": "bind",
 
-        "move_win_col_prev": "bind",
-        "move_win_stack_next": "bind",
-        "move_win_stack_prev": "bind",
-        "move_win_col_next": "bind",
+        "key_move_win_col_prev": "bind",
+        "key_move_win_stack_next": "bind",
+        "key_move_win_stack_prev": "bind",
+        "key_move_win_col_next": "bind",
 
-        "select_tag_1": "bind",
-        "select_tag_2": "bind",
-        "select_tag_3": "bind",
-        "select_tag_4": "bind",
-        "select_tag_5": "bind",
-        "select_tag_6": "bind",
-        "select_tag_7": "bind",
-        "select_tag_8": "bind",
-        "select_tag_9": "bind",
+        "key_select_tag_1": "bind",
+        "key_select_tag_2": "bind",
+        "key_select_tag_3": "bind",
+        "key_select_tag_4": "bind",
+        "key_select_tag_5": "bind",
+        "key_select_tag_6": "bind",
+        "key_select_tag_7": "bind",
+        "key_select_tag_8": "bind",
+        "key_select_tag_9": "bind",
 
-        "dec_tag_ratio": "bind",
-        "inc_col_ratio": "bind",
-        "dec_col_ratio": "bind",
-        "inc_tag_ratio": "bind",
+        "key_dec_tag_ratio": "bind",
+        "key_inc_col_ratio": "bind",
+        "key_dec_col_ratio": "bind",
+        "key_inc_tag_ratio": "bind",
 
-        "tag_master_next": "bind",
-        "col_master_next": "bind",
+        "key_tag_master_next": "bind",
+        "key_col_master_next": "bind",
 
-        "toggle_bar": "bind",
+        "key_toggle_bar": "bind",
 
-        "move_win_tag_1": "bind",
-        "move_win_tag_2": "bind",
-        "move_win_tag_3": "bind",
-        "move_win_tag_4": "bind",
-        "move_win_tag_5": "bind",
-        "move_win_tag_6": "bind",
-        "move_win_tag_7": "bind",
-        "move_win_tag_8": "bind",
-        "move_win_tag_9": "bind",
+        "key_move_win_tag_1": "bind",
+        "key_move_win_tag_2": "bind",
+        "key_move_win_tag_3": "bind",
+        "key_move_win_tag_4": "bind",
+        "key_move_win_tag_5": "bind",
+        "key_move_win_tag_6": "bind",
+        "key_move_win_tag_7": "bind",
+        "key_move_win_tag_8": "bind",
+        "key_move_win_tag_9": "bind",
 
-        "select_screen_next": "bind",
-        "select_screen_prev": "bind",
+        "key_select_screen_next": "bind",
+        "key_select_screen_prev": "bind",
 
-        "move_win_screen_next": "bind",
-        "move_win_screen_prev": "bind",
+        "key_move_win_screen_next": "bind",
+        "key_move_win_screen_prev": "bind",
 
-        "swap_tags_next": "bind",
-        "swap_tags_prev": "bind",
+        "key_swap_tags_next": "bind",
+        "key_swap_tags_prev": "bind",
 
-        "toggle_fullscreen": "bind",
+        "key_toggle_fullscreen": "bind",
 
-        "column_magic": "bind",
-        "stack_magic": "bind",
+        "key_column_magic": "bind",
+        "key_stack_magic": "bind",
     }
 
     attr_to_default_val = {
@@ -320,6 +321,7 @@ class Conf(object):
         "exit_message":    False,
         "welcome_message": False,
         "test_color":      (123, 4, 89),
+        "test_str":        '<None>',
 
         "stack_padding": 3,
 

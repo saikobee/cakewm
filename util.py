@@ -16,6 +16,9 @@ def echo(*args):
 
     print " ".join(map(str, args))
 
+def invert_dict(d):
+    return dict((v,k) for k in d for v in d[k])
+
 def rgb_assert(rgb):
     bad_val      = lambda val: not (0 <= val <= 255)
     any_bad_vals = any(map(bad_val, rgb))
