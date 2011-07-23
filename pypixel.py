@@ -102,13 +102,13 @@ def _toggle_full_screen():
 
 # Mapping of keys to functions
 _keybinds = {
-    (const.KMOD_ALT, pygame.locals.K_q): exit,
-    (const.KMOD_ALT, pygame.locals.K_f): _toggle_full_screen,
-    (const.KMOD_ALT, pygame.locals.K_v): _toggle_show_fps,
-    (const.KMOD_ALT, pygame.locals.K_p): _toggle_paused,
+    # (const.KMOD_ALT, pygame.locals.K_q): exit,
+    # (const.KMOD_ALT, pygame.locals.K_f): _toggle_full_screen,
+    # (const.KMOD_ALT, pygame.locals.K_v): _toggle_show_fps,
+    # (const.KMOD_ALT, pygame.locals.K_p): _toggle_paused,
 
     (const.KMOD_ALT, pygame.locals.K_RETURN): _toggle_full_screen,
-    (const.KMOD_ALT, pygame.locals.K_SPACE ): _toggle_paused,
+    # (const.KMOD_ALT, pygame.locals.K_SPACE ): _toggle_paused,
     (const.KMOD_ALT, pygame.locals.K_ESCAPE): exit,
 }
 
