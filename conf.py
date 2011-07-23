@@ -54,10 +54,7 @@ class Conf(object):
          + map(lambda s: s.capitalize(), KEYS)
          + map(lambda s: s.upper(),      KEYS))
 
-    util.debug("KEYS=%s" % KEYS)
-
     ANY_KEY = r'(?:' + r'|'.join(map(re.escape, KEYS)) + r')'
-    util.debug("ANY_KEY=%s" % ANY_KEY)
     BIND = r'%s+-%s' % (MOD_CHAR, ANY_KEY)
 
     DEFN = WS + r'(' + IDENT + r')' + WS + SEP_CHAR + WS

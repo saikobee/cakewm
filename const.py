@@ -8,3 +8,8 @@ class Const(object):
 NEXT = Const(+1)
 CUR  = Const( 0)
 PREV = Const(-1)
+
+KMOD_ALT    = 1 << 0
+KMOD_CTRL   = 1 << 1
+KMOD_SHIFT  = 1 << 2
+KMOD_SUPER  = 1 << 3

@@ -4,18 +4,16 @@ import pygame.locals
 import pypixel
 
 import util
+import const
 
 class Keybind(object):
     def __init__(self, key_str):
+        self.orig_str = key_str
         self.modifiers, self.key = Keybind.parse_key_str(key_str)
 
     @staticmethod
     def parse_key_str(key_str):
-        util.debug("key_str=%s" % repr(key_str))
-
         mods, key = key_str.split('-')
-
-        util.debug("mods=%s, key=%s" % (repr(mods), repr(key)))
 
         mods = map(lambda mod: Keybind.mods[mod], mods.upper())
         mod  = reduce(lambda sum, mod: sum | mod, mods)
@@ -23,11 +21,24 @@ class Keybind(object):
 
         return (mod, key)
 
+    def __hash__(self):
+        return hash(self.as_tuple())
+
+    def __eq__(self, other):
+        if isinstance(other, tuple): return self.as_tuple() == other
+        else:                        return self.as_tuple() == other.as_tuple()
+
+    def as_tuple(self):
+        return (self.modifiers, self.key)
+
+    def __str__(self):
+        return "<%s>" % self.orig_str
+
     mods = {
-        "W": pygame.locals.KMOD_META,
-        "S": pygame.locals.KMOD_SHIFT,
-        "C": pygame.locals.KMOD_CTRL,
-        "A": pygame.locals.KMOD_ALT,
+        "W": const.KMOD_SUPER,
+        "S": const.KMOD_SHIFT,
+        "C": const.KMOD_CTRL,
+        "A": const.KMOD_ALT,
     }
 
     alpha   = map(chr, range(ord('a'), ord('z') + 1))

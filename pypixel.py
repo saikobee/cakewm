@@ -29,6 +29,8 @@ import sys
 import pygame
 import pygame.locals
 
+import const
+
 # Screen size
 SIZE = WIDTH, HEIGHT = 800, 600
 CENTER = (WIDTH/2, HEIGHT/2)
@@ -38,6 +40,7 @@ _clock         = None
 _paused        = False
 _show_fps      = False
 _video_is_on   = False
+_mod_super_down = False
 
 _TITLE = "pypixel " + __version__
 _program = None
@@ -99,14 +102,14 @@ def _toggle_full_screen():
 
 # Mapping of keys to functions
 _keybinds = {
-    pygame.locals.K_q: exit,
-    pygame.locals.K_f: _toggle_full_screen,
-    pygame.locals.K_v: _toggle_show_fps,
-    pygame.locals.K_p: _toggle_paused,
+    (const.KMOD_ALT, pygame.locals.K_q): exit,
+    (const.KMOD_ALT, pygame.locals.K_f): _toggle_full_screen,
+    (const.KMOD_ALT, pygame.locals.K_v): _toggle_show_fps,
+    (const.KMOD_ALT, pygame.locals.K_p): _toggle_paused,
 
-    pygame.locals.K_RETURN: _toggle_full_screen,
-    pygame.locals.K_SPACE:  _toggle_paused,
-    pygame.locals.K_ESCAPE: exit,
+    (const.KMOD_ALT, pygame.locals.K_RETURN): _toggle_full_screen,
+    (const.KMOD_ALT, pygame.locals.K_SPACE ): _toggle_paused,
+    (const.KMOD_ALT, pygame.locals.K_ESCAPE): exit,
 }
 
 def bind(key, func):
@@ -117,7 +120,7 @@ def bind(key, func):
     '''
 
     global _keybinds
-    _keybinds[ord(key)] = func
+    _keybinds[key] = func
 
 # This should really be expressable with a lambda, python...
 def _noop():
@@ -127,6 +130,7 @@ def _handle_events():
     global SIZE
     global WIDTH
     global HEIGHT
+    global _mod_super_down
     for event in pygame.event.get():
         if event.type == pygame.locals.QUIT:
             exit()
@@ -134,9 +138,23 @@ def _handle_events():
             pygame.display.set_mode(event.size, _WINDOW_OPTS)
             SIZE = WIDTH, HEIGHT = event.size
             HOOKS["resize"](event.size)
+        elif (event.type == pygame.locals.KEYUP and
+              event.key in (pygame.locals.K_LSUPER, pygame.locals.K_RSUPER)):
+                _mod_super_down = False
+        elif (event.type == pygame.locals.KEYDOWN and
+              event.key in (pygame.locals.K_LSUPER, pygame.locals.K_RSUPER)):
+                _mod_super_down = True
         elif event.type == pygame.locals.KEYDOWN:
             # Execute the keybinding function, defaulting to a noop method
-            _keybinds.get(event.key, _noop)()
+            k   = pygame.locals
+            mod = 0
+            # Don't differentiate between left and right alt, etc
+            if event.mod & k.KMOD_ALT:   mod |= const.KMOD_ALT
+            if event.mod & k.KMOD_CTRL:  mod |= const.KMOD_CTRL
+            if event.mod & k.KMOD_SHIFT: mod |= const.KMOD_SHIFT
+            if _mod_super_down:          mod |= const.KMOD_SUPER
+            bind = (mod, event.key)
+            _keybinds.get(bind, _noop)()
     _try_to_flip()
     _clock.tick(_FPS)
 

@@ -88,13 +88,6 @@ for func in bind_funcs:
     # Normal bind
     pypixel.bind(getattr(conf, "key_" + func), getattr(binds, func))
 
-    # Debug bind
-    #def debug_func(key=key, func=func):
-        #func()
-        #util.debug("%s: %s" % (key, str(display)))
-        #util.debug(key)
-    #pypixel.bind(key, debug_func)
-
 util.debug(conf)
 
 @atexit.register
