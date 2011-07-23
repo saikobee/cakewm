@@ -62,7 +62,7 @@ class Conf(object):
     DEFN_PREFIX = WS + r'(' + IDENT + r')' + WS + SEP_CHAR + WS + ANYTHING
 
     DEFN_STR   = DEFN + r'"(' + STR        + r')"' + WS
-    DEFN_BIND  = DEFN + r'"(' + BIND       + r')"' + WS
+    DEFN_BIND  = DEFN + r'<(' + BIND       + r')>' + WS
     DEFN_WORD  = DEFN + r'('  + WORD       + r')'  + WS
     DEFN_INT   = DEFN + r'('  + INT        + r')'  + WS
     DEFN_BOOL  = DEFN + r'('  + BOOL       + r')'  + WS
