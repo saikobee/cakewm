@@ -57,6 +57,8 @@ class Conf(object):
     ANY_KEY = r'(?:' + r'|'.join(map(re.escape, KEYS)) + r')'
     BIND = r'%s+-%s' % (MOD_CHAR, ANY_KEY)
 
+    INCLUDE = WS + r'include' + WS + r'"(' + STR + r')"' + WS
+
     DEFN = WS + r'(' + IDENT + r')' + WS + SEP_CHAR + WS
 
     DEFN_PREFIX = WS + r'(' + IDENT + r')' + WS + SEP_CHAR + WS + ANYTHING
@@ -185,10 +187,17 @@ class Conf(object):
 
     def process_line(self, lineno, line):
         if   re.match(Conf.DEFN_PREFIX, line): self.process_defn_line(lineno, line)
+        elif re.match(Conf.INCLUDE,     line): self.attempt_include(lineno, line)
         elif re.match(Conf.COMMENT,     line): pass
         elif re.match(Conf.SPACE,       line): pass
         else:
             util.error("could not parse line %i: %s" % (lineno, line))
+
+    def attempt_include(self, lineno, line):
+        file = re.findall(Conf.INCLUDE, line)[0]
+        file = self.parse_str(file)
+        self.load(file)
+
 
     def __repr__(self):
         title = "[Conf]"
