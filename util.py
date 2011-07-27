@@ -57,6 +57,9 @@ def clamp2(x, q):
 
     return clamp(x, 0, q - 1)
 
+def wrap(x, n):
+    return x % n
+
 def between(x, a, b):
     '''Returns if a number is in the range [a, b]'''
     return a <= x and x <= b

@@ -36,7 +36,9 @@ class Stack(Container, Focusable, FloatingRect):
 
     def _select_win(self, direction):
         if self.cur is not None:
-            self.cur = util.clamp2(self.cur + direction.num, self.n_items())
+            if conf.wrap:   func = util.wrap
+            else:           func = util.clamp2
+            self.cur = func(self.cur + direction.num, self.n_items())
 
     def select_win_next(self): self._select_win(const.NEXT)
     def select_win_prev(self): self._select_win(const.PREV)

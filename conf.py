@@ -223,6 +223,7 @@ class Conf(object):
         "welcome_message": "bool",
         "test_color":      "color",
         "test_str":        "str",
+        "wrap":            "bool",
 
         "stack_padding": "int",
 
@@ -319,6 +320,7 @@ class Conf(object):
         "welcome_message": False,
         "test_color":      (123, 4, 89),
         "test_str":        '<None>',
+        "wrap":            True,
 
         "stack_padding": 3,
 

@@ -1,5 +1,6 @@
 import util
 from window import Window
+from conf   import conf
 
 class Container(object):
     '''This is the base class for the various containers
@@ -19,7 +20,9 @@ class Container(object):
         if self.n_items() == 0:
             self.cur = None
         else:
-            self.cur = util.clamp2(self.cur, self.n_items())
+            if conf.wrap:   func = util.wrap
+            else:           func = util.clamp2
+            self.cur = func(self.cur, self.n_items())
 
     def move_win_next(self): self.move_win_num((self.cur or 0) + 1)
     def move_win_prev(self): self.move_win_num((self.cur or 0) - 1)
@@ -62,10 +65,9 @@ class Container(object):
     def select_prev(self): self.select_num((self.cur or 0) - 1)
 
     def select_num(self, number):
-        if util.between2(number, self.n_items()):
-            self.cur = number
-        else:
-            util.debug("Out of range")
+        if conf.wrap:   func = util.wrap
+        else:           func = util.clamp2
+        self.cur = func(number, self.n_items())
 
     def take_cur_win(self):
         item = self.item()
