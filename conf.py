@@ -292,7 +292,9 @@ class Conf(object):
         "key_dec_col_ratio": "bind",
         "key_inc_tag_ratio": "bind",
 
+        "key_tag_master_prev": "bind",
         "key_tag_master_next": "bind",
+        "key_col_master_prev": "bind",
         "key_col_master_next": "bind",
 
         "key_toggle_bar": "bind",

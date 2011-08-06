@@ -124,7 +124,11 @@ def bind(key, func):
     '''
 
     global _keybinds
-    _keybinds[key] = func
+    def hacked():
+        _debug("Pressed %s" % key)
+        func()
+    #_keybinds[key] = func
+    _keybinds[key] = hacked
 
 # This should really be expressable with a lambda, python...
 def _noop():

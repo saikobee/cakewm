@@ -68,9 +68,6 @@ class Tag(Container, Ratio, Magic, Master):
         if win is not None:
             self.fullscreen = not self.fullscreen
 
-    def column_magic_next(self): self.item_magic_next()
-    def column_magic_prev(self): self.item_magic_prev()
-
     def close_win(self):
         self.fullscreen = False
         col = self.item()

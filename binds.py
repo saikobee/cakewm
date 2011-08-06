@@ -93,12 +93,13 @@ class Binds(object):
     select_tag_9      = do_do("screen", "select_tag_num", args=[8], fs_guard=False)
 
     # Tag binds
-    column_magic_next    = do_do("tag", "column_magic_next")
-    column_magic_prev    = do_do("tag", "column_magic_prev")
+    column_magic_next    = do_do("tag", "item_magic_next")
+    column_magic_prev    = do_do("tag", "item_magic_prev")
     toggle_fullscreen    = do_do("tag", "toggle_fullscreen", fs_guard=False)
     close_win            = do_do("tag", "close_win", fs_guard=False)
     move_win_col_next    = do_do("tag", "move_win_col_next")
     move_win_col_prev    = do_do("tag", "move_win_col_prev")
+    tag_master_prev      = do_do("tag", "prev_master")
     tag_master_next      = do_do("tag", "next_master")
     select_col_next      = do_do("tag", "select_col_next")
     select_col_prev      = do_do("tag", "select_col_prev")
@@ -108,8 +109,9 @@ class Binds(object):
     complement_tag_ratio = do_do("tag", "complement_tag_ratio")
 
     # Column binds
-    stack_magic_next     = do_do("col", "stack_magic_next")
-    stack_magic_prev     = do_do("col", "stack_magic_prev")
+    stack_magic_next     = do_do("col", "item_magic_next")
+    stack_magic_prev     = do_do("col", "item_magic_prev")
+    col_master_prev      = do_do("col", "prev_master")
     col_master_next      = do_do("col", "next_master")
     move_win_stack_next  = do_do("col", "move_win_stack_next")
     move_win_stack_prev  = do_do("col", "move_win_stack_prev")

@@ -54,7 +54,9 @@ bind_funcs = [
     "dec_col_ratio",
     "inc_tag_ratio",
 
+    "tag_master_prev",
     "tag_master_next",
+    "col_master_prev",
     "col_master_next",
 
     "toggle_bar",

@@ -25,9 +25,6 @@ class Column(Container, Ratio, Magic, Master):
         self.x = None
         self.w = None
 
-    def stack_magic_next(self): self.item_magic_next()
-    def stack_magic_prev(self): self.item_magic_prev()
-
     def n_stacks(self):
         return len(self.stacks)
 
