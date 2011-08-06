@@ -100,6 +100,9 @@ def _toggle_full_screen():
     _screen().blit(buf, (0, 0))
     _full_screen = not _full_screen
 
+def _toggle_grab():
+    pygame.event.set_grab(not pygame.event.get_grab())
+
 # Mapping of keys to functions
 _keybinds = {
     # (const.KMOD_ALT, pygame.locals.K_q): exit,
@@ -108,6 +111,7 @@ _keybinds = {
     # (const.KMOD_ALT, pygame.locals.K_p): _toggle_paused,
 
     (const.KMOD_ALT, pygame.locals.K_RETURN): _toggle_full_screen,
+    (const.KMOD_ALT, pygame.locals.K_SPACE):  _toggle_grab,
     # (const.KMOD_ALT, pygame.locals.K_SPACE ): _toggle_paused,
     (const.KMOD_ALT, pygame.locals.K_ESCAPE): exit,
 }
