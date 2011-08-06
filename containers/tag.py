@@ -68,11 +68,11 @@ class Tag(Container, Ratio, Magic, Master):
         if win is not None:
             self.fullscreen = not self.fullscreen
 
-    def item_magic(self):
-        super(Tag, self).item_magic()
-        if self.cols == []:
-            util.debug("HELP!")
-            self.cols.append(Column(cur=0, items=[Stack(cur=None, items=[])]))
+    def _item_magic_post_hook(self):
+        self.cols.append(Column(cur=0, items=[Stack(cur=None, items=[])]))
+
+    def column_magic_next(self): self.item_magic_next()
+    def column_magic_prev(self): self.item_magic_prev()
 
     def close_win(self):
         self.fullscreen = False

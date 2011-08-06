@@ -318,8 +318,10 @@ class Conf(object):
 
         "key_toggle_fullscreen": "bind",
 
-        "key_column_magic": "bind",
-        "key_stack_magic": "bind",
+        "key_column_magic_prev": "bind",
+        "key_stack_magic_next":  "bind",
+        "key_stack_magic_prev":  "bind",
+        "key_column_magic_next": "bind",
     }
 
     attr_to_default_val = {

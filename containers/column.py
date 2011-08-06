@@ -25,10 +25,11 @@ class Column(Container, Ratio, Magic, Master):
         self.x = None
         self.w = None
 
-    def item_magic(self):
-        super(Column, self).item_magic()
-        if self.stacks == []:
-            self.stacks.append(Stack(cur=None, items=[]))
+    def _item_magic_post_hook(self):
+        self.items.append(Stack(cur=None, items=[]))
+
+    def stack_magic_next(self): self.item_magic_next()
+    def stack_magic_prev(self): self.item_magic_prev()
 
     def n_stacks(self):
         return len(self.stacks)

@@ -80,8 +80,10 @@ bind_funcs = [
 
     "toggle_fullscreen",
 
-    "column_magic",
-    "stack_magic",
+    "column_magic_next",
+    "column_magic_prev",
+    "stack_magic_next",
+    "stack_magic_prev",
 ]
 
 for func in bind_funcs:
