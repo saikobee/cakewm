@@ -25,9 +25,6 @@ class Column(Container, Ratio, Magic, Master):
         self.x = None
         self.w = None
 
-    def _item_magic_post_hook(self):
-        self.items.append(Stack(cur=None, items=[]))
-
     def stack_magic_next(self): self.item_magic_next()
     def stack_magic_prev(self): self.item_magic_prev()
 

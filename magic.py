@@ -26,7 +26,7 @@ class Magic(object):
 
         if self.items == []:
             # Avoid empty containers
-            self._item_magic_post_hook()
+            self.items.append(self.default_item())
 
     def item_magic_next(self): self.item_magic(const.NEXT)
     def item_magic_prev(self): self.item_magic(const.CUR)
