@@ -33,7 +33,7 @@ class Tag(Container, Ratio, Magic, Master):
         self.fullscreen = False
 
         self.w = pypixel.WIDTH
-        self.h = pypixel.HEIGHT - 2 * conf.bar_height
+        self.h = pypixel.HEIGHT - conf.bar_height
 
         self.y_offset = conf.bar_height
 
@@ -42,18 +42,18 @@ class Tag(Container, Ratio, Magic, Master):
     def set_resolution(self, res, **kwargs):
         screen = kwargs["screen"]
         self.w, self.h = res
-        self.h -= 2 * conf.bar_height
+        self.h -= conf.bar_height
         self.y_offset = conf.bar_height
         self.organize(screen)
 
     def hide_bar(self):
-        self.h         += 2 * conf.bar_height
+        self.h         += conf.bar_height
         self.y_offset   = 0
         self.bar_hidden = True
 
     def show_bar(self):
-        self.h         -= 2 * conf.bar_height
-        self.y_offset   =     conf.bar_height
+        self.h         -= conf.bar_height
+        self.y_offset   = conf.bar_height
         self.bar_hidden = False
 
     def toggle_bar(self):
